@@ -31,7 +31,9 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value = "/modifyArticle.do")
-	public String fwdUpdatePage() {
+	public String fwdUpdatePage(ArticleVO vo, Model model) {
+		ArticleVO article = ArticleService.select(vo);
+		model.addAttribute("Article", article);
 		return "modifyArticle";
 	}
 	
@@ -50,7 +52,7 @@ public class ArticleController {
 	public String select(ArticleVO vo, Model model) {
 		ArticleVO Article = ArticleService.select(vo);
 		model.addAttribute("Article", Article);
-		return "ArticleInfo";
+		return "selectArticle";
 	}
 	
 	@RequestMapping(value = "/deleteArticleAction.do")

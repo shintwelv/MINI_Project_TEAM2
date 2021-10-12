@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="article">
+	<insert id="insert">
+		insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, sysdate, 0)
+	</insert>
+	
+	<select id="select">
+		select * from article where postno = (select max(postno) from article)
+	</select>
+	
+	<delete id="delete">
+		delete article where postno = (select max(postno) from article)
+	</delete>
+	
+	<update id="update">
+		
+	</update>
+
+
+</mapper>

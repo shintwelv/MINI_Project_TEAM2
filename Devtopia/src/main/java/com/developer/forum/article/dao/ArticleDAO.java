@@ -34,28 +34,28 @@ public class ArticleDAO {
 	public void insert(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		session.insert("user.insert",vo);
+		session.insert("article.insert",vo);
 		session.commit();
 	}
 	
 	public void update(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		session.update("user.update", vo);
+		session.update("article.update", vo);
 		session.commit();
 	}
 	
 	public void delete(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		session.delete("user.delete", vo);
+		session.delete("article.delete", vo);
 		session.commit();
 	}
 	
 	public ArticleVO select(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		ArticleVO user = session.selectOne("user.select", vo);
-		return user;
+		ArticleVO article = session.selectOne("article.select", vo);
+		return article;
 	}
 }
