@@ -5,6 +5,14 @@ alter user mini identified by mini1234 account unlock;
 
 conn mini/mini1234;
 
+drop sequence idx_seq;
+
+CREATE SEQUENCE idx_seq
+     MINVALUE 1
+     MAXVALUE 999999
+     START WITH 1
+     INCREMENT BY 1
+     CACHE 20;
 
 create table users(
 userId varchar2(15) not null primary key,
