@@ -1,9 +1,9 @@
-package com.developer.forum.user.model;
+package com.developer.forum.article.model;
 
 import lombok.Data;
 
 @Data
-public class UserVO {
+public class ArticleVO {
 	private String userId;
 	private String userPw;
 	private String userName;

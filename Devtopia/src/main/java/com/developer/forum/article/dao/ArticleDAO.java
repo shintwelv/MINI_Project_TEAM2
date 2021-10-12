@@ -1,4 +1,4 @@
-package com.developer.forum.user.dao;
+package com.developer.forum.article.dao;
 
 
 import java.io.IOException;
@@ -10,10 +10,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Repository;
 
-import com.developer.forum.user.model.UserVO;
+import com.developer.forum.article.model.ArticleVO;
 
 @Repository
-public class UserDAO {
+public class ArticleDAO {
 	private static SqlSessionFactory sqlMapper;
 	
 	private static SqlSessionFactory getInstance() {
@@ -31,31 +31,31 @@ public class UserDAO {
 		return sqlMapper;
 	}
 	
-	public void insert(UserVO vo) {
+	public void insert(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.insert("user.insert",vo);
 		session.commit();
 	}
 	
-	public void update(UserVO vo) {
+	public void update(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.update("user.update", vo);
 		session.commit();
 	}
 	
-	public void delete(UserVO vo) {
+	public void delete(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.delete("user.delete", vo);
 		session.commit();
 	}
 	
-	public UserVO select(UserVO vo) {
+	public ArticleVO select(ArticleVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		UserVO user = session.selectOne("user.select", vo);
+		ArticleVO user = session.selectOne("user.select", vo);
 		return user;
 	}
 }
