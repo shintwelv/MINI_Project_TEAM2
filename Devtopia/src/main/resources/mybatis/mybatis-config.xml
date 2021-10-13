@@ -24,5 +24,10 @@
 
 	<mappers>
 		<mapper resource="mybatis/mappings/sql-article.xml"/>
+		<mapper resource="mybatis/mappings/sql-free.xml"/>
+		<mapper resource="mybatis/mappings/sql-job.xml"/>
+		<mapper resource="mybatis/mappings/sql-news.xml"/>
+		<mapper resource="mybatis/mappings/sql-qna.xml"/>
+		<mapper resource="mybatis/mappings/sql-tip.xml"/>
 	</mappers>
 </configuration>
