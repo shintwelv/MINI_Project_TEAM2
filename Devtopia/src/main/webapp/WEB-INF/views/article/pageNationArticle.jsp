@@ -5,10 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Article List</title>
+<title>PageNation</title>
+
+<script>
+	
+
+
+
+</script>
 </head>
 <body>
-	<a href="goMain.do">[Main]</a><br>
+	<a href="goMain.do">[Main]</a>
+	<br>
 	<c:forEach items="${ArticleList}" var="Article">
 		postNo : ${Article.postNo} <br>
 		writer : ${Article.writer} <br>
@@ -19,5 +27,12 @@
 		<hr>
 	</c:forEach>
 	
+	<a href="">[prev]</a>
+	<a class="pageNum"></a>
+	<a class="pageNum"></a>
+	<a class="pageNum"></a>
+	<a class="pageNum"></a>
+	<a class="pageNum"></a>
+	<a href="">[next]</a>
 </body>
 </html>

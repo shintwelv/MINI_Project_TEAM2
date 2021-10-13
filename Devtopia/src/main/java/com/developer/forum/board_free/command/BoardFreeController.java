@@ -14,51 +14,51 @@ public class BoardFreeController {
 	@Autowired
 	private BoardFreeService BoardFreeService;
 	
-//	@RequestMapping(value = {"goMain.do","/"})
-//	public String goMain() {
-//		return "index";
-//	}
-	
-	@RequestMapping(value = "/createBoardFree.do")
-	public String fwdInsertPage() {
-		return "createBoardFree";
+	@RequestMapping(value = "/free/goMain.do")
+	public String goMain() {
+		return "free/index";
 	}
 	
-	@RequestMapping(value = "/createBoardFreeAction.do")
+	@RequestMapping(value = "/free/createBoardFree.do")
+	public String fwdInsertPage() {
+		return "free/createArticle";
+	}
+	
+	@RequestMapping(value = "/free/createBoardFreeAction.do")
 	public String insert(BoardFreeVO vo) {
 		BoardFreeService.insert(vo);
-		return "createBoardFreeSuccess";
+		return "free/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/modifyBoardFree.do")
+	@RequestMapping(value = "/free/modifyBoardFree.do")
 	public String fwdUpdatePage(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
 		model.addAttribute("BoardFree", BoardFree);
-		return "modifyBoardFree";
+		return "free/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/modifyBoardFreeAction.do")
+	@RequestMapping(value = "/free/modifyBoardFreeAction.do")
 	public String update(BoardFreeVO vo) {
 		BoardFreeService.update(vo);
-		return "modifyBoardFreeSuccess";
+		return "free/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/deleteBoardFree.do")
+	@RequestMapping(value = "/free/deleteBoardFree.do")
 	public String fwdDeletePage() {
-		return "deleteBoardFree";
+		return "free/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/selectBoardFree.do")
+	@RequestMapping(value = "/free/selectBoardFree.do")
 	public String select(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
-		model.addAttribute("BoardFree", BoardFree);
-		return "selectBoardFree";
+		model.addAttribute("Article", BoardFree);
+		return "free/selectArticle";
 	}
 	
-	@RequestMapping(value = "/deleteBoardFreeAction.do")
+	@RequestMapping(value = "/free/deleteBoardFreeAction.do")
 	public String delete(BoardFreeVO vo) {
 		BoardFreeService.delete(vo);
-		return "deleteBoardFreeSucces";
+		return "free/deleteArticleSucces";
 	}
 	
 }

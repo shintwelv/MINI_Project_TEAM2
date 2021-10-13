@@ -14,51 +14,51 @@ public class BoardTipController {
 	@Autowired
 	private BoardTipService BoardTipService;
 	
-//	@RequestMapping(value = {"goMain.do","/"})
-//	public String goMain() {
-//		return "index";
-//	}
-	
-	@RequestMapping(value = "/createBoardTip.do")
-	public String fwdInsertPage() {
-		return "createBoardTip";
+	@RequestMapping(value = "/tip/goMain.do")
+	public String goMain() {
+		return "tip/index";
 	}
 	
-	@RequestMapping(value = "/createBoardTipAction.do")
+	@RequestMapping(value = "/tip/createBoardTip.do")
+	public String fwdInsertPage() {
+		return "tip/createBoardTip";
+	}
+	
+	@RequestMapping(value = "/tip/createBoardTipAction.do")
 	public String insert(BoardTipVO vo) {
 		BoardTipService.insert(vo);
-		return "createBoardTipSuccess";
+		return "tip/createBoardTipSuccess";
 	}
 	
-	@RequestMapping(value = "/modifyBoardTip.do")
+	@RequestMapping(value = "/tip/modifyBoardTip.do")
 	public String fwdUpdatePage(BoardTipVO vo, Model model) {
 		BoardTipVO BoardTip = BoardTipService.select(vo);
 		model.addAttribute("BoardTip", BoardTip);
-		return "modifyBoardTip";
+		return "tip/modifyBoardTip";
 	}
 	
-	@RequestMapping(value = "/modifyBoardTipAction.do")
+	@RequestMapping(value = "/tip/modifyBoardTipAction.do")
 	public String update(BoardTipVO vo) {
 		BoardTipService.update(vo);
-		return "modifyBoardTipSuccess";
+		return "tip/modifyBoardTipSuccess";
 	}
 	
-	@RequestMapping(value = "/deleteBoardTip.do")
+	@RequestMapping(value = "/tip/deleteBoardTip.do")
 	public String fwdDeletePage() {
-		return "deleteBoardTip";
+		return "tip/deleteBoardTip";
 	}
 	
-	@RequestMapping(value = "/selectBoardTip.do")
+	@RequestMapping(value = "/tip/selectBoardTip.do")
 	public String select(BoardTipVO vo, Model model) {
 		BoardTipVO BoardTip = BoardTipService.select(vo);
 		model.addAttribute("BoardTip", BoardTip);
-		return "selectBoardTip";
+		return "tip/selectBoardTip";
 	}
 	
-	@RequestMapping(value = "/deleteBoardTipAction.do")
+	@RequestMapping(value = "/tip/deleteBoardTipAction.do")
 	public String delete(BoardTipVO vo) {
 		BoardTipService.delete(vo);
-		return "deleteBoardTipSucces";
+		return "tip/deleteBoardTipSucces";
 	}
 	
 }

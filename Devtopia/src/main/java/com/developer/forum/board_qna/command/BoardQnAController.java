@@ -14,51 +14,51 @@ public class BoardQnAController {
 	@Autowired
 	private BoardQnAService BoardQnAService;
 	
-//	@RequestMapping(value = {"goMain.do","/"})
-//	public String goMain() {
-//		return "index";
-//	}
-	
-	@RequestMapping(value = "/createBoardQnA.do")
-	public String fwdInsertPage() {
-		return "createBoardQnA";
+	@RequestMapping(value = "/qna/goMain.do")
+	public String goMain() {
+		return "qna/index";
 	}
 	
-	@RequestMapping(value = "/createBoardQnAAction.do")
+	@RequestMapping(value = "/qna/createBoardQnA.do")
+	public String fwdInsertPage() {
+		return "qna/createBoardQnA";
+	}
+	
+	@RequestMapping(value = "/qna/createBoardQnAAction.do")
 	public String insert(BoardQnAVO vo) {
 		BoardQnAService.insert(vo);
-		return "createBoardQnASuccess";
+		return "qna/createBoardQnASuccess";
 	}
 	
-	@RequestMapping(value = "/modifyBoardQnA.do")
+	@RequestMapping(value = "/qna/modifyBoardQnA.do")
 	public String fwdUpdatePage(BoardQnAVO vo, Model model) {
 		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
 		model.addAttribute("BoardQnA", BoardQnA);
-		return "modifyBoardQnA";
+		return "qna/modifyBoardQnA";
 	}
 	
-	@RequestMapping(value = "/modifyBoardQnAAction.do")
+	@RequestMapping(value = "/qna/modifyBoardQnAAction.do")
 	public String update(BoardQnAVO vo) {
 		BoardQnAService.update(vo);
-		return "modifyBoardQnASuccess";
+		return "qna/modifyBoardQnASuccess";
 	}
 	
-	@RequestMapping(value = "/deleteBoardQnA.do")
+	@RequestMapping(value = "/qna/deleteBoardQnA.do")
 	public String fwdDeletePage() {
-		return "deleteBoardQnA";
+		return "qna/deleteBoardQnA";
 	}
 	
-	@RequestMapping(value = "/selectBoardQnA.do")
+	@RequestMapping(value = "/qna/selectBoardQnA.do")
 	public String select(BoardQnAVO vo, Model model) {
 		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
 		model.addAttribute("BoardQnA", BoardQnA);
-		return "selectBoardQnA";
+		return "qna/selectBoardQnA";
 	}
 	
-	@RequestMapping(value = "/deleteBoardQnAAction.do")
+	@RequestMapping(value = "/qna/deleteBoardQnAAction.do")
 	public String delete(BoardQnAVO vo) {
 		BoardQnAService.delete(vo);
-		return "deleteBoardQnASucces";
+		return "qna/deleteBoardQnASucces";
 	}
 	
 }

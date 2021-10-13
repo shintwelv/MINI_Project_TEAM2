@@ -30,3 +30,35 @@ references users(userId)
 );
 
 update article set VIEWCOUNT = (select viewcount from article where postno = 8)+1 where postno = 8
+
+select title, content from
+(
+select seq, title, content from
+(
+select rownum as seq, title, content from 
+(
+select * from article order by postNo desc
+)
+)
+where seq >= 6
+) where rownum <= 5
+
+
+select title, content, writer, writeDate, viewCount from
+(
+select seq, title, content, writer, writeDate, viewCount from
+(
+select rownum as seq, title, content, writer, writeDate, viewCount from 
+(
+select * from article order by postNo desc
+)
+)
+where seq >= #{여기서부터}
+) where rownum <= #{몇개를 보여줘라}
+
+
+free
+job
+news
+qna
+tip

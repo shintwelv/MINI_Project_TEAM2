@@ -42,5 +42,9 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleList;
 	}
 	
-	
+	public List<ArticleVO> pageNationArticleList(int page) {
+		List<ArticleVO> articleList = null;
+		articleList = dao.pageNationArticle(page);
+		return articleList;
+	}
 }

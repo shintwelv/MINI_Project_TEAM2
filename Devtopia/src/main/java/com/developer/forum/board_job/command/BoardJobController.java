@@ -14,51 +14,51 @@ public class BoardJobController {
 	@Autowired
 	private BoardJobService BoardJobService;
 	
-//	@RequestMapping(value = {"goMain.do","/"})
-//	public String goMain() {
-//		return "index";
-//	}
-	
-	@RequestMapping(value = "/createBoardJob.do")
-	public String fwdInsertPage() {
-		return "createBoardJob";
+	@RequestMapping(value = "/job/goMain.do")
+	public String goMain() {
+		return "job/index";
 	}
 	
-	@RequestMapping(value = "/createBoardJobAction.do")
+	@RequestMapping(value = "/job/createBoardJob.do")
+	public String fwdInsertPage() {
+		return "job/createBoardJob";
+	}
+	
+	@RequestMapping(value = "/job/createBoardJobAction.do")
 	public String insert(BoardJobVO vo) {
 		BoardJobService.insert(vo);
-		return "createBoardJobSuccess";
+		return "job/createBoardJobSuccess";
 	}
 	
-	@RequestMapping(value = "/modifyBoardJob.do")
+	@RequestMapping(value = "/job/modifyBoardJob.do")
 	public String fwdUpdatePage(BoardJobVO vo, Model model) {
 		BoardJobVO BoardJob = BoardJobService.select(vo);
 		model.addAttribute("BoardJob", BoardJob);
-		return "modifyBoardJob";
+		return "job/modifyBoardJob";
 	}
 	
-	@RequestMapping(value = "/modifyBoardJobAction.do")
+	@RequestMapping(value = "/job/modifyBoardJobAction.do")
 	public String update(BoardJobVO vo) {
 		BoardJobService.update(vo);
-		return "modifyBoardJobSuccess";
+		return "job/modifyBoardJobSuccess";
 	}
 	
-	@RequestMapping(value = "/deleteBoardJob.do")
+	@RequestMapping(value = "/job/deleteBoardJob.do")
 	public String fwdDeletePage() {
-		return "deleteBoardJob";
+		return "job/deleteBoardJob";
 	}
 	
-	@RequestMapping(value = "/selectBoardJob.do")
+	@RequestMapping(value = "/job/selectBoardJob.do")
 	public String select(BoardJobVO vo, Model model) {
 		BoardJobVO BoardJob = BoardJobService.select(vo);
 		model.addAttribute("BoardJob", BoardJob);
-		return "selectBoardJob";
+		return "job/selectBoardJob";
 	}
 	
-	@RequestMapping(value = "/deleteBoardJobAction.do")
+	@RequestMapping(value = "/job/deleteBoardJobAction.do")
 	public String delete(BoardJobVO vo) {
 		BoardJobService.delete(vo);
-		return "deleteBoardJobSucces";
+		return "job/deleteBoardJobSucces";
 	}
 	
 }

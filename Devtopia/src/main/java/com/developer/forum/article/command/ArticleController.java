@@ -16,60 +16,69 @@ public class ArticleController {
 	@Autowired
 	private ArticleService ArticleService;
 	
-	@RequestMapping(value = {"goMain.do","/"})
+	@RequestMapping(value = "/article/goMain.do")
 	public String goMain() {
-		return "index";
+		return "article/index";
 	}
 	
-	@RequestMapping(value = "/createArticle.do")
+	@RequestMapping(value = "/article/createArticle.do")
 	public String fwdInsertPage() {
-		return "createArticle";
+		return "article/createArticle";
 	}
 	
-	@RequestMapping(value = "/createArticleAction.do")
+	@RequestMapping(value = "/article/createArticleAction.do")
 	public String insert(ArticleVO vo) {
 		ArticleService.insert(vo);
-		return "createArticleSuccess";
+		return "article/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/modifyArticle.do")
+	@RequestMapping(value = "/article/modifyArticle.do")
 	public String fwdUpdatePage(ArticleVO vo, Model model) {
 		ArticleVO article = ArticleService.select(vo);
 		model.addAttribute("Article", article);
-		return "modifyArticle";
+		return "article/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/modifyArticleAction.do")
+	@RequestMapping(value = "/article/modifyArticleAction.do")
 	public String update(ArticleVO vo) {
 		ArticleService.update(vo);
-		return "modifyArticleSuccess";
+		return "article/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/deleteArticle.do")
+	@RequestMapping(value = "/article/deleteArticle.do")
 	public String fwdDeletePage() {
-		return "deleteArticle";
+		return "article/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/selectArticle.do")
+	@RequestMapping(value = "/article/selectArticle.do")
 	public String select(ArticleVO vo, Model model) {
 		ArticleVO Article = ArticleService.select(vo);
 		ArticleService.countUp(Article);
 		model.addAttribute("Article", Article);
-		return "selectArticle";
+		return "article/selectArticle";
 	}
 	
-	@RequestMapping(value = "/deleteArticleAction.do")
+	@RequestMapping(value = "/article/deleteArticleAction.do")
 	public String delete(ArticleVO vo) {
 		ArticleService.delete(vo);
-		return "deleteArticleSuccess";
+		return "article/deleteArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/selectArticleList.do")
+	@RequestMapping(value = "/article/selectArticleList.do")
 	public String selectArticleList(Model model) {
 		List<ArticleVO> articleList = ArticleService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
-		return "selectArticleList";
+		return "article/selectArticleList";
 	}
 	
-	
+	@RequestMapping(value = "/article/pageNation.do")
+	public String pageNationArticleList(Model model, String page) {
+		List<ArticleVO> articleList = null;
+		int startPoint = 0;
+		if (page != null) {
+			startPoint = Integer.parseInt(page);
+		}
+		model.addAttribute("ArticleList", startPoint);
+		return "article/pageNationArticle";
+	}
 }

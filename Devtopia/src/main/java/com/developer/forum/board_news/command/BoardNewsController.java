@@ -14,51 +14,51 @@ public class BoardNewsController {
 	@Autowired
 	private BoardNewsService BoardNewsService;
 	
-//	@RequestMapping(value = {"goMain.do","/"})
-//	public String goMain() {
-//		return "index";
-//	}
-	
-	@RequestMapping(value = "/createBoardNews.do")
-	public String fwdInsertPage() {
-		return "createBoardNews";
+	@RequestMapping(value = "/news/goMain.do")
+	public String goMain() {
+		return "news/index";
 	}
 	
-	@RequestMapping(value = "/createBoardNewsAction.do")
+	@RequestMapping(value = "/news/createBoardNews.do")
+	public String fwdInsertPage() {
+		return "news/createBoardNews";
+	}
+	
+	@RequestMapping(value = "/news/createBoardNewsAction.do")
 	public String insert(BoardNewsVO vo) {
 		BoardNewsService.insert(vo);
-		return "createBoardNewsSuccess";
+		return "news/createBoardNewsSuccess";
 	}
 	
-	@RequestMapping(value = "/modifyBoardNews.do")
+	@RequestMapping(value = "/news/modifyBoardNews.do")
 	public String fwdUpdatePage(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
 		model.addAttribute("BoardNews", BoardNews);
-		return "modifyBoardNews";
+		return "news/modifyBoardNews";
 	}
 	
-	@RequestMapping(value = "/modifyBoardNewsAction.do")
+	@RequestMapping(value = "/news/modifyBoardNewsAction.do")
 	public String update(BoardNewsVO vo) {
 		BoardNewsService.update(vo);
-		return "modifyBoardNewsSuccess";
+		return "news/modifyBoardNewsSuccess";
 	}
 	
-	@RequestMapping(value = "/deleteBoardNews.do")
+	@RequestMapping(value = "/news/deleteBoardNews.do")
 	public String fwdDeletePage() {
-		return "deleteBoardNews";
+		return "news/deleteBoardNews";
 	}
 	
-	@RequestMapping(value = "/selectBoardNews.do")
+	@RequestMapping(value = "/news/selectBoardNews.do")
 	public String select(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
 		model.addAttribute("BoardNews", BoardNews);
-		return "selectBoardNews";
+		return "news/selectBoardNews";
 	}
 	
-	@RequestMapping(value = "/deleteBoardNewsAction.do")
+	@RequestMapping(value = "/news/deleteBoardNewsAction.do")
 	public String delete(BoardNewsVO vo) {
 		BoardNewsService.delete(vo);
-		return "deleteBoardNewsSucces";
+		return "news/deleteBoardNewsSucces";
 	}
 	
 }

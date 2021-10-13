@@ -80,4 +80,18 @@ public class ArticleDAO {
 		articleList = session.selectList("article.getArticleList");
 		return articleList;
 	}
+	
+	public int totalArticleCount() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		int totalArticleCount = session.selectOne("article.totalArticleCount");
+		return totalArticleCount;
+	}
+	
+	public List<ArticleVO> pageNationArticle(int page) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<ArticleVO> articleList = session.selectList("article.pageNation", page*10+1);
+		return articleList;
+	}
 }
