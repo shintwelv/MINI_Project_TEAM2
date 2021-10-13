@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.developer.forum">
+	<logger name="com.spring.juso">
 		<level value="info" />
 	</logger>
 	
