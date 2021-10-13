@@ -1,5 +1,7 @@
 package com.developer.forum.article.command;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +53,7 @@ public class ArticleController {
 	@RequestMapping(value = "/selectArticle.do")
 	public String select(ArticleVO vo, Model model) {
 		ArticleVO Article = ArticleService.select(vo);
+		ArticleService.countUp(Article);
 		model.addAttribute("Article", Article);
 		return "selectArticle";
 	}
@@ -59,6 +62,13 @@ public class ArticleController {
 	public String delete(ArticleVO vo) {
 		ArticleService.delete(vo);
 		return "deleteArticleSuccess";
+	}
+	
+	@RequestMapping(value = "/selectArticleList.do")
+	public String selectArticleList(Model model) {
+		List<ArticleVO> articleList = ArticleService.selectArticleList();
+		model.addAttribute("ArticleList", articleList);
+		return "selectArticleList";
 	}
 	
 }

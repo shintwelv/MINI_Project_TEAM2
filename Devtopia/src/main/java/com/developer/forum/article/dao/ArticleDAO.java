@@ -3,6 +3,7 @@ package com.developer.forum.article.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -64,5 +65,19 @@ public class ArticleDAO {
 		SqlSession session = sqlMapper.openSession();
 		ArticleVO article = session.selectOne("article.select");
 		return article;
+	}
+	
+	public void countUp(ArticleVO vo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.update("article.ArticleCountUp", vo);
+	}
+	
+	public List<ArticleVO> selectArticleList() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<ArticleVO> articleList = null;
+		articleList = session.selectList("article.getArticleList");
+		return articleList;
 	}
 }

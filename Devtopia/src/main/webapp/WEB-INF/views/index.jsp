@@ -13,5 +13,6 @@
 	<a href="modifyArticle.do">modify Article</a> <br>
 	<a href="deleteArticle.do">delete Article</a> <br>
 	<a href="selectArticle.do">select Article</a> <br>
+	<a href="selectArticleList.do">select ArticleList</a> <br>
 </body>
 </html>
