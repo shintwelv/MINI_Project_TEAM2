@@ -38,7 +38,7 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
-constraint fk_writer foreign key(writer)
+constraint fk_writer_news foreign key(writer)
 references users(userId)
 );
 
@@ -49,7 +49,7 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
-constraint fk_writer foreign key(writer)
+constraint fk_writer_free foreign key(writer)
 references users(userId)
 );
 create table board_tip(
@@ -59,7 +59,7 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
-constraint fk_writer foreign key(writer)
+constraint fk_writer_tip foreign key(writer)
 references users(userId)
 );
 create table board_qna(
@@ -69,7 +69,7 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
-constraint fk_writer foreign key(writer)
+constraint fk_writer_qna foreign key(writer)
 references users(userId)
 );
 create table board_job(
@@ -79,6 +79,6 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
-constraint fk_writer foreign key(writer)
+constraint fk_writer_job foreign key(writer)
 references users(userId)
 );
