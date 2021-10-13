@@ -2,6 +2,8 @@ package com.developer.forum.article.command;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,17 +73,19 @@ public class ArticleController {
 		return "article/selectArticleList";
 	}
 	
-	@RequestMapping(value = "/article/pageNation.do")
-	public String pageNationArticleList(Model model, String page) {
+	@RequestMapping(value = "/article/pageNationArticle.do")
+	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		String pageVal = request.getParameter("pageNum");
 		int totalPage = ArticleService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		
 		List<ArticleVO> articleList = null;
-		int startPoint = 0;
-		if (page != null) {
-			startPoint = Integer.parseInt(page);
+		int startPoint = 1;
+		if (pageVal != null && !pageVal.trim().equals("")) {
+			startPoint = Integer.parseInt(pageVal);
 		}
-		model.addAttribute("ArticleList", startPoint);
+		articleList = ArticleService.pageNationArticleList(startPoint);
+		model.addAttribute("ArticleList", articleList);
 		return "article/pageNationArticle";
 	}
 }

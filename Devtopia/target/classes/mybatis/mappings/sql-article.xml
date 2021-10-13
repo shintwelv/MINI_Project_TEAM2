@@ -48,13 +48,13 @@
 
 	<select id="pageNation" resultMap="articleList" parameterType="int">
 	<![CDATA[
-		select title, content, writer, writeDate, viewCount 
+		select postno, title, content, writer, writeDate, viewCount 
 		from
 			(
-				select seq, title, content, writer, writeDate, viewCount 
+				select postno, seq, title, content, writer, writeDate, viewCount 
 				from
 					(
-					select rownum as seq, title, content, writer, writeDate, viewCount 
+					select rownum as seq, postno, title, content, writer, writeDate, viewCount 
 					from 
 						(
 						select * from article order by postNo desc
