@@ -29,7 +29,7 @@
 	</update>
 	
 	<update id="ArticleCountUp">
-		update article set VIEWCOUNT = (select viewcount from article where postno = #{postNo}) where postno = #{postNo}
+		update article set VIEWCOUNT = (select viewcount from article where postno = #{postNo})+1 where postno = #{postNo}
 	</update>
 	
 	<select id="getArticleList" resultMap="articleList">

@@ -28,3 +28,5 @@ viewCount int not null,
 constraint fk_writer foreign key(writer)
 references users(userId)
 );
+
+update article set VIEWCOUNT = (select viewcount from article where postno = 8)+1 where postno = 8
