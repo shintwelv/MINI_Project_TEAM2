@@ -14,6 +14,13 @@ CREATE SEQUENCE idx_seq
      INCREMENT BY 1
      CACHE 20;
 
+drop table users;
+drop table board_news;
+drop table board_free;
+drop table board_tip;
+drop table board_qna;
+drop table board_job;
+
 create table users(
 userId varchar2(15) not null primary key,
 userPw varchar2(30) not null,
@@ -24,7 +31,7 @@ phoneNumber varchar2(12) not null,
 address varchar2(2000) not null
 );
 
-create table article(
+create table board_news(
 postNo int not null primary key,
 writer varchar2(15) not null,
 title varchar2(100) not null,
@@ -35,3 +42,43 @@ constraint fk_writer foreign key(writer)
 references users(userId)
 );
 
+create table board_free(
+postNo int not null primary key,
+writer varchar2(15) not null,
+title varchar2(100) not null,
+content varchar2(1000),
+writeDate date not null,
+viewCount int not null,
+constraint fk_writer foreign key(writer)
+references users(userId)
+);
+create table board_tip(
+postNo int not null primary key,
+writer varchar2(15) not null,
+title varchar2(100) not null,
+content varchar2(1000),
+writeDate date not null,
+viewCount int not null,
+constraint fk_writer foreign key(writer)
+references users(userId)
+);
+create table board_qna(
+postNo int not null primary key,
+writer varchar2(15) not null,
+title varchar2(100) not null,
+content varchar2(1000),
+writeDate date not null,
+viewCount int not null,
+constraint fk_writer foreign key(writer)
+references users(userId)
+);
+create table board_job(
+postNo int not null primary key,
+writer varchar2(15) not null,
+title varchar2(100) not null,
+content varchar2(1000),
+writeDate date not null,
+viewCount int not null,
+constraint fk_writer foreign key(writer)
+references users(userId)
+);
