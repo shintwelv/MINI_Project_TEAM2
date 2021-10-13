@@ -18,7 +18,7 @@ public class ArticleDAO {
 	
 	private static SqlSessionFactory getInstance() {
 		if (sqlMapper == null) {
-			String resource = "mybatis-config.xml";
+			String resource = "mybatis/mybatis-config.xml";
 			Reader reader;
 			try {
 				reader = Resources.getResourceAsReader(resource);
@@ -52,10 +52,17 @@ public class ArticleDAO {
 		session.commit();
 	}
 	
-	public ArticleVO select(ArticleVO vo) {
+//	public ArticleVO select(ArticleVO vo) {
+//		sqlMapper = getInstance();
+//		SqlSession session = sqlMapper.openSession();
+//		ArticleVO article = session.selectOne("article.select", vo);
+//		System.out.println(article);
+//		return article;
+//	}
+	public ArticleVO select() {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		ArticleVO article = session.selectOne("article.select", vo);
+		ArticleVO article = session.selectOne("article.select");
 		return article;
 	}
 }

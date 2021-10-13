@@ -7,12 +7,13 @@
 <title>select Article</title>
 </head>
 <body>
-	select Article
-	postNo : ${postNo} <br>
-	writer : ${writer} <br>
-	title : ${title} <br>
-	content : ${content} <br>
-	writeDate : ${writeDate} <br>
-	viewCount : ${viewCount} <br>
+	select Article <br>
+	postNo : ${Article.postNo} <br>
+	writer : ${Article.writer} <br>
+	title : ${Article.title} <br>
+	content : ${Article.content} <br>
+	writeDate : ${Article.writeDate} <br>
+	viewCount : ${Article.viewCount} <br>
+	<a href="goMain.do">[Main]</a>
 </body>
 </html>

@@ -14,10 +14,10 @@ public class BoardTipController {
 	@Autowired
 	private BoardTipService BoardTipService;
 	
-	@RequestMapping(value = {"goMain.do","/"})
-	public String goMain() {
-		return "index";
-	}
+//	@RequestMapping(value = {"goMain.do","/"})
+//	public String goMain() {
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/createBoardTip.do")
 	public String fwdInsertPage() {

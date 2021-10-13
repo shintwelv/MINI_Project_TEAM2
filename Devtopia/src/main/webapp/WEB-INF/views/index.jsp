@@ -9,9 +9,9 @@
 <body>
 	메인페이지
 	<br>
-	<a href="/createArticle.do">create Article</a> <br>
-	<a href="/modifyArticle.do">modify Article</a> <br>
-	<a href="/deleteArticle.do">delete Article</a> <br>
-	<a href="/selectArticle.do">select Article</a> <br>
+	<a href="createArticle.do">create Article</a> <br>
+	<a href="modifyArticle.do">modify Article</a> <br>
+	<a href="deleteArticle.do">delete Article</a> <br>
+	<a href="selectArticle.do">select Article</a> <br>
 </body>
 </html>

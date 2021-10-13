@@ -14,10 +14,10 @@ public class BoardNewsController {
 	@Autowired
 	private BoardNewsService BoardNewsService;
 	
-	@RequestMapping(value = {"goMain.do","/"})
-	public String goMain() {
-		return "index";
-	}
+//	@RequestMapping(value = {"goMain.do","/"})
+//	public String goMain() {
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/createBoardNews.do")
 	public String fwdInsertPage() {

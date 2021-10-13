@@ -29,7 +29,8 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	@Override
 	public ArticleVO select(ArticleVO vo) {
-		ArticleVO user = dao.select(vo);
-		return user;
+		ArticleVO article = dao.select();
+//		ArticleVO article = dao.select(vo);
+		return article;
 	}
 }

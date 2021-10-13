@@ -58,7 +58,7 @@ public class ArticleController {
 	@RequestMapping(value = "/deleteArticleAction.do")
 	public String delete(ArticleVO vo) {
 		ArticleService.delete(vo);
-		return "deleteArticleSucces";
+		return "deleteArticleSuccess";
 	}
 	
 }

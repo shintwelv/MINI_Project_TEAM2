@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	delete Article
+	delete Article <br>
 	<form action="deleteArticleAction.do">
-		<input type="text" name="postNo" value="postNo area">
+		<input type="text" name="postNo" value="postNo area"><br>
+		
+		<input type="submit" value="삭제">
 	</form>
 </body>
 </html>

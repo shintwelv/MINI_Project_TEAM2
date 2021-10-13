@@ -14,10 +14,10 @@ public class BoardQnAController {
 	@Autowired
 	private BoardQnAService BoardQnAService;
 	
-	@RequestMapping(value = {"goMain.do","/"})
-	public String goMain() {
-		return "index";
-	}
+//	@RequestMapping(value = {"goMain.do","/"})
+//	public String goMain() {
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/createBoardQnA.do")
 	public String fwdInsertPage() {

@@ -14,10 +14,10 @@ public class BoardJobController {
 	@Autowired
 	private BoardJobService BoardJobService;
 	
-	@RequestMapping(value = {"goMain.do","/"})
-	public String goMain() {
-		return "index";
-	}
+//	@RequestMapping(value = {"goMain.do","/"})
+//	public String goMain() {
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/createBoardJob.do")
 	public String fwdInsertPage() {

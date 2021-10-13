@@ -14,10 +14,10 @@ public class BoardFreeController {
 	@Autowired
 	private BoardFreeService BoardFreeService;
 	
-	@RequestMapping(value = {"goMain.do","/"})
-	public String goMain() {
-		return "index";
-	}
+//	@RequestMapping(value = {"goMain.do","/"})
+//	public String goMain() {
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/createBoardFree.do")
 	public String fwdInsertPage() {

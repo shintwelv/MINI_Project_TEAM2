@@ -1,0 +1,30 @@
+drop table users;
+drop table board_news;
+drop table board_free;
+drop table board_tip;
+drop table board_qna;
+drop table board_job;
+
+
+table board_news;
+table board_free;
+table board_tip;
+table board_qna;
+table board_job;
+의 mvc 뼈대 완성
+
+
+insert into article values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 0);
+
+
+
+create table article(
+postNo int not null primary key,
+writer varchar2(15) not null,
+title varchar2(100) not null,
+content varchar2(1000),
+writeDate date not null,
+viewCount int not null,
+constraint fk_writer foreign key(writer)
+references users(userId)
+);
