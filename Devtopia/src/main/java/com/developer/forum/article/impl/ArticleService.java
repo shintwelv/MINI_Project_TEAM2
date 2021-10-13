@@ -17,4 +17,8 @@ public interface ArticleService {
 	void countUp(ArticleVO vo);
 	
 	List<ArticleVO> selectArticleList();
+	
+	public List<ArticleVO> pageNationArticleList(int page);
+	
+	public int totalPage();
 }

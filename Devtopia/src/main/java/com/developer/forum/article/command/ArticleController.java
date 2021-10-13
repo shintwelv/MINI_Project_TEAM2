@@ -73,6 +73,9 @@ public class ArticleController {
 	
 	@RequestMapping(value = "/article/pageNation.do")
 	public String pageNationArticleList(Model model, String page) {
+		int totalPage = ArticleService.totalPage();
+		model.addAttribute("totalPage", totalPage);
+		
 		List<ArticleVO> articleList = null;
 		int startPoint = 0;
 		if (page != null) {

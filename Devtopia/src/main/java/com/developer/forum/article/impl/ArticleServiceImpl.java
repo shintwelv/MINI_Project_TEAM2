@@ -47,4 +47,13 @@ public class ArticleServiceImpl implements ArticleService{
 		articleList = dao.pageNationArticle(page);
 		return articleList;
 	}
+	
+	public int totalPage() {
+		int totalArticleCount = dao.totalArticleCount();
+		int totalPage = (totalArticleCount - (totalArticleCount%10))/10;
+		if (totalArticleCount%10 != 0) {
+			totalPage++;
+		}
+		return totalPage;
+	}
 }
