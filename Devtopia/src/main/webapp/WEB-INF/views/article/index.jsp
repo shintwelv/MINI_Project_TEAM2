@@ -8,6 +8,7 @@
 </head>
 <body>
 	메인페이지
+	<a href="../goMain.do">[goMain]</a>
 	<br>
 	<a href="createArticle.do">create Article</a> <br>
 	<a href="modifyArticle.do">modify Article</a> <br>

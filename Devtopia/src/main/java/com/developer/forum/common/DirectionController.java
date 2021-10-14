@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DirectionController {
 	
-	@RequestMapping(value = "/")
+	@RequestMapping(value = {"/", "/goMain.do"})
 	public String directionPage() {
 		return "direction";
 	}

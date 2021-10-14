@@ -22,6 +22,14 @@ table {
 	text-align: center;
 }
 </style>
+<script>
+	$(".pageNum").on("click", function () {
+        var pageNum = $(this).text();
+        console.log(pageNum);
+    })
+
+
+</script>
 <c:set var="totalPage" value="${totalPage}"/>
 <c:set var="startPoint" value="${startPoint }"/>
 <c:set var="endPoint" value="${endPoint }"/>
@@ -58,7 +66,7 @@ table {
 			</a>
 		</li>
 		<c:forEach begin="${startPoint }" end="${endPoint }" var="pageNum">
-			<li class="paginationNum"><a href="pageNationArticleAction.do?pageNum=${pageNum }">[${pageNum }]</a></li>
+			<li class="paginationNum"><a class="pageNum" href="pageNationArticleAction.do?pageNum=${pageNum }">[${pageNum }]</a></li>
 		</c:forEach>
 		<li class="paginationArrow">
 			<a href="pageNationArticleAction.do?arrowDirection=right" aria-label="Next"> 
