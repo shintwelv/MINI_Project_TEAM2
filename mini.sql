@@ -14,7 +14,8 @@ CREATE SEQUENCE idx_seq
      INCREMENT BY 1
      CACHE 20;
 
-drop table users;
+
+drop table users cascade constraints;
 drop table board_news;
 drop table board_free;
 drop table board_tip;
@@ -28,7 +29,9 @@ userName varchar2(15) not null,
 email varchar2(30),
 nickName varchar2(15) not null,
 phoneNumber varchar2(12) not null,
-address varchar2(2000) not null
+address varchar2(2000) not null,
+profileImgLoc varchar2(100),
+admin varchar2(2)
 );
 
 create table board_news(
@@ -38,6 +41,7 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
+imgLoc varchar2(100),
 constraint fk_writer_news foreign key(writer)
 references users(userId)
 );
