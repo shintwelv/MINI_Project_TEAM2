@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.developer.forum.article.impl.ArticleService;
 import com.developer.forum.article.model.ArticleVO;
@@ -96,7 +95,7 @@ public class ArticleController {
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {
 			if (arrowDirection.trim().equals("left")) {
-				calculateLeftArrow();
+				calculateLeftArrow(totalPage);
 			} else if (arrowDirection.trim().equals("right")) {
 				calculateRightArrow(totalPage);
 			}
@@ -116,10 +115,10 @@ public class ArticleController {
 		return "article/pageNationArticle";
 	}
 	
-	private void calculateLeftArrow() {
+	private void calculateLeftArrow(int totalPage) {
 		if (startPoint - 5 >= 1) {
+			endPoint = startPoint - 1;
 			startPoint = startPoint - 5;
-			endPoint = endPoint - 5;
 		}
 	}
 	

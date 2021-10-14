@@ -3,6 +3,7 @@ package com.developer.forum.board_qna.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +15,7 @@ import com.developer.forum.board_qna.model.BoardQnAVO;
 
 @Repository
 public class BoardQnADAO {
-	private static SqlSessionFactory sqlMapper;
+private static SqlSessionFactory sqlMapper;
 	
 	private static SqlSessionFactory getInstance() {
 		if (sqlMapper == null) {
@@ -52,10 +53,44 @@ public class BoardQnADAO {
 		session.commit();
 	}
 	
-	public BoardQnAVO select(BoardQnAVO vo) {
+//	public BoardQnAVO select(BoardQnAVO vo) {
+//		sqlMapper = getInstance();
+//		SqlSession session = sqlMapper.openSession();
+//		BoardQnAVO BoardQnA = session.selectOne("BoardQnA.select", vo);
+//		return BoardQnA;
+//	}
+	public BoardQnAVO select() {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardQnAVO BoardQnA = session.selectOne("BoardQnA.select", vo);
+		BoardQnAVO BoardQnA = session.selectOne("BoardQnA.select");
 		return BoardQnA;
+	}
+	
+	public void countUp(BoardQnAVO vo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.update("BoardQnA.ArticleCountUp", vo);
+	}
+	
+	public List<BoardQnAVO> selectArticleList() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardQnAVO> articleList = null;
+		articleList = session.selectList("BoardQnA.getArticleList");
+		return articleList;
+	}
+	
+	public int totalArticleCount() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		int totalArticleCount = session.selectOne("BoardQnA.totalArticleCount");
+		return totalArticleCount;
+	}
+	
+	public List<BoardQnAVO> pageNationArticle(int page) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardQnAVO> articleList = session.selectList("BoardQnA.pageNation", (page-1)*10);
+		return articleList;
 	}
 }

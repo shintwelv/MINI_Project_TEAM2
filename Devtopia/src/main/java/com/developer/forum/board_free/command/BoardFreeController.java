@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.developer.forum.article.model.ArticleVO;
 import com.developer.forum.board_free.impl.BoardFreeService;
 import com.developer.forum.board_free.model.BoardFreeVO;
 
@@ -40,7 +39,7 @@ public class BoardFreeController {
 	@RequestMapping(value = "/free/modifyArticle.do")
 	public String fwdUpdatePage(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
-		model.addAttribute("BoardFree", BoardFree);
+		model.addAttribute("Article", BoardFree);
 		return "free/modifyArticle";
 	}
 	
@@ -58,6 +57,7 @@ public class BoardFreeController {
 	@RequestMapping(value = "/free/selectArticle.do")
 	public String select(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
+		BoardFreeService.countUp(vo);
 		model.addAttribute("Article", BoardFree);
 		return "free/selectArticle";
 	}
@@ -72,7 +72,7 @@ public class BoardFreeController {
 	public String selectArticleList(Model model) {
 		List<BoardFreeVO> articleList = BoardFreeService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
-		return "article/selectArticleList";
+		return "free/selectArticleList";
 	}
 	
 	@RequestMapping(value = "/free/pageNationArticle.do")
@@ -85,7 +85,7 @@ public class BoardFreeController {
 		List<BoardFreeVO> articleList = null;
 		articleList = BoardFreeService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
-		return "article/pageNationArticle";
+		return "free/pageNationArticle";
 		
 	}
 	
@@ -112,13 +112,13 @@ public class BoardFreeController {
 		List<BoardFreeVO> articleList = null;
 		articleList = BoardFreeService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
-		return "article/pageNationArticle";
+		return "free/pageNationArticle";
 	}
 	
 	private void calculateLeftArrow() {
 		if (startPoint - 5 >= 1) {
+			endPoint = startPoint - 1;
 			startPoint = startPoint - 5;
-			endPoint = endPoint - 5;
 		}
 	}
 	

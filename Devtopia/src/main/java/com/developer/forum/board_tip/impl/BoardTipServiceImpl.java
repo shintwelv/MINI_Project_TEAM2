@@ -1,5 +1,7 @@
 package com.developer.forum.board_tip.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,33 @@ public class BoardTipServiceImpl implements BoardTipService {
 	
 	@Override
 	public BoardTipVO select(BoardTipVO vo) {
-		BoardTipVO user = dao.select(vo);
-		return user;
+//		BoardTipVO article = dao.select(vo);
+		BoardTipVO article = dao.select();
+		return article;
+	}
+	
+	public void countUp(BoardTipVO vo) {
+		dao.countUp(vo);
+	}
+	
+	public List<BoardTipVO> selectArticleList() {
+		List<BoardTipVO> articleList = null;
+		articleList = dao.selectArticleList();
+		return articleList;
+	}
+	
+	public List<BoardTipVO> pageNationArticleList(int page) {
+		List<BoardTipVO> articleList = null;
+		articleList = dao.pageNationArticle(page);
+		return articleList;
+	}
+	
+	public int totalPage() {
+		int totalArticleCount = dao.totalArticleCount();
+		int totalPage = (totalArticleCount - (totalArticleCount%10))/10;
+		if (totalArticleCount%10 != 0) {
+			totalPage++;
+		}
+		return totalPage;
 	}
 }

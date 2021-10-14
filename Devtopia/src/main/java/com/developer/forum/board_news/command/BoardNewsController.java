@@ -1,5 +1,9 @@
 package com.developer.forum.board_news.command;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,9 @@ import com.developer.forum.board_news.model.BoardNewsVO;
 @Controller
 public class BoardNewsController {
 	
+	private int startPoint = 1;
+	private int endPoint = 5;
+	
 	@Autowired
 	private BoardNewsService BoardNewsService;
 	
@@ -19,46 +26,112 @@ public class BoardNewsController {
 		return "news/index";
 	}
 	
-	@RequestMapping(value = "/news/createBoardNews.do")
+	@RequestMapping(value = "/news/createArticle.do")
 	public String fwdInsertPage() {
-		return "news/createBoardNews";
+		return "news/createArticle";
 	}
 	
-	@RequestMapping(value = "/news/createBoardNewsAction.do")
+	@RequestMapping(value = "/news/createArticleAction.do")
 	public String insert(BoardNewsVO vo) {
 		BoardNewsService.insert(vo);
-		return "news/createBoardNewsSuccess";
+		return "news/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/news/modifyBoardNews.do")
+	@RequestMapping(value = "/news/modifyArticle.do")
 	public String fwdUpdatePage(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
-		model.addAttribute("BoardNews", BoardNews);
-		return "news/modifyBoardNews";
+		model.addAttribute("Article", BoardNews);
+		return "news/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/news/modifyBoardNewsAction.do")
+	@RequestMapping(value = "/news/modifyArticleAction.do")
 	public String update(BoardNewsVO vo) {
 		BoardNewsService.update(vo);
-		return "news/modifyBoardNewsSuccess";
+		return "news/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/news/deleteBoardNews.do")
+	@RequestMapping(value = "/news/deleteArticle.do")
 	public String fwdDeletePage() {
-		return "news/deleteBoardNews";
+		return "news/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/news/selectBoardNews.do")
+	@RequestMapping(value = "/news/selectArticle.do")
 	public String select(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
-		model.addAttribute("BoardNews", BoardNews);
-		return "news/selectBoardNews";
+		BoardNewsService.countUp(vo);
+		model.addAttribute("Article", BoardNews);
+		return "news/selectArticle";
 	}
 	
-	@RequestMapping(value = "/news/deleteBoardNewsAction.do")
+	@RequestMapping(value = "/news/deleteArticleAction.do")
 	public String delete(BoardNewsVO vo) {
 		BoardNewsService.delete(vo);
-		return "news/deleteBoardNewsSucces";
+		return "news/deleteArticleSucces";
+	}
+	
+	@RequestMapping(value = "/news/selectArticleList.do")
+	public String selectArticleList(Model model) {
+		List<BoardNewsVO> articleList = BoardNewsService.selectArticleList();
+		model.addAttribute("ArticleList", articleList);
+		return "news/selectArticleList";
+	}
+	
+	@RequestMapping(value = "/news/pageNationArticle.do")
+	public String fwdpageNationArticleList(Model model) {
+		int totalPage = BoardNewsService.totalPage();
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPoint", startPoint);
+		model.addAttribute("endPoint", endPoint);
+		
+		List<BoardNewsVO> articleList = null;
+		articleList = BoardNewsService.pageNationArticleList(startPoint);
+		model.addAttribute("ArticleList", articleList);
+		return "news/pageNationArticle";
+		
+	}
+	
+	@RequestMapping(value = "/news/pageNationArticleAction.do")
+	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		int totalPage = BoardNewsService.totalPage();
+		String arrowDirection = request.getParameter("arrowDirection");
+		if (arrowDirection != null) {
+			if (arrowDirection.trim().equals("left")) {
+				calculateLeftArrow();
+			} else if (arrowDirection.trim().equals("right")) {
+				calculateRightArrow(totalPage);
+			}
+		}
+		String pageNum = request.getParameter("pageNum");
+		int pageNumVal = startPoint;
+		if (pageNum != null && !pageNum.trim().equals("")) {
+			pageNumVal = Integer.parseInt(pageNum);
+		}
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPoint", startPoint);
+		model.addAttribute("endPoint", endPoint);
+		
+		List<BoardNewsVO> articleList = null;
+		articleList = BoardNewsService.pageNationArticleList(pageNumVal);
+		model.addAttribute("ArticleList", articleList);
+		return "news/pageNationArticle";
+	}
+	
+	private void calculateLeftArrow() {
+		if (startPoint - 5 >= 1) {
+			endPoint = startPoint - 1;
+			startPoint = startPoint - 5;
+		}
+	}
+	
+	private void calculateRightArrow(int totalPage) {
+		if (startPoint + 5 <= totalPage) {
+			startPoint = startPoint + 5;
+		}
+		if (endPoint + 5 < totalPage) {
+			endPoint = endPoint + 5;
+		} else {
+			endPoint = totalPage;
+		}
 	}
 	
 }

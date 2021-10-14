@@ -1,5 +1,7 @@
 package com.developer.forum.board_qna.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,33 @@ public class BoardQnAServiceImpl implements BoardQnAService {
 	
 	@Override
 	public BoardQnAVO select(BoardQnAVO vo) {
-		BoardQnAVO user = dao.select(vo);
-		return user;
+//		BoardQnAVO article = dao.select(vo);
+		BoardQnAVO article = dao.select();
+		return article;
+	}
+	
+	public void countUp(BoardQnAVO vo) {
+		dao.countUp(vo);
+	}
+	
+	public List<BoardQnAVO> selectArticleList() {
+		List<BoardQnAVO> articleList = null;
+		articleList = dao.selectArticleList();
+		return articleList;
+	}
+	
+	public List<BoardQnAVO> pageNationArticleList(int page) {
+		List<BoardQnAVO> articleList = null;
+		articleList = dao.pageNationArticle(page);
+		return articleList;
+	}
+	
+	public int totalPage() {
+		int totalArticleCount = dao.totalArticleCount();
+		int totalPage = (totalArticleCount - (totalArticleCount%10))/10;
+		if (totalArticleCount%10 != 0) {
+			totalPage++;
+		}
+		return totalPage;
 	}
 }

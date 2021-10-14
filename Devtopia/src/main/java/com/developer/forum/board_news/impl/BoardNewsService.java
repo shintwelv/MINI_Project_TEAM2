@@ -1,5 +1,7 @@
 package com.developer.forum.board_news.impl;
 
+import java.util.List;
+
 import com.developer.forum.board_news.model.BoardNewsVO;
 
 public interface BoardNewsService {
@@ -11,5 +13,13 @@ public interface BoardNewsService {
 	void update(BoardNewsVO vo);
 
 	BoardNewsVO select(BoardNewsVO vo);
+
+	void countUp(BoardNewsVO vo);
+	
+	List<BoardNewsVO> selectArticleList();
+	
+	public List<BoardNewsVO> pageNationArticleList(int page);
+	
+	public int totalPage();
 
 }

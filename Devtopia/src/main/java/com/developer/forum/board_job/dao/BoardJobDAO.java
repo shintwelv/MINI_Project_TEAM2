@@ -3,6 +3,7 @@ package com.developer.forum.board_job.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -52,10 +53,44 @@ public class BoardJobDAO {
 		session.commit();
 	}
 	
-	public BoardJobVO select(BoardJobVO vo) {
+//	public BoardJobVO select(BoardJobVO vo) {
+//		sqlMapper = getInstance();
+//		SqlSession session = sqlMapper.openSession();
+//		BoardJobVO BoardJob = session.selectOne("BoardJob.select", vo);
+//		return BoardJob;
+//	}
+	public BoardJobVO select() {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardJobVO BoardJob = session.selectOne("BoardJob.select", vo);
+		BoardJobVO BoardJob = session.selectOne("BoardJob.select");
 		return BoardJob;
+	}
+	
+	public void countUp(BoardJobVO vo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.update("BoardJob.ArticleCountUp", vo);
+	}
+	
+	public List<BoardJobVO> selectArticleList() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardJobVO> articleList = null;
+		articleList = session.selectList("BoardJob.getArticleList");
+		return articleList;
+	}
+	
+	public int totalArticleCount() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		int totalArticleCount = session.selectOne("BoardJob.totalArticleCount");
+		return totalArticleCount;
+	}
+	
+	public List<BoardJobVO> pageNationArticle(int page) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardJobVO> articleList = session.selectList("BoardJob.pageNation", (page-1)*10);
+		return articleList;
 	}
 }

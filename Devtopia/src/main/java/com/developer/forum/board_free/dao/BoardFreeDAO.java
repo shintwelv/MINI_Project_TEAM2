@@ -11,7 +11,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Repository;
 
-import com.developer.forum.article.model.ArticleVO;
 import com.developer.forum.board_free.model.BoardFreeVO;
 
 @Repository

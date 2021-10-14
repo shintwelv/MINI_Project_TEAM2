@@ -4,6 +4,7 @@ package com.developer.forum.board_tip.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -15,7 +16,7 @@ import com.developer.forum.board_tip.model.BoardTipVO;
 
 @Repository
 public class BoardTipDAO {
-	private static SqlSessionFactory sqlMapper;
+private static SqlSessionFactory sqlMapper;
 	
 	private static SqlSessionFactory getInstance() {
 		if (sqlMapper == null) {
@@ -53,10 +54,44 @@ public class BoardTipDAO {
 		session.commit();
 	}
 	
-	public BoardTipVO select(BoardTipVO vo) {
+//	public BoardTipVO select(BoardTipVO vo) {
+//		sqlMapper = getInstance();
+//		SqlSession session = sqlMapper.openSession();
+//		BoardTipVO BoardTip = session.selectOne("BoardTip.select", vo);
+//		return BoardTip;
+//	}
+	public BoardTipVO select() {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardTipVO BoardTip = session.selectOne("BoardTip.select", vo);
+		BoardTipVO BoardTip = session.selectOne("BoardTip.select");
 		return BoardTip;
+	}
+	
+	public void countUp(BoardTipVO vo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.update("BoardTip.ArticleCountUp", vo);
+	}
+	
+	public List<BoardTipVO> selectArticleList() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardTipVO> articleList = null;
+		articleList = session.selectList("BoardTip.getArticleList");
+		return articleList;
+	}
+	
+	public int totalArticleCount() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		int totalArticleCount = session.selectOne("BoardTip.totalArticleCount");
+		return totalArticleCount;
+	}
+	
+	public List<BoardTipVO> pageNationArticle(int page) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardTipVO> articleList = session.selectList("BoardTip.pageNation", (page-1)*10);
+		return articleList;
 	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.developer.forum.article.model.ArticleVO;
 import com.developer.forum.board_free.dao.BoardFreeDAO;
 import com.developer.forum.board_free.model.BoardFreeVO;
 
@@ -32,9 +31,9 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	
 	@Override
 	public BoardFreeVO select(BoardFreeVO vo) {
-//		BoardFreeVO user = dao.select(vo);
-		BoardFreeVO user = dao.select();
-		return user;
+//		BoardFreeVO article = dao.select(vo);
+		BoardFreeVO article = dao.select();
+		return article;
 	}
 	
 	public void countUp(BoardFreeVO vo) {
