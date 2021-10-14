@@ -101,12 +101,17 @@ public class ArticleController {
 				calculateRightArrow(totalPage);
 			}
 		}
+		String pageNum = request.getParameter("pageNum");
+		int pageNumVal = startPoint;
+		if (pageNum != null && !pageNum.trim().equals("")) {
+			pageNumVal = Integer.parseInt(pageNum);
+		}
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
 		model.addAttribute("endPoint", endPoint);
 		
 		List<ArticleVO> articleList = null;
-		articleList = ArticleService.pageNationArticleList(startPoint);
+		articleList = ArticleService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
 		return "article/pageNationArticle";
 	}
@@ -119,9 +124,11 @@ public class ArticleController {
 	}
 	
 	private void calculateRightArrow(int totalPage) {
-		if (endPoint + 5 >= totalPage) {
+		if (endPoint + 5 < totalPage) {
 			endPoint = endPoint + 5;
 			startPoint = startPoint + 5;
+		} else {
+			endPoint = totalPage;
 		}
 	}
 }
