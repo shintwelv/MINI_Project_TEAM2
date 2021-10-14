@@ -38,6 +38,7 @@ title varchar2(100) not null,
 content varchar2(1000),
 writeDate date not null,
 viewCount int not null,
+imgLoc varchar2(100),
 constraint fk_writer_news foreign key(writer)
 references users(userId)
 );
