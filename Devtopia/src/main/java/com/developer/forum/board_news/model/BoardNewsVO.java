@@ -12,4 +12,5 @@ public class BoardNewsVO {
 	private String content;
 	private Date writeDate;
 	private int viewCount;
+	private String imgLoc;
 }

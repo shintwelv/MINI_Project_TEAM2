@@ -46,6 +46,7 @@ table {
 			<th>CONTENT</th>
 			<th>WRITEDATE</th>
 			<th>VIEWCOUNT</th>
+			<th>IMGLOC</th>
 		</tr>
 		<c:forEach items="${ArticleList }" var="Article">
 			<tr>
@@ -55,6 +56,7 @@ table {
 				<td>${Article.content}</td>
 				<td>${Article.writeDate}</td>
 				<td>${Article.viewCount}</td>
+				<td>${Article.imgLoc}</td>
 			</tr>
 		</c:forEach>
 	</table>

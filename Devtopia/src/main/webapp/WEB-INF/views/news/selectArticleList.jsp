@@ -16,6 +16,7 @@
 		content : ${Article.content} <br>
 		writeDate : ${Article.writeDate} <br>
 		viewCount : ${Article.viewCount} <br>
+		imgLoc : ${Article.imgLoc } <br>
 		<hr>
 	</c:forEach>
 </body>

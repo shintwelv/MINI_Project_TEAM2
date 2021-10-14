@@ -8,6 +8,7 @@
 </head>
 <body>
 	create Article
+	*이미지 업로드 기능은 구현하지 않았음
 	<br>
 	<form action="createArticleAction.do" method="post">
 		<!-- writer: <br>

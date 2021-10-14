@@ -14,6 +14,7 @@
 	content : ${Article.content} <br>
 	writeDate : ${Article.writeDate} <br>
 	viewCount : ${Article.viewCount} <br>
+	imgLoc : ${Article.imgLoc } <br>
 	<a href="goMain.do">[Main]</a>
 </body>
 </html>

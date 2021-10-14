@@ -8,6 +8,7 @@
 		<result property="content" column="CONTENT" />
 		<result property="writeDate" column="WRITEDATE" />
 		<result property="viewCount" column="VIEWCOUNT" />
+		<result property="imgLoc" column="IMGLOC" />
 	</resultMap>
 
 	<insert id="insert">
@@ -48,13 +49,13 @@
 
 	<select id="pageNation" resultMap="articleList" parameterType="int">
 	<![CDATA[
-		select postno, title, content, writer, writeDate, viewCount 
+		select postno, title, content, writer, writeDate, viewCount, imgLoc
 		from
 			(
-				select postno, seq, title, content, writer, writeDate, viewCount 
+				select postno, seq, title, content, writer, writeDate, viewCount, imgLoc 
 				from
 					(
-					select rownum as seq, postno, title, content, writer, writeDate, viewCount 
+					select rownum as seq, postno, title, content, writer, writeDate, viewCount, imgLoc 
 					from 
 						(
 						select * from board_news order by postNo desc
