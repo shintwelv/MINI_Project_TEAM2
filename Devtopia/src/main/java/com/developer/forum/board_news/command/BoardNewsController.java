@@ -1,9 +1,20 @@
 package com.developer.forum.board_news.command;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +25,7 @@ import com.developer.forum.board_news.model.BoardNewsVO;
 
 @Controller
 public class BoardNewsController {
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\Temp\\img";
 	
 	private int startPoint = 1;
 	private int endPoint = 5;
@@ -32,11 +44,59 @@ public class BoardNewsController {
 	}
 	
 	@RequestMapping(value = "/news/createArticleAction.do")
-	public String insert(BoardNewsVO vo) {
+	public String insert(BoardNewsVO vo, HttpServletRequest request) throws Exception {
+		String imgLoc = fileProcess(request);
+		vo.setImgLoc(imgLoc);
+		System.out.println(imgLoc);
 		BoardNewsService.insert(vo);
 		return "news/createArticleSuccess";
 	}
 	
+	private String fileProcess(HttpServletRequest request) throws Exception{
+		try {
+	        List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+	        for (FileItem item : items) {
+	        	// Process form file field (input type="file").
+	        	if (!item.isFormField()) {
+	        		String fieldName = item.getFieldName();
+	                String fileName = FilenameUtils.getName(item.getName());
+	                InputStream fileContent = item.getInputStream();
+	                File newsImg = convertInputStreamToFile(fileContent);
+	                if (newsImg != null) {
+	    				if(! newsImg.exists()){ //경로상에 파일이 존재하지 않을 경우
+	    					if(newsImg.getParentFile().mkdirs()){ //경로에 해당하는 디렉토리들을 생성
+	    						newsImg.createNewFile(); //이후 파일 생성
+	    					}
+	    				}
+
+					}
+				}
+	        }
+	    } catch (FileUploadException e) {
+	        throw new ServletException("Cannot parse multipart request.", e);
+	    }
+	}
+	
+	private File convertInputStreamToFile(InputStream fileContent) throws IOException {
+		File tempFile = File.createTempFile(String.valueOf(fileContent.hashCode()), ".tmp");
+	    tempFile.deleteOnExit();
+
+	    copyInputStreamToFile(fileContent, tempFile);
+
+	    return tempFile;
+	}
+
+	private void copyInputStreamToFile(InputStream fileContent, File tempFile) throws FileNotFoundException, IOException {
+		try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
+	        int read;
+	        byte[] bytes = new byte[1024];
+
+	        while ((read = fileContent.read(bytes)) != -1) {
+	            outputStream.write(bytes, 0, read);
+	        }
+	    }	
+	}
+
 	@RequestMapping(value = "/news/modifyArticle.do")
 	public String fwdUpdatePage(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);

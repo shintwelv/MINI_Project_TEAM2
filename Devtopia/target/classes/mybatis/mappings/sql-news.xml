@@ -15,7 +15,7 @@
 		<!-- insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, 
 			sysdate, 0) -->
 		insert into board_news values(idx_seq.nextval, 'myId', #{title},
-		#{content}, sysdate, 0)
+		#{content}, sysdate, 0, #{imgLoc})
 	</insert>
 
 	<select id="select" resultType="BoardNews">

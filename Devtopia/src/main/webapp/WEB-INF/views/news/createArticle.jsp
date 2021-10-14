@@ -5,18 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>create Article</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 	create Article
 	*이미지 업로드 기능은 구현하지 않았음
 	<br>
-	<form action="createArticleAction.do" method="post">
+	<form action="createArticleAction.do" method="post" enctype="multipart/form-data">
 		<!-- writer: <br>
 		<input type="text" name="writer" value="writer area"> <br> -->
 		title: <br>
 		<input type="text" name="title" value="title area"> <br>
 		content: <br>
 		<input type="text" name="content" value="content area"> <br>
+		<br>
+		<input type="file" name="imgLoc">
 		<br>
 		<input type="submit" value="작성">
 	</form><br>
