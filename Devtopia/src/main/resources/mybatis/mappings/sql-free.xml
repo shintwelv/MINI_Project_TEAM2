@@ -17,7 +17,7 @@
 		#{content}, sysdate, 0)
 	</insert>
 
-	<select id="select" resultType="Article">
+	<select id="select" resultType="BoardFree">
 		select * from board_free where
 		postno = (select max(postno) from board_free)
 	</select>

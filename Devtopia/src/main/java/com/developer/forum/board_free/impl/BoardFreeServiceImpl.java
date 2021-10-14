@@ -32,7 +32,8 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	
 	@Override
 	public BoardFreeVO select(BoardFreeVO vo) {
-		BoardFreeVO user = dao.select(vo);
+//		BoardFreeVO user = dao.select(vo);
+		BoardFreeVO user = dao.select();
 		return user;
 	}
 	

@@ -26,43 +26,43 @@ public class BoardFreeController {
 		return "free/index";
 	}
 	
-	@RequestMapping(value = "/free/createBoardFree.do")
+	@RequestMapping(value = "/free/createArticle.do")
 	public String fwdInsertPage() {
 		return "free/createArticle";
 	}
 	
-	@RequestMapping(value = "/free/createBoardFreeAction.do")
+	@RequestMapping(value = "/free/createArticleAction.do")
 	public String insert(BoardFreeVO vo) {
 		BoardFreeService.insert(vo);
 		return "free/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/free/modifyBoardFree.do")
+	@RequestMapping(value = "/free/modifyArticle.do")
 	public String fwdUpdatePage(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
 		model.addAttribute("BoardFree", BoardFree);
 		return "free/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/free/modifyBoardFreeAction.do")
+	@RequestMapping(value = "/free/modifyArticleAction.do")
 	public String update(BoardFreeVO vo) {
 		BoardFreeService.update(vo);
 		return "free/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/free/deleteBoardFree.do")
+	@RequestMapping(value = "/free/deleteArticle.do")
 	public String fwdDeletePage() {
 		return "free/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/free/selectBoardFree.do")
+	@RequestMapping(value = "/free/selectArticle.do")
 	public String select(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
 		model.addAttribute("Article", BoardFree);
 		return "free/selectArticle";
 	}
 	
-	@RequestMapping(value = "/free/deleteBoardFreeAction.do")
+	@RequestMapping(value = "/free/deleteArticleAction.do")
 	public String delete(BoardFreeVO vo) {
 		BoardFreeService.delete(vo);
 		return "free/deleteArticleSucces";
@@ -70,7 +70,7 @@ public class BoardFreeController {
 	
 	@RequestMapping(value = "/free/selectArticleList.do")
 	public String selectArticleList(Model model) {
-		List<ArticleVO> articleList = BoardFreeService.selectArticleList();
+		List<BoardFreeVO> articleList = BoardFreeService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "article/selectArticleList";
 	}
@@ -82,7 +82,7 @@ public class BoardFreeController {
 		model.addAttribute("startPoint", startPoint);
 		model.addAttribute("endPoint", endPoint);
 		
-		List<ArticleVO> articleList = null;
+		List<BoardFreeVO> articleList = null;
 		articleList = BoardFreeService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
 		return "article/pageNationArticle";
@@ -109,7 +109,7 @@ public class BoardFreeController {
 		model.addAttribute("startPoint", startPoint);
 		model.addAttribute("endPoint", endPoint);
 		
-		List<ArticleVO> articleList = null;
+		List<BoardFreeVO> articleList = null;
 		articleList = BoardFreeService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
 		return "article/pageNationArticle";

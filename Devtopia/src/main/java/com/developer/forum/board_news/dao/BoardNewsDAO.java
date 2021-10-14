@@ -18,7 +18,7 @@ public class BoardNewsDAO {
 	
 	private static SqlSessionFactory getInstance() {
 		if (sqlMapper == null) {
-			String resource = "mybatis-config.xml";
+			String resource = "mybatis/mybatis-config.xml";
 			Reader reader;
 			try {
 				reader = Resources.getResourceAsReader(resource);

@@ -20,7 +20,7 @@ public class BoardFreeDAO {
 	
 	private static SqlSessionFactory getInstance() {
 		if (sqlMapper == null) {
-			String resource = "mybatis-config.xml";
+			String resource = "mybatis/mybatis-config.xml";
 			Reader reader;
 			try {
 				reader = Resources.getResourceAsReader(resource);
@@ -54,10 +54,16 @@ public class BoardFreeDAO {
 		session.commit();
 	}
 	
-	public BoardFreeVO select(BoardFreeVO vo) {
+//	public BoardFreeVO select(BoardFreeVO vo) {
+//		sqlMapper = getInstance();
+//		SqlSession session = sqlMapper.openSession();
+//		BoardFreeVO BoardFree = session.selectOne("BoardFree.select", vo);
+//		return BoardFree;
+//	}
+	public BoardFreeVO select() {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardFreeVO BoardFree = session.selectOne("BoardFree.select", vo);
+		BoardFreeVO BoardFree = session.selectOne("BoardFree.select");
 		return BoardFree;
 	}
 	
