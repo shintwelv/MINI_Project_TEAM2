@@ -66,3 +66,5 @@ tip
 
 1 2 3 4 5
 6 7 8 9
+
+insert into users values('myId', 'myPw', 'myName', 'myMail@gmail.com', 'myNick', '01022223333', 'Seoul', 'C:\img/myId_profile', 'Y');
