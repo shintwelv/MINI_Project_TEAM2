@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.developer.forum.article.impl.ArticleService;
 import com.developer.forum.article.model.ArticleVO;
 
 @Controller
 public class ArticleController {
+	private int startPoint = 1;
+	private int endPoint = 5;
 	
 	@Autowired
 	private ArticleService ArticleService;
@@ -74,18 +77,51 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value = "/article/pageNationArticle.do")
-	public String pageNationArticleList(Model model, HttpServletRequest request) {
-		String pageVal = request.getParameter("pageNum");
+	public String fwdpageNationArticleList(Model model) {
 		int totalPage = ArticleService.totalPage();
 		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPoint", startPoint);
+		model.addAttribute("endPoint", endPoint);
 		
 		List<ArticleVO> articleList = null;
-		int startPoint = 1;
-		if (pageVal != null && !pageVal.trim().equals("")) {
-			startPoint = Integer.parseInt(pageVal);
-		}
 		articleList = ArticleService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
 		return "article/pageNationArticle";
+		
+	}
+	
+	@RequestMapping(value = "/article/pageNationArticleAction.do")
+	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		int totalPage = ArticleService.totalPage();
+		String arrowDirection = request.getParameter("arrowDirection");
+		if (arrowDirection != null) {
+			if (arrowDirection.trim().equals("left")) {
+				calculateLeftArrow();
+			} else if (arrowDirection.trim().equals("right")) {
+				calculateRightArrow(totalPage);
+			}
+		}
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPoint", startPoint);
+		model.addAttribute("endPoint", endPoint);
+		
+		List<ArticleVO> articleList = null;
+		articleList = ArticleService.pageNationArticleList(startPoint);
+		model.addAttribute("ArticleList", articleList);
+		return "article/pageNationArticle";
+	}
+	
+	private void calculateLeftArrow() {
+		if (startPoint - 5 >= 1) {
+			startPoint = startPoint - 5;
+			endPoint = endPoint - 5;
+		}
+	}
+	
+	private void calculateRightArrow(int totalPage) {
+		if (endPoint + 5 >= totalPage) {
+			endPoint = endPoint + 5;
+			startPoint = startPoint + 5;
+		}
 	}
 }
