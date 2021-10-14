@@ -1,8 +1,11 @@
 package com.developer.forum.board_free.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.developer.forum.article.model.ArticleVO;
 import com.developer.forum.board_free.dao.BoardFreeDAO;
 import com.developer.forum.board_free.model.BoardFreeVO;
 
@@ -31,5 +34,30 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	public BoardFreeVO select(BoardFreeVO vo) {
 		BoardFreeVO user = dao.select(vo);
 		return user;
+	}
+	
+	public void countUp(BoardFreeVO vo) {
+		dao.countUp(vo);
+	}
+	
+	public List<BoardFreeVO> selectArticleList() {
+		List<BoardFreeVO> articleList = null;
+		articleList = dao.selectArticleList();
+		return articleList;
+	}
+	
+	public List<BoardFreeVO> pageNationArticleList(int page) {
+		List<BoardFreeVO> articleList = null;
+		articleList = dao.pageNationArticle(page);
+		return articleList;
+	}
+	
+	public int totalPage() {
+		int totalArticleCount = dao.totalArticleCount();
+		int totalPage = (totalArticleCount - (totalArticleCount%10))/10;
+		if (totalArticleCount%10 != 0) {
+			totalPage++;
+		}
+		return totalPage;
 	}
 }

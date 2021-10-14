@@ -3,6 +3,7 @@ package com.developer.forum.board_free.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Repository;
 
+import com.developer.forum.article.model.ArticleVO;
 import com.developer.forum.board_free.model.BoardFreeVO;
 
 @Repository
@@ -57,5 +59,33 @@ public class BoardFreeDAO {
 		SqlSession session = sqlMapper.openSession();
 		BoardFreeVO BoardFree = session.selectOne("BoardFree.select", vo);
 		return BoardFree;
+	}
+	
+	public void countUp(BoardFreeVO vo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.update("BoardFree.ArticleCountUp", vo);
+	}
+	
+	public List<BoardFreeVO> selectArticleList() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardFreeVO> articleList = null;
+		articleList = session.selectList("BoardFree.getArticleList");
+		return articleList;
+	}
+	
+	public int totalArticleCount() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		int totalArticleCount = session.selectOne("BoardFree.totalArticleCount");
+		return totalArticleCount;
+	}
+	
+	public List<BoardFreeVO> pageNationArticle(int page) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardFreeVO> articleList = session.selectList("BoardFree.pageNation", (page-1)*10);
+		return articleList;
 	}
 }
