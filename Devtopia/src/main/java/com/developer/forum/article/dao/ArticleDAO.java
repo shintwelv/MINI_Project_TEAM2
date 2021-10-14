@@ -91,7 +91,7 @@ public class ArticleDAO {
 	public List<ArticleVO> pageNationArticle(int page) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		List<ArticleVO> articleList = session.selectList("article.pageNation", page*10+1);
+		List<ArticleVO> articleList = session.selectList("article.pageNation", (page-1)*10);
 		return articleList;
 	}
 }

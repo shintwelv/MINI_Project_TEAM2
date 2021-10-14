@@ -124,9 +124,11 @@ public class ArticleController {
 	}
 	
 	private void calculateRightArrow(int totalPage) {
+		if (startPoint + 5 <= totalPage) {
+			startPoint = startPoint + 5;
+		}
 		if (endPoint + 5 < totalPage) {
 			endPoint = endPoint + 5;
-			startPoint = startPoint + 5;
 		} else {
 			endPoint = totalPage;
 		}
