@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.developer.forum.board_news.impl.BoardNewsService;
-import com.developer.forum.board_news.model.BoardNewsVO;
+import com.developer.forum.board_qna.impl.BoardQnAService;
+import com.developer.forum.board_qna.model.BoardQnAVO;
 
 @Controller
 public class BoardQnAController {
@@ -18,7 +18,7 @@ public class BoardQnAController {
 	private int endPoint = 5;
 	
 	@Autowired
-	private BoardNewsService BoardNewsService;
+	private BoardQnAService BoardQnAService;
 	
 	@RequestMapping(value = "/qna/goMain.do")
 	public String goMain() {
@@ -31,21 +31,22 @@ public class BoardQnAController {
 	}
 	
 	@RequestMapping(value = "/qna/createArticleAction.do")
-	public String insert(BoardNewsVO vo) {
-		BoardNewsService.insert(vo);
+	public String insert(BoardQnAVO vo) {
+		System.out.println(vo);
+		BoardQnAService.insert(vo);
 		return "qna/createArticleSuccess";
 	}
 	
 	@RequestMapping(value = "/qna/modifyArticle.do")
-	public String fwdUpdatePage(BoardNewsVO vo, Model model) {
-		BoardNewsVO BoardNews = BoardNewsService.select(vo);
-		model.addAttribute("Article", BoardNews);
+	public String fwdUpdatePage(BoardQnAVO vo, Model model) {
+		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
+		model.addAttribute("Article", BoardQnA);
 		return "qna/modifyArticle";
 	}
 	
 	@RequestMapping(value = "/qna/modifyArticleAction.do")
-	public String update(BoardNewsVO vo) {
-		BoardNewsService.update(vo);
+	public String update(BoardQnAVO vo) {
+		BoardQnAService.update(vo);
 		return "qna/modifyArticleSuccess";
 	}
 	
@@ -55,35 +56,35 @@ public class BoardQnAController {
 	}
 	
 	@RequestMapping(value = "/qna/selectArticle.do")
-	public String select(BoardNewsVO vo, Model model) {
-		BoardNewsVO BoardNews = BoardNewsService.select(vo);
-		BoardNewsService.countUp(vo);
-		model.addAttribute("Article", BoardNews);
+	public String select(BoardQnAVO vo, Model model) {
+		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
+		BoardQnAService.countUp(vo);
+		model.addAttribute("Article", BoardQnA);
 		return "qna/selectArticle";
 	}
 	
 	@RequestMapping(value = "/qna/deleteArticleAction.do")
-	public String delete(BoardNewsVO vo) {
-		BoardNewsService.delete(vo);
+	public String delete(BoardQnAVO vo) {
+		BoardQnAService.delete(vo);
 		return "qna/deleteArticleSucces";
 	}
 	
 	@RequestMapping(value = "/qna/selectArticleList.do")
 	public String selectArticleList(Model model) {
-		List<BoardNewsVO> articleList = BoardNewsService.selectArticleList();
+		List<BoardQnAVO> articleList = BoardQnAService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "qna/selectArticleList";
 	}
 	
 	@RequestMapping(value = "/qna/pageNationArticle.do")
 	public String fwdpageNationArticleList(Model model) {
-		int totalPage = BoardNewsService.totalPage();
+		int totalPage = BoardQnAService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
 		model.addAttribute("endPoint", endPoint);
 		
-		List<BoardNewsVO> articleList = null;
-		articleList = BoardNewsService.pageNationArticleList(startPoint);
+		List<BoardQnAVO> articleList = null;
+		articleList = BoardQnAService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
 		return "qna/pageNationArticle";
 		
@@ -91,7 +92,7 @@ public class BoardQnAController {
 	
 	@RequestMapping(value = "/qna/pageNationArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
-		int totalPage = BoardNewsService.totalPage();
+		int totalPage = BoardQnAService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {
 			if (arrowDirection.trim().equals("left")) {
@@ -109,8 +110,8 @@ public class BoardQnAController {
 		model.addAttribute("startPoint", startPoint);
 		model.addAttribute("endPoint", endPoint);
 		
-		List<BoardNewsVO> articleList = null;
-		articleList = BoardNewsService.pageNationArticleList(pageNumVal);
+		List<BoardQnAVO> articleList = null;
+		articleList = BoardQnAService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
 		return "qna/pageNationArticle";
 	}
