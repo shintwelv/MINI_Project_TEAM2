@@ -9,7 +9,7 @@
 </head>
 <body>
 	[회원가입]
-	<form action="writeAction.do" method="post">
+	<form action="writeAction.do" method="post" >
 		<p>
 			아이디: <br><input type="text" name="userId">
 		</p>
@@ -28,6 +28,10 @@
 		<p>
 			핸드폰: <br><input type="text" name="phoneNumber">
 		</p>
+	<!-- 
+			업로드 <input type="file" name="profileImgLoc">
+	 -->	<p>
+		
 		<p> 주소검색:<br>&nbsp;<input type="text" id="adr" name="address"><br><br>
 					
 		</p>

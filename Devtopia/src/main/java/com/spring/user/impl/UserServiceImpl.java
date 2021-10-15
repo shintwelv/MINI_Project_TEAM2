@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.spring.user.dao.UserDao;
 import com.spring.user.model.UserVO;
 
-@Service("articleService")
+@Service("UserService")
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao dao;
@@ -14,6 +14,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insert(UserVO vo) {
 		dao.insert(vo);
+	}
+
+	@Override
+	public void update(UserVO vo) {
+		dao.update(vo);
+	}
+	
+	@Override
+	public void delete() {
+		dao.delete();
+	
+	}
+
+	@Override
+	public UserVO select() {
+		return null;
 	}
 	
 }

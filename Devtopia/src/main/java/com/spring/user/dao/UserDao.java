@@ -3,6 +3,8 @@ package com.spring.user.dao;
 import java.io.IOException;
 import java.io.Reader;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -35,10 +37,21 @@ public class UserDao {
 	public void insert(UserVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		session.insert("Article.insertArticle", vo);
+		session.insert("User.insertUser", vo);
 		session.commit();
 	}
-
+	public void update(UserVO vo) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.update("User.udpateUser", vo);
+		session.commit();
+	}
+	public void delete() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		session.delete("User.deleteUser");
+		session.commit();
+	}
 	
 	
 }
