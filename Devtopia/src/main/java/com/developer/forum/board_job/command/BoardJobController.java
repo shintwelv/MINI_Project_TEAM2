@@ -65,7 +65,7 @@ public class BoardJobController {
 	@RequestMapping(value = "/job/deleteArticleAction.do")
 	public String delete(BoardJobVO vo) {
 		BoardJobService.delete(vo);
-		return "job/deleteArticleSucces";
+		return "job/deleteArticleSuccess";
 	}
 	
 	@RequestMapping(value = "/job/selectArticleList.do")

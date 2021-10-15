@@ -65,7 +65,7 @@ public class BoardFreeController {
 	@RequestMapping(value = "/free/deleteArticleAction.do")
 	public String delete(BoardFreeVO vo) {
 		BoardFreeService.delete(vo);
-		return "free/deleteArticleSucces";
+		return "free/deleteArticleSuccess";
 	}
 	
 	@RequestMapping(value = "/free/selectArticleList.do")

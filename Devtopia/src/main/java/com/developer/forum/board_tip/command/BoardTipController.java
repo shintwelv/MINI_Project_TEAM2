@@ -65,7 +65,7 @@ public class BoardTipController {
 	@RequestMapping(value = "/tip/deleteArticleAction.do")
 	public String delete(BoardTipVO vo) {
 		BoardTipService.delete(vo);
-		return "tip/deleteArticleSucces";
+		return "tip/deleteArticleSuccess";
 	}
 	
 	@RequestMapping(value = "/tip/selectArticleList.do")

@@ -66,7 +66,7 @@ public class BoardQnAController {
 	@RequestMapping(value = "/qna/deleteArticleAction.do")
 	public String delete(BoardQnAVO vo) {
 		BoardQnAService.delete(vo);
-		return "qna/deleteArticleSucces";
+		return "qna/deleteArticleSuccess";
 	}
 	
 	@RequestMapping(value = "/qna/selectArticleList.do")

@@ -99,7 +99,7 @@ public class BoardNewsController {
 	@RequestMapping(value = "/news/deleteArticleAction.do")
 	public String delete(BoardNewsVO vo) {
 		BoardNewsService.delete(vo);
-		return "news/deleteArticleSucces";
+		return "news/deleteArticleSuccess";
 	}
 	
 	@RequestMapping(value = "/news/selectArticleList.do")
