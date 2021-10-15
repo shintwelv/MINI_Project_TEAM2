@@ -14,7 +14,7 @@ table board_job;
 의 mvc 뼈대 완성
 
 
-insert into article values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 0);
+insert into article values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 100);
 
 
 
@@ -68,3 +68,27 @@ tip
 6 7 8 9
 
 insert into users values('myId', 'myPw', 'myName', 'myMail@gmail.com', 'myNick', '01022223333', 'Seoul', 'C:\img/myId_profile', 'Y');
+
+
+
+
+select title, content, writer, writeDate, viewCount from
+(
+select seq, title, content, writer, writeDate, viewCount from
+(
+select rownum as seq, title, content, writer, writeDate, viewCount from 
+(
+select * from board_free order by viewCount desc
+)
+)
+where seq >= #{여기서부터}
+) where rownum <= #{몇개를 보여줘라}
+
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 100);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 99);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 98);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 97);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 96);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 95);
+
+

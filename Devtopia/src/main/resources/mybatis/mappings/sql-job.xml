@@ -65,5 +65,25 @@
 		where rownum <= 10
 	]]>
 	</select>
+	
+	<select id="selectViewTop5" resultMap="articleList">
+	<![CDATA[
+		select postno, title, content, writer, writeDate, viewCount 
+		from
+			(
+				select postno, seq, title, content, writer, writeDate, viewCount 
+				from
+					(
+					select rownum as seq, postno, title, content, writer, writeDate, viewCount 
+					from 
+						(
+						select * from board_job order by viewCount desc
+						)
+				)
+				where seq >= 1
+			) 
+		where rownum <= 5
+	]]>
+	</select>
 
 </mapper>
