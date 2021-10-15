@@ -70,6 +70,7 @@ private static SqlSessionFactory sqlMapper;
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.update("BoardNews.ArticleCountUp", vo);
+		session.commit();
 	}
 	
 	public List<BoardNewsVO> selectArticleList() {

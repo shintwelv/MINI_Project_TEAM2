@@ -81,8 +81,8 @@ select rownum as seq, title, content, writer, writeDate, viewCount from
 select * from board_free order by viewCount desc
 )
 )
-where seq >= #{여기서부터}
-) where rownum <= #{몇개를 보여줘라}
+where seq >= 1
+) where rownum <= 5
 
 insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 100);
 insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 99);
@@ -90,5 +90,8 @@ insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sys
 insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 97);
 insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 96);
 insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 95);
+
+update board_free set VIEWCOUNT = (select viewcount from
+		board_free where postno = 2531)+1 where postno = 2531;
 
 

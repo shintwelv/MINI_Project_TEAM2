@@ -70,6 +70,7 @@ public class BoardFreeDAO {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.update("BoardFree.ArticleCountUp", vo);
+		session.commit();
 	}
 	
 	public List<BoardFreeVO> selectArticleList() {

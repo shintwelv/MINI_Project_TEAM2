@@ -16,7 +16,6 @@
 	float: left;
 	margin-left: 5px;
 }
-
 table {
 	width: 100%;
 	text-align: center;

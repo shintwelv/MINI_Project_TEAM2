@@ -70,6 +70,7 @@ public class BoardJobDAO {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.update("BoardJob.ArticleCountUp", vo);
+		session.commit();
 	}
 	
 	public List<BoardJobVO> selectArticleList() {

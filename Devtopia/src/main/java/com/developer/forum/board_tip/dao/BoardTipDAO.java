@@ -71,6 +71,7 @@ private static SqlSessionFactory sqlMapper;
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		session.update("BoardTip.ArticleCountUp", vo);
+		session.commit();
 	}
 	
 	public List<BoardTipVO> selectArticleList() {
