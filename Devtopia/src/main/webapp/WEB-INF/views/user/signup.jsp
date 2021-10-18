@@ -9,33 +9,15 @@
 </head>
 <body>
 	[회원가입]
-	<form action="writeAction.do" method="post" >
-		<p>
-			아이디: <br><input type="text" name="userId">
-		</p>
-		<p>
-			비밀번호: <br><input type="password" name="userPw">
-		</p>
-		<p>
-			이름: <br><input type="text" name="userName">
-		</p>
-		<p>
-			닉네임: <br><input type="text" name="nickName">
-		</p>
-		<p>
-			이메일: <br><input type="text"  name="email">
-		</p>
-		<p>
-			핸드폰: <br><input type="text" name="phoneNumber">
-		</p>
-	 
-			업로드 <input type="file" name="profileImgLoc">
-		<p>
-		
-		<p> 주소검색:<br>&nbsp;<input type="text" name="address"><br><br>
-					
-		</p>
-
+	<form action="writeAction.do" method="post" enctype="multipart/form-data">
+			아이디: <input type="text" name="userId"><br>
+			비밀번호: <input type="password" name="userPw"><br>
+			이름: <input type="text" name="userName"><br>
+			닉네임: <input type="text" name="nickName"><br>
+			이메일: <input type="text"  name="email"><br>
+			핸드폰: <input type="text" name="phoneNumber"><br>
+			업로드 <input type="file" name="profileImgLoc"><br>
+			주소검색:<br>&nbsp;<input type="text" name="address"><br><br>
 		<input type="submit" value="가입">
 		<a href="goMain.do">[취소]</a>
 	</form>

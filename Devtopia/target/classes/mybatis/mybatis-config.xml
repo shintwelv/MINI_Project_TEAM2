@@ -16,6 +16,8 @@
 			alias="BoardQnA" />
 		<typeAlias type="com.developer.forum.board_tip.model.BoardTipVO"
 			alias="BoardTip" />
+		<typeAlias type="com.developer.forum.user.model.UserVO"
+			alias="User" />
 	</typeAliases>
 
 	<environments default="development">
@@ -39,5 +41,6 @@
 		<mapper resource="mybatis/mappings/sql-news.xml"/>
 		<mapper resource="mybatis/mappings/sql-qna.xml"/>
 		<mapper resource="mybatis/mappings/sql-tip.xml"/>
+		<mapper resource="mybatis/mappings/sql-user.xml"/>
 	</mappers>
 </configuration>

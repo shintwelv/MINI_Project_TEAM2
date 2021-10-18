@@ -36,7 +36,8 @@ public class UserCommandHandler {
 	public String fwdUserIns() {
 		return "user/signup";
 	}
-	@RequestMapping
+	
+//	@RequestMapping
 	public String insertImg(UserVO vo, HttpServletRequest request) throws Exception {
 		MultipartRequest multipartRequest;
 		try {
@@ -52,9 +53,35 @@ public class UserCommandHandler {
 	}
 
 	@RequestMapping(value = "user/writeAction.do", method = RequestMethod.POST)
-	public String insertUser(UserVO vo) throws IOException{
-		userService.insert(vo);
-		return "user/signupSuccess";
+	public String insertUser(UserVO vo, HttpServletRequest request) throws IOException{
+		MultipartRequest multipartRequest;
+		try {
+			multipartRequest = new MultipartRequest(request, PROFILEIMAGE, 1024*1024*100, "utf-8");
+			String userId = multipartRequest.getParameter("userId");
+			String userPw = multipartRequest.getParameter("userPw");
+			String userName = multipartRequest.getParameter("userName");
+			String email = multipartRequest.getParameter("email");
+			String nickName = multipartRequest.getParameter("nickName");
+			String phoneNumber = multipartRequest.getParameter("phoneNumber");
+			String address = multipartRequest.getParameter("address");
+			String fileName = multipartRequest.getOriginalFileName("profileImgLoc");
+			
+			vo.setUserId(userId);
+			vo.setUserPw(userPw);
+			vo.setUserName(userName);
+			vo.setEmail(email);
+			vo.setNickName(nickName);
+			vo.setPhoneNumber(phoneNumber);
+			vo.setAddress(address);
+			vo.setProfileImgLoc(PROFILEIMAGE+fileName);
+
+			System.out.println(vo);
+			userService.insert(vo);
+			return "user/signupSuccess";
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "user/signupFail";
 	}
 
 	@RequestMapping(value = "user/updateAction.do", method = RequestMethod.POST)
