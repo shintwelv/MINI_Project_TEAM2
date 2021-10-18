@@ -52,7 +52,7 @@ public class UserCommandHandler {
 		return "user/index";
 	}
 
-	@RequestMapping(value = "user/writeAction.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/writeAction.do", method = RequestMethod.POST)
 	public String insertUser(UserVO vo, HttpServletRequest request) throws IOException{
 		MultipartRequest multipartRequest;
 		try {
@@ -149,6 +149,10 @@ public class UserCommandHandler {
 		} else {
 			return "user/loginFail";
 		}
-		
+	}
+	
+	@RequestMapping(value = "user/addressPopup.do")
+	public String fwdAddressPopup() {
+		return "address-popup_final";
 	}
 }

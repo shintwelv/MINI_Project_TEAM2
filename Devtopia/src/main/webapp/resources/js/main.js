@@ -5,7 +5,7 @@ AOS.init();
 
 // 주소 입력 pop-up //
 function fn_openAddressPopup() {
-    var url = "adderss-popup.html";
+    var url = "addressPopup.do";
     var name = "AddressPopup";
     var option = "width=650, height=500, top=100, left=200, location=no"
     window.open(url, name, option);

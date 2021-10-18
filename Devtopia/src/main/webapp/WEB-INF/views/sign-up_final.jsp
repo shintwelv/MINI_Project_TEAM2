@@ -37,7 +37,7 @@
                             data-aos-delay=400>
                     </div>
                     <br>
-                    <form action="../resources/writeAction.do" method="post">
+                    <form action="writeAction.do" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
