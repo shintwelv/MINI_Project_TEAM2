@@ -9,6 +9,6 @@
 <body>
 	* 실패다 멍청아
 	<br>
-	<a href="../goMain.do">처음으로</a>
+	<a href="goMain.do">처음으로</a>
 </body>
 </html>

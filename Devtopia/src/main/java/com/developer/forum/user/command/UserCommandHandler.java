@@ -20,7 +20,7 @@ import com.oreilly.servlet.MultipartRequest;
 @Controller
 public class UserCommandHandler {
 
-	private static final String PROFILEIMAGE = "C:\\Temp\\user\\";
+	private static final String PROFILEIMAGE = "C:\\Devtopia\\Devtopia\\src\\main\\webapp\\resources\\userProfileIMG";
 	
 	@Autowired
 	private UserService userService; 
@@ -56,14 +56,13 @@ public class UserCommandHandler {
 			vo.setNickName(nickName);
 			vo.setPhoneNumber(phoneNumber);
 			vo.setAddress(address);
-			vo.setProfileImgLoc(PROFILEIMAGE+fileName);
+			vo.setProfileImgLoc("./resources/userProfileIMG/"+fileName);
 
 			userService.insert(vo);
-			return "user/signupSuccess";
+			return "signupSuccess";
 		} catch (IOException e) {
-			e.printStackTrace();
+			return "signupFail";
 		}
-		return "user/signupFail";
 	}
 
 	@RequestMapping(value = "/updateUser.do")
@@ -130,12 +129,12 @@ public class UserCommandHandler {
 	public String fwdArticleDel() {
 		return "deleteConfirm";
 	}
-	
-	@RequestMapping(value = "login.do")
-	public String fwdLoginPage(HttpSession session) {
-		return "user/login";
-	}
-	
+//	
+//	@RequestMapping(value = "login.do")
+//	public String fwdLoginPage(HttpSession session) {
+//		return "user/login";
+//	}
+//	
 	
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
@@ -154,7 +153,7 @@ public class UserCommandHandler {
 		if (loginSuccess) {
 			return "index_final";
 		} else {
-			return "user/loginFail";
+			return "loginFail";
 		}
 	}
 	

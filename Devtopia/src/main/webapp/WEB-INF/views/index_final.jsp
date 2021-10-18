@@ -241,7 +241,7 @@
                     <h3>로그인</h3>
                     <img src="./resources/img/logo-dk-2.png" alt="modal-img" class="img-fluid">
                 </div>
-                <form action="./loginCheck.do" class="login-modal-form" method="post">
+                <form action="loginCheck.do" class="login-modal-form" method="post">
                     <div class="login-modal-input">
                         <label for="userId">아이디</label>
                         <br>
@@ -256,10 +256,10 @@
                         <div class="login-signup">
                             <!-- <button onclick="window.open('login.html')">로그인</button> -->
                             <button type="submit">로그인</button>
-                            <button onclick="window.open('./writeUser.do')">회원가입</button>
+                            <button onclick="fn_signUp()">회원가입</button>
                         </div>
                         <div class="login-modal-close">
-                            <button>닫기</button>
+                            <button class="login-modal-close-button">닫기</button>
                         </div>
                     </div>
                 </form>

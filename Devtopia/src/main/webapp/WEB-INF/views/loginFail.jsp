@@ -8,6 +8,6 @@
 </head>
 <body>
 	*로그인에 실패했습니다
-		<a href="/user/write.do">[회원가입]</a> <br>
+		<a href="goMain.do">[메인으로]</a> <br>
 </body>
 </html>

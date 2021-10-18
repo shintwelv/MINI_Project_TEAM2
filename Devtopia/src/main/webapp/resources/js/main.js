@@ -123,6 +123,9 @@ const closeModal = () => {
 }
 clsoeButton.addEventListener("click", closeModal);
 openButton.addEventListener("click", openModal);
+$(".login-modal-close-button").on("click", function() {
+	$(this).css("display","none");
+})
 /// 로그인 모달 ///
 
 ///회원 탈퇴///
@@ -132,7 +135,7 @@ function fn_userDelete() {
     var option = "width=795, height=1000 top=100 left=200 location=no"*/
     location.assign(url);
 }
-///회원 탈회///
+///회원 탈퇴///
 
 //로그 아웃//
 function fn_logout(){
@@ -147,3 +150,11 @@ function fn_goMain(){
 	location.assign(url);
 }
 //메인 복귀//
+
+//로그인 페이지로 이동//
+function fn_signUp() {
+	var url = "writeUser.do";
+	location.assign(url);
+}
+
+//로그인 페이지로 이동//
