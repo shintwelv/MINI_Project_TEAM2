@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 완료</title>
+<title>Insert title here</title>
 </head>
 <body>
-	* 회원가입이 완료되었습니다.
+	진짜 삭제?
 	<br>
-	<a href="goMain.do">처음으로</a>
+	<a href="deleteUserAction.do">[ㅇㅇ]</a>
+	<br>
+	<button type="button" onclick="window.close()">[ㄴㄴ]</button>
 </body>
 </html>

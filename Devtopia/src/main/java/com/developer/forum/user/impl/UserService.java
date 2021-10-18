@@ -8,7 +8,7 @@ public interface UserService {
 
 	void insert(UserVO vo);
 	
-	void delete();
+	void delete(UserVO vo);
 		
 	void update(UserVO vo);
 

@@ -9,13 +9,13 @@
 	</insert>
 
 	<update id="updateUser">
-		update users set userPw = #{userPw}, userName = #{userName}, nickName =
-		#{nickName}, phoneNumber = #{phoneNumber}, address = #{address} 
-		where userId=(select max(userId) from users)
+		update users set userPw = #{userPw}, email = #{email}, nickName =
+		#{nickName}, phoneNumber = #{phoneNumber}, address = #{address},  profileImgLoc = #{profileImgLoc}
+		where userId=#{userId}
 	</update>
 
 	<delete id="deleteUser">
-		delete users where userId=(select max(userId) from users)
+		delete users where userId=#{userId}
 	</delete>
 
 	<select id="selectUser" resultType="User">

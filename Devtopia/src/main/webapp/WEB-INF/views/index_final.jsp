@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -34,25 +35,45 @@
                 </div>
             </div>
             <div class="member-box">
-                <p>뉴비 개발자들의 유토피아
-                    <br>함께 성장 성장해봐요!
-                </p>
+            	<c:choose>
+		           <c:when test="${empty sessionScope.userId}">
+		                <p>뉴비 개발자들의 유토피아
+		                    <br>함께 성장 성장해봐요!
+		                </p>
+		                <div class="login">
+		                    <button id="open">로그인</button>
+		                </div>
+		           </c:when>
+		           <c:otherwise>
+		           		<p>
+							${userId }님, 환영합니다!           		
+		           		
+		           		</p>
+		           </c:otherwise>
+            	</c:choose>
                 <br>
                 <!-- <div class="user-status">
                     <p>${userId}님 반가워요! </p>
                 </div> -->
-                <div class="login">
-                    <button id="open">로그인</button>
-                </div>
                 <div class="button-wrapper">
-                    <div class="sign-up">
-                        <button onclick="location.href='./user/write.do'"><i class=" bi bi-box-arrow-right"></i>
-                            회원가입</button>
-                    </div>
-                    <div class="member-info">
-                        <button class="member-info-button" onclick="fn_openuserinfoPopup()"><i
-                                class="bi bi-person-fill"></i>회원정보</button></a>
-                    </div>
+                	<c:choose>
+                		<c:when test="${empty sessionScope.userId}">
+		                    <div class="sign-up">
+		                        <button onclick="location.href='./writeUser.do'"><i class=" bi bi-box-arrow-right"></i>
+		                            회원가입</button>
+		                    </div>
+                		</c:when>
+                		<c:otherwise>
+		                    <div class="member-info">
+		                        <button class="member-info-button" onclick="fn_openuserinfoPopup()"><i
+		                                class="bi bi-person-fill"></i>회원정보</button></a>
+		                    </div>
+		                    <div class="member-info">
+		                        <button class="member-info-button" onclick="fn_logout()"><i
+		                                class="bi bi-person-fill"></i>로그아웃</button></a>
+		                    </div>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
             </div>
             <div class="menu-wrapper">
@@ -220,21 +241,22 @@
                     <h3>로그인</h3>
                     <img src="./resources/img/logo-dk-2.png" alt="modal-img" class="img-fluid">
                 </div>
-                <form action="" class="login-modal-form">
+                <form action="./loginCheck.do" class="login-modal-form" method="post">
                     <div class="login-modal-input">
                         <label for="userId">아이디</label>
                         <br>
-                        <input type="text">
+                        <input type="text" name="userId">
                     </div>
                     <div class="login-modal-input">
                         <label for="userPw">비밀번호</label>
                         <br>
-                        <input type="password">
+                        <input type="password" name="userPw">
                     </div>
                     <div class="login-modal-button-wrapper">
                         <div class="login-signup">
-                            <button onclick="window.open('login.html')">로그인</button>
-                            <button onclick="window.open('./user/write.do')">회원가입</button>
+                            <!-- <button onclick="window.open('login.html')">로그인</button> -->
+                            <button type="submit">로그인</button>
+                            <button onclick="window.open('./writeUser.do')">회원가입</button>
                         </div>
                         <div class="login-modal-close">
                             <button>닫기</button>

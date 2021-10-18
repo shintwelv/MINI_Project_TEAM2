@@ -103,7 +103,7 @@ function fn_openLoginPopup() {
 
 /// 회원정보 팝업 ///
 function fn_openuserinfoPopup() {
-    var url = "user-info-popup.html";
+    var url = "updateUser.do";
     var name = "userinfoPopup";
     var option = "width=795, height=1000 top=100 left=200 location=no"
     window.open(url, name, option);
@@ -124,3 +124,26 @@ const closeModal = () => {
 clsoeButton.addEventListener("click", closeModal);
 openButton.addEventListener("click", openModal);
 /// 로그인 모달 ///
+
+///회원 탈퇴///
+function fn_userDelete() {
+    var url = "deleteUser.do";
+    /*var name = "userinfoPopup";
+    var option = "width=795, height=1000 top=100 left=200 location=no"*/
+    location.assign(url);
+}
+///회원 탈회///
+
+//로그 아웃//
+function fn_logout(){
+	var url = "logout.do";
+	location.assign(url);
+}
+//로그 아웃//
+
+//메인 복귀//
+function fn_goMain(){
+	var url = "goMain.do";
+	location.assign(url);
+}
+//메인 복귀//

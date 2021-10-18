@@ -44,10 +44,10 @@ public class UserDao {
 		session.update("User.updateUser", vo);
 		session.commit();
 	}
-	public void delete() {
+	public void delete(UserVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		session.delete("User.deleteUser");
+		session.delete("User.deleteUser", vo);
 		session.commit();
 	}
 	

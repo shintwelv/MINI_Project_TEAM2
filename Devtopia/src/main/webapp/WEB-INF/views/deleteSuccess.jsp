@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 완료</title>
+<title>Insert title here</title>
 </head>
 <body>
-	* 회원가입이 완료되었습니다.
-	<br>
-	<a href="goMain.do">처음으로</a>
+	회원 삭제 성공
+	
+	<button type="button" onclick="window.close()">[닫기]</button>
 </body>
 </html>

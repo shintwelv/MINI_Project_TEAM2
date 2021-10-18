@@ -15,12 +15,12 @@
 
     <!-- vendor css -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/vendor/bootstrap-icon/bootstrap-icons.css">
-    <link rel="stylesheet" href="../resources/vendor/isotope-layout/">
+    <link rel="stylesheet" href="./resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/vendor/bootstrap-icon/bootstrap-icons.css">
+    <link rel="stylesheet" href="./resources/vendor/isotope-layout/">
 
     <!-- Devtopia css -->
-    <link rel="stylesheet" href="../resources/css/signup.css">
+    <link rel="stylesheet" href="./resources/css/signup.css">
     <title>회원가입</title>
 </head>
 
@@ -33,11 +33,11 @@
                 <div class="signup-form">
                     <h1>회원가입</h1>
                     <div class="main-them">
-                        <img src="../resources/img/main-them2.png" alt="main-img" class="img-fluid animated" data-aos="fade-left"
+                        <img src="./resources/img/main-them2.png" alt="main-img" class="img-fluid animated" data-aos="fade-left"
                             data-aos-delay=400>
                     </div>
                     <br>
-                    <form action="writeAction.do" method="post" enctype="multipart/form-data">
+                    <form action="writeUserAction.do" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -102,7 +102,7 @@
                             </div>
 
                             <div class="cancel">
-                                <button type="button" onclick="window.close()">닫기</button>
+                                <button type="button" onclick="fn_goMain()">닫기</button>
                             </div>
                         </div>
                     </form>
@@ -122,7 +122,7 @@
 
     <!-- main JS Files -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../resources/js/main.js"></script>
+    <script src="./resources/js/main.js"></script>
 
 
 </body>

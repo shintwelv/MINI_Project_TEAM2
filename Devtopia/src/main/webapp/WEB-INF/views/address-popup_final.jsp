@@ -15,12 +15,12 @@
 
     <!-- vendor css -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/vendor/bootstrap-icon/bootstrap-icons.css">
-    <link rel="stylesheet" href="../resources/vendor/isotope-layout/">
+    <link rel="stylesheet" href="./resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/vendor/bootstrap-icon/bootstrap-icons.css">
+    <link rel="stylesheet" href="./resources/vendor/isotope-layout/">
 
     <!-- Devtopia css -->
-    <link rel="stylesheet" href="../resources/css/popup.css">
+    <link rel="stylesheet" href="./resources/css/popup.css">
     <title>회원가입</title>
 </head>
 
@@ -73,7 +73,7 @@
 
     <!-- Devtopia JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../resources/js/main.js"></script>
+    <script src="./resources/js/main.js"></script>
 
 
 

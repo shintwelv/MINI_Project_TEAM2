@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void delete() {
-		dao.delete();
+	public void delete(UserVO vo) {
+		dao.delete(vo);
 	
 	}
 	@Override
