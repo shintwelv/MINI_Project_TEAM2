@@ -32,6 +32,7 @@ public class BoardFreeController {
 	
 	@RequestMapping(value = "createFreeArticleAction.do")
 	public String insert(BoardFreeVO vo) {
+		System.out.println(vo);
 		BoardFreeService.insert(vo);
 		return "free/writeSuccess";
 	}

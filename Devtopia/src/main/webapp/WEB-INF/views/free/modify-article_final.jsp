@@ -117,10 +117,11 @@
                     <input type="text" name="title" value="${Article.title }" class="input-title" required></input>
                 </div>
                 <br>
-                	<input type="text" name="content" value="${Article.content }">
+                	<!-- <input type="text" name="content"> -->
                     <div class="note-wrap">
-                        <div id="summernote">
-                        </div>
+                    	<textarea rows="10" name="content" id="summernote">${Article.content }</textarea>
+                        <!-- <div id="summernote" >
+                        </div> -->
                     </div>
                     <c:if test="${Article.writer == sessionScope.userId }">
 	                    <div class="write-article-button-wrapper">

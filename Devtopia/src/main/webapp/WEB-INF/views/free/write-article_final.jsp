@@ -116,10 +116,11 @@
                     <input type="text" name="title" class="input-title" required></input>
                 </div>
                 <br>
-                	<input type="text" name="content">
+                	<!-- <input type="text" name="content"> -->
                     <div class="note-wrap">
-                        <div id="summernote">
-                        </div>
+                    	<textarea rows="10" cols="10" name="content" id="summernote"></textarea>
+                        <!-- <div id="summernote" >
+                        </div> -->
                     </div>
                  <div class="write-article-button-wrapper">
                      <div class="article-cotroller">
