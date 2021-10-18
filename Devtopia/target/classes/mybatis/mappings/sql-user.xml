@@ -19,7 +19,8 @@
 	</delete>
 
 	<select id="selectUser" resultType="User">
-		select * from users where userId = (select max(userId) from users)
+<!-- 		select * from users where userId = (select max(userId) from users) -->
+		select * from users where userId = #{userId}
 	</select>
 	
 	 <select id="loginCheck" resultType="User">

@@ -84,6 +84,25 @@ public class UserCommandHandler {
 		return "user/signupFail";
 	}
 
+	@RequestMapping(value = "user/update.do")
+	public String fwdUserUpt(Model model, HttpSession session, HttpServletRequest request) {
+		boolean isLogin = false;
+		String userId = (String) session.getAttribute("userId");
+		UserVO vo = new UserVO();
+		vo.setUserId(userId);
+		System.out.println(userId);
+		if (userId != null) {
+			isLogin = true;
+		}
+		if (isLogin) {
+			UserVO user = userService.select(vo);
+			request.setAttribute("User", user);
+			return "user/updateForm";
+		} else {
+			return "user/loginFail";
+		}
+	}
+	
 	@RequestMapping(value = "user/updateAction.do", method = RequestMethod.POST)
 	public String updateUser(@ModelAttribute UserVO vo) {
 		userService.update(vo);
@@ -95,19 +114,10 @@ public class UserCommandHandler {
 		return "user/deleteSuccess";
 	}
 
-	@RequestMapping(value = "user/update.do")
-	public String fwdUserUpt(Model model) {
-		UserVO user = userService.select();
-		if (user == null) {
-			return "user/updateForm";
-		}
-		model.addAttribute("User", user);
-		return "user/updateForm";
-	}
 
 	@RequestMapping(value = "user/delete.do")
-	public String fwdArticleDel(Model model) {
-		UserVO user = userService.select();
+	public String fwdArticleDel(Model model, UserVO vo) {
+		UserVO user = userService.select(vo);
 		if (user == null) {
 			return "user/noUser";
 		}
@@ -127,13 +137,12 @@ public class UserCommandHandler {
     }
 
 	@RequestMapping(value = "user/loginCheck.do")
-	@ResponseBody
 	public String loginCheck(UserVO vo, HttpSession session) {
 		
 		boolean loginSuccess = userService.loginCheck(vo, session);
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("user/login");
+//		ModelAndView mav = new ModelAndView();
+//		
+//		mav.setViewName("user/login");
 		
 		if (loginSuccess) {
 			return "/direction";

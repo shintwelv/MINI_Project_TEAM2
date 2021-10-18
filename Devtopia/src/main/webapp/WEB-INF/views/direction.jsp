@@ -17,7 +17,7 @@
 	<a href="news/goMain.do">board_news</a> <br>
 	<a href="qna/goMain.do">board_qna</a> <br>
 	<a href="tip/goMain.do">board_tip</a> <br>
-	<a href="user/goMain.do">user</a> <br>
+	<a href="../user/goMain.do">user</a> <br>
 	
 	<c:choose>
 			<c:when test="${empty sessionScope.userId}">

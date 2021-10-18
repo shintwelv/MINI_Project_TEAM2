@@ -52,10 +52,10 @@ public class UserDao {
 	}
 	
 	
-	public UserVO select() {
+	public UserVO select(UserVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		UserVO user = session.selectOne("User.selectUser");
+		UserVO user = session.selectOne("User.selectUser", vo);
 		return user;
 	}
 	public UserVO loginCheck(UserVO vo) {

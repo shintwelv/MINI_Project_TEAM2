@@ -12,7 +12,7 @@ public interface UserService {
 		
 	void update(UserVO vo);
 
-	UserVO select();
+	UserVO select(UserVO vo);
 	
 	public boolean loginCheck(UserVO vo, HttpSession session);
 	

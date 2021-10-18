@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
 	
 	}
 	@Override
-	public UserVO select() {
-		return dao.select();
+	public UserVO select(UserVO vo) {
+		return dao.select(vo);
 	}
 		
 	public boolean loginCheck(UserVO vo, HttpSession session) {
