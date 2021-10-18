@@ -114,17 +114,26 @@ function fn_openuserinfoPopup() {
 /// 로그인 모달 /// 
 const openButton = document.getElementById("open");
 const modal = document.querySelector(".login-modal");
-const clsoeButton = modal.querySelector("button");
+const closeButton = modal.querySelector("button");
 const openModal = () => {
     modal.classList.remove("hidden");
 }
 const closeModal = () => {
     modal.classList.add("hidden");
 }
-clsoeButton.addEventListener("click", closeModal);
+closeButton.addEventListener("click", closeModal);
 openButton.addEventListener("click", openModal);
-$(".login-modal-close-button").on("click", function() {
-	$(this).css("display","none");
+
+function fn_closeLoginModal() {
+	$(".login-modal").hide();
+}
+
+$("#id").on("click", function(){
+	$(".login-modal").show();
+})
+
+$(".login").on("click", function(){
+	$(".login-modal").show();
 })
 /// 로그인 모달 ///
 

@@ -21,6 +21,8 @@
 
     <!-- Devtopia css -->
     <link rel="stylesheet" href="./resources/css/index.css">
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <title>Devtopiaㅣ개발자들의 소소한 유토피아</title>
 </head>
@@ -41,7 +43,7 @@
 		                    <br>함께 성장 성장해봐요!
 		                </p>
 		                <div class="login">
-		                    <button id="open">로그인</button>
+		                    <button id="open" type="button">로그인</button>
 		                </div>
 		           </c:when>
 		           <c:otherwise>
@@ -259,7 +261,7 @@
                             <button onclick="fn_signUp()">회원가입</button>
                         </div>
                         <div class="login-modal-close">
-                            <button class="login-modal-close-button">닫기</button>
+                            <button type="button" onclick="fn_closeLoginModal()">닫기</button>
                         </div>
                     </div>
                 </form>
