@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.developer.forum.article.model.ArticleVO"
+			alias="Article" />
+		<typeAlias type="com.developer.forum.board_free.model.BoardFreeVO"
+			alias="BoardFree" />
+		<typeAlias type="com.developer.forum.board_job.model.BoardJobVO"
+			alias="BoardJob" />
+		<typeAlias type="com.developer.forum.board_news.model.BoardNewsVO"
+			alias="BoardNews" />
+		<typeAlias type="com.developer.forum.board_qna.model.BoardQnAVO"
+			alias="BoardQnA" />
+		<typeAlias type="com.developer.forum.board_tip.model.BoardTipVO"
+			alias="BoardTip" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="JDBC:oracle:thin:@localhost:1521:orcl" />
+				<property name="username" value="mini" />
+				<property name="password" value="mini1234" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="mybatis/mappings/sql-article.xml"/>
+		<mapper resource="mybatis/mappings/sql-free.xml"/>
+		<mapper resource="mybatis/mappings/sql-job.xml"/>
+		<mapper resource="mybatis/mappings/sql-news.xml"/>
+		<mapper resource="mybatis/mappings/sql-qna.xml"/>
+		<mapper resource="mybatis/mappings/sql-tip.xml"/>
+	</mappers>
+</configuration>
