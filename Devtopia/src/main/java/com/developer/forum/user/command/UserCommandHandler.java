@@ -34,7 +34,7 @@ public class UserCommandHandler {
 
 	@RequestMapping(value = "/user/write.do")
 	public String fwdUserIns() {
-		return "user/signup";
+		return "sign-up_final";
 	}
 	
 //	@RequestMapping

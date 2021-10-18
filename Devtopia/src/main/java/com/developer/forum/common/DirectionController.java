@@ -8,6 +8,6 @@ public class DirectionController {
 	
 	@RequestMapping(value = {"/", "/goMain.do"})
 	public String directionPage() {
-		return "direction";
+		return "index_final";
 	}
 }
