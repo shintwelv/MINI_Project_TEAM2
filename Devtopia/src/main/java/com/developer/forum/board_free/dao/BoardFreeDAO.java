@@ -42,6 +42,7 @@ public class BoardFreeDAO {
 	public void update(BoardFreeVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
+		System.out.println("DAO : " + vo);
 		session.update("BoardFree.update", vo);
 		session.commit();
 	}
@@ -59,10 +60,10 @@ public class BoardFreeDAO {
 //		BoardFreeVO BoardFree = session.selectOne("BoardFree.select", vo);
 //		return BoardFree;
 //	}
-	public BoardFreeVO select() {
+	public BoardFreeVO select(BoardFreeVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardFreeVO BoardFree = session.selectOne("BoardFree.select");
+		BoardFreeVO BoardFree = session.selectOne("BoardFree.select", vo);
 		return BoardFree;
 	}
 	
@@ -93,5 +94,13 @@ public class BoardFreeDAO {
 		SqlSession session = sqlMapper.openSession();
 		List<BoardFreeVO> articleList = session.selectList("BoardFree.pageNation", (page-1)*10);
 		return articleList;
+	}
+	
+	public List<BoardFreeVO> selectTopFive() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardFreeVO> topFiveList = session.selectList("BoardFree.selectViewTop5");
+		return topFiveList;
+		
 	}
 }

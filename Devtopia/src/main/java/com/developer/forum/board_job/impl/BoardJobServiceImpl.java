@@ -60,4 +60,10 @@ public class BoardJobServiceImpl implements BoardJobService {
 		}
 		return totalPage;
 	}
+	
+	public List<BoardJobVO> selectTopFive() {
+		List<BoardJobVO> topFiveList = null;
+		topFiveList = dao.selectTopFive();
+		return topFiveList;
+	}
 }

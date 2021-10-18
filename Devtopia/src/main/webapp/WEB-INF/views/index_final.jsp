@@ -33,7 +33,7 @@
         <div class="sidebar">
             <div class="logo-wrapper">
                 <div class="logo">
-                    <img src="./resources/img/logo2.png" alt="logo" class="img-fluid" onclick="location.href='index.html'">
+                    <img src="./resources/img/logo2.png" alt="logo" class="img-fluid" onclick="location.href='goMain.do'">
                 </div>
             </div>
             <div class="member-box">
@@ -61,7 +61,7 @@
                 	<c:choose>
                 		<c:when test="${empty sessionScope.userId}">
 		                    <div class="sign-up">
-		                        <button onclick="location.href='./writeUser.do'"><i class=" bi bi-box-arrow-right"></i>
+		                        <button onclick="location.href='writeUser.do'"><i class=" bi bi-box-arrow-right"></i>
 		                            회원가입</button>
 		                    </div>
                 		</c:when>
@@ -81,11 +81,11 @@
             <div class="menu-wrapper">
                 <div class="menu">
                     <ul>
-                        <li><a href="board-news.html"><i class="bi bi-globe2"></i> 개발자 뉴스</a></li>
-                        <li><a href="board-free.html"><i class="bi bi-share"></i> 자유게시판</a></li>
-                        <li><a href="board-tip.html"><i class="bi bi-info-circle"></i> 팁과 노하우</a></li>
-                        <li><a href="board-job.html"><i class="bi bi-briefcase"></i> 구인 & 구직</a></li>
-                        <li><a href="board-qna.html"><i class="bi bi-question-circle"></i> Q & A</a></li>
+                       <li><a href="pageNationNewsArticle.do"><i class="bi bi-globe2"></i> 개발자 뉴스</a></li>
+                        <li><a href="pageNationFreeArticle.do"><i class="bi bi-share"></i> 자유게시판</a></li>
+                        <li><a href="pageNationTipArticle.do"><i class="bi bi-info-circle"></i> 팁과 노하우</a></li>
+                        <li><a href="pageNationJobArticle.do"><i class="bi bi-briefcase"></i> 구인 & 구직</a></li>
+                        <li><a href="pageNationQnaArticle.do"><i class="bi bi-question-circle"></i> Q & A</a></li>
                     </ul>
                 </div>
             </div>
@@ -111,10 +111,10 @@
                     <thead>
                         <div class="table-head">
                             <div class="board-title" data-aos="fade-left" data-aos-delay=400>
-                                <H1><a href="board-news.html"><i class="bi bi-globe2"></i> 개발자 뉴스</a>
+                                <H1><a href="pageNationNewsArticle.do"><i class="bi bi-globe2"></i> 개발자 뉴스</a>
                                 </H1>
                             </div>
-                            <div class="board-list" data-aos="fade-left" data-aos-delay=400><a href="board-news.html"><span><i
+                            <div class="board-list" data-aos="fade-left" data-aos-delay=400><a href="pageNationNewsArticle.do"><span><i
                                             class="bi bi-plus-lg"></i></span></a></div>
                         </div>
                         <tr>
@@ -151,10 +151,10 @@
                     <thead>
                         <div class="table-head">
                             <div class="board-title" data-aos="fade-right" data-aos-delay=400>
-                                <H1><a href="board-free.html"><i class="bi bi-share"></i> 자유게시판</a>
+                                <H1><a href="pageNationFreeArticle.do"><i class="bi bi-share"></i> 자유게시판</a>
                                 </H1>
                             </div>
-                            <div class="board-list" data-aos="fade-right" data-aos-delay=400><a href="board-free.html"><span><i
+                            <div class="board-list" data-aos="fade-right" data-aos-delay=400><a href="pageNationFreeArticle.do"><span><i
                                             class="bi bi-plus-lg"></i></span></a></div>
                         </div>
                         <tr>
@@ -164,8 +164,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <a href="./resources/board-news.html">                            <td>AI가 나 대신 코딩을 ? 깃헙 'Copilot'을 사용 해 봤다!</td>
-                                <td id="writer">servelt1004</td></a>
+                            <a href="./resources/board-news.html">                            
+                            	<td>AI가 나 대신 코딩을 ? 깃헙 'Copilot'을 사용 해 봤다!</td>
+                                <td id="writer">servelt1004</td>
+                            </a>
                         </tr>
                         <tr>
                             <td>인터넷 익스프롤러! 처참한 몰락의 이유는</td>
@@ -190,10 +192,10 @@
                     <thead>
                         <div class="table-head">
                             <div class="board-title" data-aos="fade-left" data-aos-delay=600>
-                                <H1><a href="board-tip.html"><i class="bi bi-info-circle"></i> 팁과
+                                <H1><a href="pageNationTipArticle.do"><i class="bi bi-info-circle"></i> 팁과
                                         노하우</a></H1>
                             </div>
-                            <div class="board-list" data-aos="fade-left" data-aos-delay=600><a href="board-tip.html"><span><i
+                            <div class="board-list" data-aos="fade-left" data-aos-delay=600><a href="pageNationTipArticle.do"><span><i
                                             class="bi bi-plus-lg"></i></span></a></div>
                         </div>
                         <tr>
@@ -231,7 +233,7 @@
 
     <div class="footer-wrapper">
         <div class="footer-contents">
-            <h1><img src="./resources/img/font-logo.png" alt="" class="img-fluid"><a href=""></a></h1>
+            <h1><img src="./resources/img/font-logo.png" alt="" class="img-fluid"><a href="goMain.do"></a></h1>
         </div>
     </div>
 

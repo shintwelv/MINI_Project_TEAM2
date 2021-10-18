@@ -20,42 +20,42 @@ public class BoardQnAController {
 	@Autowired
 	private BoardQnAService BoardQnAService;
 	
-	@RequestMapping(value = "/qna/goMain.do")
+	@RequestMapping(value = "goQnAMain.do")
 	public String goMain() {
 		return "qna/index";
 	}
 	
-	@RequestMapping(value = "/qna/createArticle.do")
+	@RequestMapping(value = "createQnAArticle.do")
 	public String fwdInsertPage() {
 		return "qna/createArticle";
 	}
 	
-	@RequestMapping(value = "/qna/createArticleAction.do")
+	@RequestMapping(value = "createQnAArticleAction.do")
 	public String insert(BoardQnAVO vo) {
 		System.out.println(vo);
 		BoardQnAService.insert(vo);
 		return "qna/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/qna/modifyArticle.do")
+	@RequestMapping(value = "modifyQnAArticle.do")
 	public String fwdUpdatePage(BoardQnAVO vo, Model model) {
 		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
 		model.addAttribute("Article", BoardQnA);
 		return "qna/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/qna/modifyArticleAction.do")
+	@RequestMapping(value = "modifyQnAArticleAction.do")
 	public String update(BoardQnAVO vo) {
 		BoardQnAService.update(vo);
 		return "qna/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/qna/deleteArticle.do")
+	@RequestMapping(value = "deleteQnAArticle.do")
 	public String fwdDeletePage() {
 		return "qna/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/qna/selectArticle.do")
+	@RequestMapping(value = "selectQnAArticle.do")
 	public String select(BoardQnAVO vo, Model model) {
 		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
 		BoardQnAService.countUp(vo);
@@ -63,21 +63,25 @@ public class BoardQnAController {
 		return "qna/selectArticle";
 	}
 	
-	@RequestMapping(value = "/qna/deleteArticleAction.do")
+	@RequestMapping(value = "deleteQnAArticleAction.do")
 	public String delete(BoardQnAVO vo) {
 		BoardQnAService.delete(vo);
 		return "qna/deleteArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/qna/selectArticleList.do")
+	@RequestMapping(value = "selectQnAArticleList.do")
 	public String selectArticleList(Model model) {
 		List<BoardQnAVO> articleList = BoardQnAService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "qna/selectArticleList";
 	}
 	
-	@RequestMapping(value = "/qna/pageNationArticle.do")
+	@RequestMapping(value = "pageNationQnAArticle.do")
 	public String fwdpageNationArticleList(Model model) {
+		List<BoardQnAVO> topFiveList = null;
+		topFiveList = BoardQnAService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardQnAService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
@@ -90,7 +94,7 @@ public class BoardQnAController {
 		
 	}
 	
-	@RequestMapping(value = "/qna/pageNationArticleAction.do")
+	@RequestMapping(value = "pageNationQnAArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
 		int totalPage = BoardQnAService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");

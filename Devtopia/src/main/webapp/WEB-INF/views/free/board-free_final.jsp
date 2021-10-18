@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -10,19 +11,19 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <!-- vendor css -->
-    <link rel="stylesheet" href="vendor/aos/aos.css">
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap-icon/bootstrap-icons.css">
+    <link rel="stylesheet" href="./resources/vendor/aos/aos.css">
+    <link rel="stylesheet" href="./resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/vendor/bootstrap-icon/bootstrap-icons.css">
 
 
     <!-- Devtopia css -->
-    <link rel="stylesheet" href="css/board-job.css">
+    <link rel="stylesheet" href="./resources/css/board-job.css">
 
-    <title>DevtopiaㅣQ & A</title>
+    <title>Devtopiaㅣ자유게시판</title>
 </head>
 
 <body>
@@ -31,39 +32,59 @@
         <div class="sidebar">
             <div class="logo-wrapper">
                 <div class="logo">
-                    <img src="/img/logo2.png" alt="logo" class="img-fluid" onclick="location.href='index.html'">
+                    <img src="./resources/img/logo2.png" alt="logo" class="img-fluid" onclick="location.href='goMain.do'">
                 </div>
             </div>
             <div class="member-box">
-                <p>뉴비 개발자들의 유토피아
-                    <br>함께 성장 성장해봐요!
-                </p>
+            	<c:choose>
+		           <c:when test="${empty sessionScope.userId}">
+		                <p>뉴비 개발자들의 유토피아
+		                    <br>함께 성장 성장해봐요!
+		                </p>
+		                <div class="login">
+		                    <button id="open" type="button">로그인</button>
+		                </div>
+		           </c:when>
+		           <c:otherwise>
+		           		<p>
+							${userId }님, 환영합니다!           		
+		           		
+		           		</p>
+		           </c:otherwise>
+            	</c:choose>
                 <br>
                 <!-- <div class="user-status">
                     <p>${userId}님 반가워요! </p>
                 </div> -->
-                <div class="login">
-                    <button id="open">로그인</button>
-                </div>
                 <div class="button-wrapper">
-                    <div class="sign-up">
-                        <button onclick="location.href='sign-up.html'"><i class=" bi bi-box-arrow-right"></i>
-                            회원가입</button>
-                    </div>
-                    <div class="member-info">
-                        <button class="member-info-button" onclick="fn_openuserinfoPopup()"><i
-                                class="bi bi-person-fill"></i>회원정보</button></a>
-                    </div>
+                	<c:choose>
+                		<c:when test="${empty sessionScope.userId}">
+		                    <div class="sign-up">
+		                        <button onclick="location.href='writeUser.do'"><i class=" bi bi-box-arrow-right"></i>
+		                            회원가입</button>
+		                    </div>
+                		</c:when>
+                		<c:otherwise>
+		                    <div class="member-info">
+		                        <button class="member-info-button" onclick="fn_openuserinfoPopup()"><i
+		                                class="bi bi-person-fill"></i>회원정보</button>
+		                    </div>
+		                    <div class="member-info">
+		                        <button class="member-info-button" onclick="fn_logout()"><i
+		                                class="bi bi-person-fill"></i>로그아웃</button>
+		                    </div>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
             </div>
             <div class="menu-wrapper">
                 <div class="menu">
                     <ul>
-                        <li><a href="board-news.html"><i class="bi bi-globe2"></i> 개발자 뉴스</a></li>
-                        <li><a href="board-free.html"><i class="bi bi-share"></i> 자유게시판</a></li>
-                        <li><a href="board-tip.html"><i class="bi bi-info-circle"></i> 팁과 노하우</a></li>
-                        <li><a href="board-job.html"><i class="bi bi-briefcase"></i> 구인 & 구직</a></li>
-                        <li><a href="board-qna.html"><i class="bi bi-question-circle"></i> Q & A</a></li>
+                       <li><a href="pageNationNewsArticle.do"><i class="bi bi-globe2"></i> 개발자 뉴스</a></li>
+                        <li><a href="pageNationFreeArticle.do"><i class="bi bi-share"></i> 자유게시판</a></li>
+                        <li><a href="pageNationTipArticle.do"><i class="bi bi-info-circle"></i> 팁과 노하우</a></li>
+                        <li><a href="pageNationJobArticle.do"><i class="bi bi-briefcase"></i> 구인 &amp; 구직</a></li>
+                        <li><a href="pageNationQnaArticle.do"><i class="bi bi-question-circle"></i> Q &amp; A</a></li>
                     </ul>
                 </div>
             </div>
@@ -76,21 +97,24 @@
     </nav>
     <!-- nav end -->
 
-    <!-- board-job start-->
+    <!-- board-free start-->
     <div class="board-wrapper">
         <div class="board-contents">
 
             <div class="board-title-wrapper">
                 <div class="board-title">
-                    <h3><i class="bi bi-question-circle"></i> Q & A</h3>
+                    <h3><i class="bi bi-share"></i> 자유게시판</h3>
                 </div>
             </div>
 
             <div class="board-best-wrap">
-                <h3>| 최다 조회 게시물</h3>
+                <h3> 최다 조회 게시물</h3>
                 <div class="board-best">
                     <div class="best-list">
-                        <a href="">- 자바 재밌나요?</a>
+                    	<c:forEach items="${TopFive }" var="Article">
+                    		<a href="#">${Article.title }</a><br>
+                    	</c:forEach>
+                      <!--   <a href="">- 자바 재밌나요?</a>
                         <br>
                         <a href="">- 파이썬 재밌나요?</a>
                         <br>
@@ -98,14 +122,16 @@
                         <br>
                         <a href="">- 한국소프트인재 개발원 구인</a>
                         <br>
-                        <a href="">- jsp는 백앤드다 ^~^</a>
+                        <a href="">- jsp는 백앤드다 ^~^</a> -->
                     </div>
                 </div>
             </div>
             <br>
-            <div class="write-button">
-                <button onclick="location.href='write-article.html'">글쓰기</button>
-            </div>
+            <c:if test="${sessionScope.userId != null }">
+	            <div class="write-button">
+	                <button onclick="location.href='createFreeArticle.do'">글쓰기</button>
+	            </div>
+            </c:if>
             <div class="main-contents">
                 <div class="table-wrapper">
                     <table>
@@ -119,7 +145,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                        <c:forEach items="${ArticleList }" var="Article">
+							<tr>
+								<td class="number">
+									<span>
+										${Article.postNo}
+									</span>
+								</td>
+								<td class="title">
+									<div class="text-wrap">
+										<a href="selectFreeArticle.do?postNo=${Article.postNo }">
+											${Article.title}
+										</a>
+									</div>
+								</td>
+								<td class="user">
+									<span>
+										${Article.writer}
+									</span>
+								</td>
+								<td class="date">${Article.writeDate}</td>
+								<td class="view">${Article.viewCount}</td>
+								<%-- <td>${Article.content}</td> --%>
+							</tr>
+						</c:forEach>
+                            <!-- <tr>
                                 <td class="number">
                                     <span>10</span>
                                 </td>
@@ -293,40 +343,30 @@
                                 </td>
                                 <td class="date">2021-10-06</td>
                                 <td class="view">49</td>
-                                </tr>
+                                </tr> -->
                         </tbody>
                     </table>
                 </div>
             </div>
             <br>
-            <div class="write-button">
-                <button onclick="location.href='write-article.html'">글쓰기</button>
-            </div>
+            <c:if test="${sessionScope.userId != null }">
+	            <div class="write-button">
+	                <button onclick="location.href='createFreeArticle.do'">글쓰기</button>
+	            </div>
+            </c:if>
             <div class="paigination-wrapper">
                 <ul class="pagination">
                     <li id="Previous-page">
-                        <a href="#" aria-label="Previous">
+                        <a href="pageNationFreeArticleAction.do?arrowDirection=left" aria-label="Previous">
                             <span aria-hidden="true">&#60;</span>
                             <span class="sr-only">이전</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
+                    <c:forEach begin="${startPoint }" end="${endPoint }" var="pageNum">
+                    	<li><a href="pageNationFreeArticleAction.do?pageNum=${pageNum }">${pageNum }</a></li>
+                    </c:forEach>
                     <li id="next-page">
-                        <a href="#" aria-label="Next">
+                        <a href="pageNationFreeArticleAction.do?arrowDirection=right" aria-label="Next">
                             <span class="sr-only">다음</span>
                             <span aria-hidden="true">&#62;</span>
                         </a>
@@ -335,54 +375,55 @@
             </div>
         </div>
     </div>
-    <!-- board-job end-->
+    <!-- board-free end-->
 
-        <!-- modal start -->
-        <div class="login-modal hidden " >
-            <div class="login-modal-wrapper">
-                <div class="login-modal-contens">
-                    <div class="login-modal-head">
-                        <h3>로그인</h3>
-                        <img src="./img/logo-dk-2.png" alt="modal-img" class="img-fluid">
-                    </div>
-                    <form action="" class="login-modal-form">
-                        <div class="login-modal-input">
-                            <label for="userId">아이디</label>
-                            <br>
-                            <input type="text">
-                        </div>
-                        <div class="login-modal-input">
-                            <label for="userPw">비밀번호</label>
-                            <br>
-                            <input type="password">
-                        </div>
-                        <div class="login-modal-button-wrapper">
-                            <div class="login-signup">
-                                <button onclick="window.open('login.html')">로그인</button>
-                                <button onclick="window.open('sign-up.html')">회원가입</button>
-                            </div>
-                            <div class="login-modal-close">
-                                <button>닫기</button>
-                            </div>
-                        </div>
-                    </form>
+    <!-- modal start -->
+    <div class="login-modal hidden " >
+        <div class="login-modal-wrapper">
+            <div class="login-modal-contens">
+                <div class="login-modal-head">
+                    <h3>로그인</h3>
+                    <img src="./resources/img/logo-dk-2.png" alt="modal-img" class="img-fluid">
                 </div>
+                <form action="loginCheck.do" class="login-modal-form" method="post">
+                    <div class="login-modal-input">
+                        <label for="userId">아이디</label>
+                        <br>
+                        <input type="text" name="userId">
+                    </div>
+                    <div class="login-modal-input">
+                        <label for="userPw">비밀번호</label>
+                        <br>
+                        <input type="password" name="userPw">
+                    </div>
+                    <div class="login-modal-button-wrapper">
+                        <div class="login-signup">
+                            <!-- <button onclick="window.open('login.html')">로그인</button> -->
+                            <button type="submit">로그인</button>
+                            <button onclick="fn_signUp()">회원가입</button>
+                        </div>
+                        <div class="login-modal-close">
+                            <button type="button" onclick="fn_closeLoginModal()">닫기</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- modal end -->
+    </div>
+    <!-- modal end -->
 
 
     <!-- banner section start-->
-    <img id="banner" src="img/banner.png" alt="배너이미지" class="img-fluid">
+    <img id="banner" src="./resources/img/banner.png" alt="배너이미지" class="img-fluid">
     <!-- banner section end-->
 
     <!-- vendoer css-->
-    <script src="./vendor/aos/aos.js"></script>
-    <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./resources/vendor/aos/aos.js"></script>
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Devtopia Js-->
-    <script src="./js/main.js"></script>
+    <script src="./resources/js/main.js"></script>
 </body>
 
 </html>

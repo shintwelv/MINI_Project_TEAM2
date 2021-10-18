@@ -22,4 +22,5 @@ public interface BoardTipService {
 	
 	public int totalPage();
 
+	public List<BoardTipVO> selectTopFive();
 }

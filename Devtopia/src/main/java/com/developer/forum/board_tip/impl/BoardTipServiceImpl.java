@@ -60,4 +60,10 @@ public class BoardTipServiceImpl implements BoardTipService {
 		}
 		return totalPage;
 	}
+	
+	public List<BoardTipVO> selectTopFive() {
+		List<BoardTipVO> topFiveList = null;
+		topFiveList = dao.selectTopFive();
+		return topFiveList;
+	}
 }

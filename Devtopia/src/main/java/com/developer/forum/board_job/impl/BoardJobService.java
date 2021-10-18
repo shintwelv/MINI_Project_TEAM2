@@ -21,5 +21,6 @@ public interface BoardJobService {
 	public List<BoardJobVO> pageNationArticleList(int page);
 	
 	public int totalPage();
-
+	
+	public List<BoardJobVO> selectTopFive();
 }

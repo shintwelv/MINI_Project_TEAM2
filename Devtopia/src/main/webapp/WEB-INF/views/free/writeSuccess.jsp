@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보</title>
+<title>게시글 작성</title>
 </head>
 <body>
-	* 회원정보가 없습니다.
+	게시글이 성공적으로 삭제/수정/작성 되었습니다
 	<br>
-	<a href="goMain.do">[처음으로]</a>
+	<a href="pageNationFreeArticle.do">[목록으로]</a>
 </body>
 </html>

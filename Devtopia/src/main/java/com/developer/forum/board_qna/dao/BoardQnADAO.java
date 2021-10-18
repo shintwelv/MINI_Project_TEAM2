@@ -94,4 +94,12 @@ private static SqlSessionFactory sqlMapper;
 		List<BoardQnAVO> articleList = session.selectList("BoardQnA.pageNation", (page-1)*10);
 		return articleList;
 	}
+	
+	public List<BoardQnAVO> selectTopFive() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+	List<BoardQnAVO> topFiveList = session.selectList("BoardQnA.selectViewTop5");
+		return topFiveList;
+		
+	}
 }

@@ -94,4 +94,12 @@ private static SqlSessionFactory sqlMapper;
 		List<BoardNewsVO> articleList = session.selectList("BoardNews.pageNation", (page-1)*10);
 		return articleList;
 	}
+	
+	public List<BoardNewsVO> selectTopFive() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardNewsVO> topFiveList = session.selectList("BoardNews.selectViewTop5");
+		return topFiveList;
+		
+	}
 }

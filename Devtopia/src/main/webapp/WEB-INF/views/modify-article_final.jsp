@@ -103,7 +103,8 @@
                     </div>
                     <div class="write-article-button-wrapper">
                         <div class="article-cotroller">
-                            <button type="submit">게시글 등록</button>
+                            <button type="submit">게시글 수정</button>
+                            <button type="submit">게시글 삭제</button>
                             <!-- <button>수정</button>
                             <button>삭제</button> -->
                         </div>

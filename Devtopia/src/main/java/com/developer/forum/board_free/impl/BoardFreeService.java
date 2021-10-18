@@ -21,4 +21,6 @@ public interface BoardFreeService {
 	public List<BoardFreeVO> pageNationArticleList(int page);
 	
 	public int totalPage();
+	
+	public List<BoardFreeVO> selectTopFive();
 }

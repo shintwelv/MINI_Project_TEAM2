@@ -20,41 +20,41 @@ public class BoardTipController {
 	@Autowired
 	private BoardTipService BoardTipService;
 	
-	@RequestMapping(value = "/tip/goMain.do")
+	@RequestMapping(value = "goTipMain.do")
 	public String goMain() {
 		return "tip/index";
 	}
 	
-	@RequestMapping(value = "/tip/createArticle.do")
+	@RequestMapping(value = "createTipArticle.do")
 	public String fwdInsertPage() {
 		return "tip/createArticle";
 	}
 	
-	@RequestMapping(value = "/tip/createArticleAction.do")
+	@RequestMapping(value = "createTipArticleAction.do")
 	public String insert(BoardTipVO vo) {
 		BoardTipService.insert(vo);
 		return "tip/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/tip/modifyArticle.do")
+	@RequestMapping(value = "modifyTipArticle.do")
 	public String fwdUpdatePage(BoardTipVO vo, Model model) {
 		BoardTipVO BoardTip = BoardTipService.select(vo);
 		model.addAttribute("Article", BoardTip);
 		return "tip/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/tip/modifyArticleAction.do")
+	@RequestMapping(value = "modifyTipArticleAction.do")
 	public String update(BoardTipVO vo) {
 		BoardTipService.update(vo);
 		return "tip/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/tip/deleteArticle.do")
+	@RequestMapping(value = "deleteTipArticle.do")
 	public String fwdDeletePage() {
 		return "tip/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/tip/selectArticle.do")
+	@RequestMapping(value = "selectTipArticle.do")
 	public String select(BoardTipVO vo, Model model) {
 		BoardTipVO BoardTip = BoardTipService.select(vo);
 		BoardTipService.countUp(vo);
@@ -62,21 +62,25 @@ public class BoardTipController {
 		return "tip/selectArticle";
 	}
 	
-	@RequestMapping(value = "/tip/deleteArticleAction.do")
+	@RequestMapping(value = "deleteTipArticleAction.do")
 	public String delete(BoardTipVO vo) {
 		BoardTipService.delete(vo);
 		return "tip/deleteArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/tip/selectArticleList.do")
+	@RequestMapping(value = "selectTipArticleList.do")
 	public String selectArticleList(Model model) {
 		List<BoardTipVO> articleList = BoardTipService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "tip/selectArticleList";
 	}
 	
-	@RequestMapping(value = "/tip/pageNationArticle.do")
+	@RequestMapping(value = "pageNationTipArticle.do")
 	public String fwdpageNationArticleList(Model model) {
+		List<BoardTipVO> topFiveList = null;
+		topFiveList = BoardTipService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardTipService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
@@ -89,7 +93,7 @@ public class BoardTipController {
 		
 	}
 	
-	@RequestMapping(value = "/tip/pageNationArticleAction.do")
+	@RequestMapping(value = "pageNationTipArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
 		int totalPage = BoardTipService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");

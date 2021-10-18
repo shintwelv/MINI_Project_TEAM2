@@ -25,17 +25,17 @@ public class BoardNewsController {
 	@Autowired
 	private BoardNewsService BoardNewsService;
 	
-	@RequestMapping(value = "/news/goMain.do")
+	@RequestMapping(value = "goNewsMain.do")
 	public String goMain() {
 		return "news/index";
 	}
 	
-	@RequestMapping(value = "/news/createArticle.do")
+	@RequestMapping(value = "createNewsArticle.do")
 	public String fwdInsertPage() {
 		return "news/createArticle";
 	}
 	
-	@RequestMapping(value = "/news/createArticleAction.do")
+	@RequestMapping(value = "createNewsArticleAction.do")
 	public String insert(BoardNewsVO vo, HttpServletRequest request) throws Exception {
 		MultipartRequest multipartRequest;
 		try {
@@ -70,25 +70,25 @@ public class BoardNewsController {
 		}
 	}
 	
-	@RequestMapping(value = "/news/modifyArticle.do")
+	@RequestMapping(value = "modifyNewsArticle.do")
 	public String fwdUpdatePage(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
 		model.addAttribute("Article", BoardNews);
 		return "news/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/news/modifyArticleAction.do")
+	@RequestMapping(value = "modifyNewsArticleAction.do")
 	public String update(BoardNewsVO vo) {
 		BoardNewsService.update(vo);
 		return "news/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/news/deleteArticle.do")
+	@RequestMapping(value = "deleteNewsArticle.do")
 	public String fwdDeletePage() {
 		return "news/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/news/selectArticle.do")
+	@RequestMapping(value = "selectNewsArticle.do")
 	public String select(BoardNewsVO vo, Model model) {
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
 		BoardNewsService.countUp(vo);
@@ -96,21 +96,25 @@ public class BoardNewsController {
 		return "news/selectArticle";
 	}
 	
-	@RequestMapping(value = "/news/deleteArticleAction.do")
+	@RequestMapping(value = "deleteNewsArticleAction.do")
 	public String delete(BoardNewsVO vo) {
 		BoardNewsService.delete(vo);
 		return "news/deleteArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/news/selectArticleList.do")
+	@RequestMapping(value = "selectNewsArticleList.do")
 	public String selectArticleList(Model model) {
 		List<BoardNewsVO> articleList = BoardNewsService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "news/selectArticleList";
 	}
 	
-	@RequestMapping(value = "/news/pageNationArticle.do")
+	@RequestMapping(value = "pageNationNewsArticle.do")
 	public String fwdpageNationArticleList(Model model) {
+		List<BoardNewsVO> topFiveList = null;
+		topFiveList = BoardNewsService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardNewsService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
@@ -123,7 +127,7 @@ public class BoardNewsController {
 		
 	}
 	
-	@RequestMapping(value = "/news/pageNationArticleAction.do")
+	@RequestMapping(value = "pageNationNewsArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
 		int totalPage = BoardNewsService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");

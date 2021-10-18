@@ -30,7 +30,7 @@
 		<!-- update article set writer = #{}, title = #{}, content = #{}, writeDate 
 			= sysdate where postno = (select max(postno) from article) -->
 		update board_job set title = #{title}, content = #{content}, writeDate =
-		sysdate where postno = (select max(postno) from board_job)
+		sysdate where postno = #{postNo}
 	</update>
 
 	<update id="ArticleCountUp">

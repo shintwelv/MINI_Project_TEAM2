@@ -60,4 +60,10 @@ public class BoardQnAServiceImpl implements BoardQnAService {
 		}
 		return totalPage;
 	}
+	
+	public List<BoardQnAVO> selectTopFive() {
+		List<BoardQnAVO> topFiveList = null;
+		topFiveList = dao.selectTopFive();
+		return topFiveList;
+	}
 }

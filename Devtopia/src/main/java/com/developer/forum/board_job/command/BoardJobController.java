@@ -20,41 +20,41 @@ public class BoardJobController {
 	@Autowired
 	private BoardJobService BoardJobService;
 	
-	@RequestMapping(value = "/job/goMain.do")
+	@RequestMapping(value = "goJobMain.do")
 	public String goMain() {
 		return "job/index";
 	}
 	
-	@RequestMapping(value = "/job/createArticle.do")
+	@RequestMapping(value = "createJobArticle.do")
 	public String fwdInsertPage() {
 		return "job/createArticle";
 	}
 	
-	@RequestMapping(value = "/job/createArticleAction.do")
+	@RequestMapping(value = "createJobArticleAction.do")
 	public String insert(BoardJobVO vo) {
 		BoardJobService.insert(vo);
 		return "job/createArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/job/modifyArticle.do")
+	@RequestMapping(value = "modifyJobArticle.do")
 	public String fwdUpdatePage(BoardJobVO vo, Model model) {
 		BoardJobVO BoardJob = BoardJobService.select(vo);
 		model.addAttribute("Article", BoardJob);
 		return "job/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/job/modifyArticleAction.do")
+	@RequestMapping(value = "modifyJobArticleAction.do")
 	public String update(BoardJobVO vo) {
 		BoardJobService.update(vo);
 		return "job/modifyArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/job/deleteArticle.do")
+	@RequestMapping(value = "deleteJobArticle.do")
 	public String fwdDeletePage() {
 		return "job/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/job/selectArticle.do")
+	@RequestMapping(value = "selectJobArticle.do")
 	public String select(BoardJobVO vo, Model model) {
 		BoardJobVO BoardJob = BoardJobService.select(vo);
 		BoardJobService.countUp(vo);
@@ -62,21 +62,25 @@ public class BoardJobController {
 		return "job/selectArticle";
 	}
 	
-	@RequestMapping(value = "/job/deleteArticleAction.do")
+	@RequestMapping(value = "deleteJobArticleAction.do")
 	public String delete(BoardJobVO vo) {
 		BoardJobService.delete(vo);
 		return "job/deleteArticleSuccess";
 	}
 	
-	@RequestMapping(value = "/job/selectArticleList.do")
+	@RequestMapping(value = "selectJobArticleList.do")
 	public String selectArticleList(Model model) {
 		List<BoardJobVO> articleList = BoardJobService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "job/selectArticleList";
 	}
 	
-	@RequestMapping(value = "/job/pageNationArticle.do")
+	@RequestMapping(value = "pageNationJobArticle.do")
 	public String fwdpageNationArticleList(Model model) {
+		List<BoardJobVO> topFiveList = null;
+		topFiveList = BoardJobService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardJobService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
@@ -89,7 +93,7 @@ public class BoardJobController {
 		
 	}
 	
-	@RequestMapping(value = "/job/pageNationArticleAction.do")
+	@RequestMapping(value = "pageNationJobArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
 		int totalPage = BoardJobService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");

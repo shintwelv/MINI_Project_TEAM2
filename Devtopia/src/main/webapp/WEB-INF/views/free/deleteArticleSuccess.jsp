@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 삭제</title>
 </head>
 <body>
-	article deletion success
+	게시글 삭제 성공
 	<br>
-	<a href="goMain.do">[Main]</a>
+	<a href="pageNationFreeArticle.do">[목록 보기]</a>
 </body>
 </html>

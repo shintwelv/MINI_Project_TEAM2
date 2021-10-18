@@ -1,4 +1,5 @@
 
+
 package com.developer.forum.board_tip.dao;
 
 
@@ -94,5 +95,12 @@ private static SqlSessionFactory sqlMapper;
 		SqlSession session = sqlMapper.openSession();
 		List<BoardTipVO> articleList = session.selectList("BoardTip.pageNation", (page-1)*10);
 		return articleList;
+	}
+	
+	public List<BoardTipVO> selectTopFive() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardTipVO> topFiveList = session.selectList("BoardTip.selectViewTop5");
+		return topFiveList;
 	}
 }

@@ -20,63 +20,71 @@ public class BoardFreeController {
 	@Autowired
 	private BoardFreeService BoardFreeService;
 	
-	@RequestMapping(value = "/free/goMain.do")
+	@RequestMapping(value = "goFreeMain.do")
 	public String goMain() {
 		return "free/index";
 	}
 	
-	@RequestMapping(value = "/free/createArticle.do")
+	@RequestMapping(value = "createFreeArticle.do")
 	public String fwdInsertPage() {
-		return "free/createArticle";
+		return "free/write-article_final";
 	}
 	
-	@RequestMapping(value = "/free/createArticleAction.do")
+	@RequestMapping(value = "createFreeArticleAction.do")
 	public String insert(BoardFreeVO vo) {
 		BoardFreeService.insert(vo);
-		return "free/createArticleSuccess";
+		return "free/writeSuccess";
 	}
 	
-	@RequestMapping(value = "/free/modifyArticle.do")
+	@RequestMapping(value = "modifyFreeArticle.do")
 	public String fwdUpdatePage(BoardFreeVO vo, Model model) {
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
 		model.addAttribute("Article", BoardFree);
 		return "free/modifyArticle";
 	}
 	
-	@RequestMapping(value = "/free/modifyArticleAction.do")
+	@RequestMapping(value = "modifyFreeArticleAction.do")
 	public String update(BoardFreeVO vo) {
+		System.out.println(vo);
 		BoardFreeService.update(vo);
-		return "free/modifyArticleSuccess";
+		return "free/writeSuccess";
 	}
 	
-	@RequestMapping(value = "/free/deleteArticle.do")
+	@RequestMapping(value = "deleteFreeArticle.do")
 	public String fwdDeletePage() {
 		return "free/deleteArticle";
 	}
 	
-	@RequestMapping(value = "/free/selectArticle.do")
-	public String select(BoardFreeVO vo, Model model) {
+	@RequestMapping(value = "selectFreeArticle.do")
+	public String select(BoardFreeVO vo, Model model, HttpServletRequest request) {
+		vo.setPostNo(Integer.parseInt(request.getParameter("postNo")));
 		BoardFreeVO BoardFree = BoardFreeService.select(vo);
 		BoardFreeService.countUp(vo);
 		model.addAttribute("Article", BoardFree);
-		return "free/selectArticle";
+		return "free/modify-article_final";
 	}
 	
-	@RequestMapping(value = "/free/deleteArticleAction.do")
-	public String delete(BoardFreeVO vo) {
+	@RequestMapping(value = "deleteFreeArticleAction.do")
+	public String delete(BoardFreeVO vo, HttpServletRequest request) {
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		vo.setPostNo(postNo);
 		BoardFreeService.delete(vo);
-		return "free/deleteArticleSuccess";
+		return "free/writeSuccess";
 	}
 	
-	@RequestMapping(value = "/free/selectArticleList.do")
+	@RequestMapping(value = "selectFreeArticleList.do")
 	public String selectArticleList(Model model) {
 		List<BoardFreeVO> articleList = BoardFreeService.selectArticleList();
 		model.addAttribute("ArticleList", articleList);
 		return "free/selectArticleList";
 	}
 	
-	@RequestMapping(value = "/free/pageNationArticle.do")
+	@RequestMapping(value = "pageNationFreeArticle.do")
 	public String fwdpageNationArticleList(Model model) {
+		List<BoardFreeVO> topFiveList = null;
+		topFiveList = BoardFreeService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardFreeService.totalPage();
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPoint", startPoint);
@@ -85,11 +93,11 @@ public class BoardFreeController {
 		List<BoardFreeVO> articleList = null;
 		articleList = BoardFreeService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
-		return "free/pageNationArticle";
+		return "free/board-free_final";
 		
 	}
 	
-	@RequestMapping(value = "/free/pageNationArticleAction.do")
+	@RequestMapping(value = "pageNationFreeArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
 		int totalPage = BoardFreeService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
@@ -112,7 +120,7 @@ public class BoardFreeController {
 		List<BoardFreeVO> articleList = null;
 		articleList = BoardFreeService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
-		return "free/pageNationArticle";
+		return "free/board-free_final";
 	}
 	
 	private void calculateLeftArrow() {

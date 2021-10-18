@@ -60,4 +60,10 @@ public class BoardNewsServiceImpl implements BoardNewsService {
 		}
 		return totalPage;
 	}
+	
+	public List<BoardNewsVO> selectTopFive() {
+		List<BoardNewsVO> topFiveList = null;
+		topFiveList = dao.selectTopFive();
+		return topFiveList;
+	}
 }

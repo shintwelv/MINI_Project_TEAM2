@@ -94,4 +94,12 @@ public class BoardJobDAO {
 		List<BoardJobVO> articleList = session.selectList("BoardJob.pageNation", (page-1)*10);
 		return articleList;
 	}
+	
+	public List<BoardJobVO> selectTopFive() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<BoardJobVO> topFiveList = session.selectList("BoardJob.selectViewTop5");
+		return topFiveList;
+		
+	}
 }

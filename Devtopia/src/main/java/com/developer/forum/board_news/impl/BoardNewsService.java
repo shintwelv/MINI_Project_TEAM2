@@ -22,4 +22,5 @@ public interface BoardNewsService {
 	
 	public int totalPage();
 
+	public List<BoardNewsVO> selectTopFive();
 }

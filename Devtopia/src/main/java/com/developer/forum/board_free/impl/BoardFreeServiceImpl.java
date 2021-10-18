@@ -31,8 +31,8 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 	
 	@Override
 	public BoardFreeVO select(BoardFreeVO vo) {
-//		BoardFreeVO article = dao.select(vo);
-		BoardFreeVO article = dao.select();
+		BoardFreeVO article = dao.select(vo);
+//		BoardFreeVO article = dao.select();
 		return article;
 	}
 	
@@ -59,5 +59,11 @@ public class BoardFreeServiceImpl implements BoardFreeService {
 			totalPage++;
 		}
 		return totalPage;
+	}
+	
+	public List<BoardFreeVO> selectTopFive() {
+		List<BoardFreeVO> topFiveList = null;
+		topFiveList = dao.selectTopFive();
+		return topFiveList;
 	}
 }

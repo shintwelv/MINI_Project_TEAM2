@@ -13,13 +13,13 @@
 	<insert id="insert">
 		<!-- insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, 
 			sysdate, 0) -->
-		insert into board_free values(idx_seq.nextval, 'myId', #{title},
+		insert into board_free values(idx_seq.nextval, #{writer}, #{title},
 		#{content}, sysdate, 0)
 	</insert>
 
 	<select id="select" resultType="BoardFree">
 		select * from board_free where
-		postno = (select max(postno) from board_free)
+		postno = #{postNo}
 	</select>
 
 	<delete id="delete">
@@ -30,7 +30,7 @@
 		<!-- update article set writer = #{}, title = #{}, content = #{}, writeDate 
 			= sysdate where postno = (select max(postno) from article) -->
 		update board_free set title = #{title}, content = #{content}, writeDate =
-		sysdate where postno = (select max(postno) from board_free)
+		sysdate where postno = #{postNo}
 	</update>
 
 	<update id="ArticleCountUp">

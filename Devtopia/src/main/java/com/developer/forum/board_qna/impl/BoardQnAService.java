@@ -21,4 +21,6 @@ public interface BoardQnAService {
 	public List<BoardQnAVO> pageNationArticleList(int page);
 	
 	public int totalPage();
+	
+	public List<BoardQnAVO> selectTopFive();
 }
