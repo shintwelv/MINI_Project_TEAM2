@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BoardFree">
+	<resultMap type="BoardFree" id="articleList">
+		<result property="postNo" column="POSTNO" />
+		<result property="writer" column="WRITER" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="writeDate" column="WRITEDATE" />
+		<result property="viewCount" column="VIEWCOUNT" />
+	</resultMap>
+
+	<insert id="insert">
+		<!-- insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, 
+			sysdate, 0) -->
+		insert into board_free values(idx_seq.nextval, #{writer}, #{title},
+		#{content}, sysdate, 0)
+	</insert>
+
+	<select id="select" resultType="BoardFree">
+		select * from board_free where
+		postno = #{postNo}
+	</select>
+
+	<delete id="delete">
+		delete board_free where postno = #{postNo}
+	</delete>
+
+	<update id="update">
+		<!-- update article set writer = #{}, title = #{}, content = #{}, writeDate 
+			= sysdate where postno = (select max(postno) from article) -->
+		update board_free set title = #{title}, content = #{content}, writeDate =
+		sysdate where postno = #{postNo}
+	</update>
+
+	<update id="ArticleCountUp">
+		update board_free set VIEWCOUNT = (select viewcount from
+		board_free where postno = #{postNo})+1 where postno = #{postNo}
+	</update>
+
+	<select id="getArticleList" resultMap="articleList">
+		select * from board_free
+	</select>
+	
+	<select id="totalArticleCount" resultType="int">
+		select count(*) from board_free
+	</select>
+
+	<select id="pageNation" resultMap="articleList" parameterType="int">
+	<![CDATA[
+		select postno, title, content, writer, writeDate, viewCount 
+		from
+			(
+				select postno, seq, title, content, writer, writeDate, viewCount 
+				from
+					(
+					select rownum as seq, postno, title, content, writer, writeDate, viewCount 
+					from 
+						(
+						select * from board_free order by postNo desc
+						)
+				)
+				where seq >= #{startPoint}
+			) 
+		where rownum <= 10
+	]]>
+	</select>
+	
+	<select id="selectViewTop5" resultMap="articleList">
+	<![CDATA[
+		select postno, title, content, writer, writeDate, viewCount 
+		from
+			(
+				select postno, seq, title, content, writer, writeDate, viewCount 
+				from
+					(
+					select rownum as seq, postno, title, content, writer, writeDate, viewCount 
+					from 
+						(
+						select * from board_free order by viewCount desc
+						)
+				)
+				where seq >= 1
+			) 
+		where rownum <= 5
+	]]>
+	</select>
+
+</mapper>

@@ -1,0 +1,97 @@
+drop table users;
+drop table board_news;
+drop table board_free;
+drop table board_tip;
+drop table board_qna;
+drop table board_job;
+
+
+table board_news;
+table board_free;
+table board_tip;
+table board_qna;
+table board_job;
+의 mvc 뼈대 완성
+
+
+insert into article values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 100);
+
+
+
+create table article(
+postNo int not null primary key,
+writer varchar2(15) not null,
+title varchar2(100) not null,
+content varchar2(1000),
+writeDate date not null,
+viewCount int not null,
+constraint fk_writer foreign key(writer)
+references users(userId)
+);
+
+update article set VIEWCOUNT = (select viewcount from article where postno = 8)+1 where postno = 8
+
+select title, content from
+(
+select seq, title, content from
+(
+select rownum as seq, title, content from 
+(
+select * from article order by postNo desc
+)
+)
+where seq >= 6
+) where rownum <= 5
+
+
+select title, content, writer, writeDate, viewCount from
+(
+select seq, title, content, writer, writeDate, viewCount from
+(
+select rownum as seq, title, content, writer, writeDate, viewCount from 
+(
+select * from article order by postNo desc
+)
+)
+where seq >= #{여기서부터}
+) where rownum <= #{몇개를 보여줘라}
+
+
+free
+job
+news
+qna
+tip
+
+
+1 2 3 4 5
+6 7 8 9
+
+insert into users values('myId', 'myPw', 'myName', 'myMail@gmail.com', 'myNick', '01022223333', 'Seoul', 'C:\img/myId_profile', 'Y');
+
+
+
+
+select title, content, writer, writeDate, viewCount from
+(
+select seq, title, content, writer, writeDate, viewCount from
+(
+select rownum as seq, title, content, writer, writeDate, viewCount from 
+(
+select * from board_free order by viewCount desc
+)
+)
+where seq >= 1
+) where rownum <= 5
+
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 100);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 99);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 98);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 97);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 96);
+insert into board_free values(idx_seq.nextval, 'myId', 'title1', 'content1', sysdate, 95);
+
+update board_free set VIEWCOUNT = (select viewcount from
+		board_free where postno = 2531)+1 where postno = 2531;
+
+

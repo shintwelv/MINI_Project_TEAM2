@@ -14,6 +14,7 @@ CREATE SEQUENCE idx_seq
      INCREMENT BY 1
      CACHE 20;
 
+
 drop table users cascade constraints;
 drop table board_news;
 drop table board_free;
