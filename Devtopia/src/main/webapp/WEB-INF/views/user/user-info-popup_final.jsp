@@ -98,7 +98,7 @@
                         </div>
                         <br>
                         <div class="button-wrapper">
-                            <div class="submit">
+                            <div class="cancel">
                                 <button type="submit">수정</button>
                             </div>
                             
