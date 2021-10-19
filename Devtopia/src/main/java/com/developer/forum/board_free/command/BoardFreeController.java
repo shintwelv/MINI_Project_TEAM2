@@ -20,11 +20,6 @@ public class BoardFreeController {
 	@Autowired
 	private BoardFreeService BoardFreeService;
 	
-	@RequestMapping(value = "goFreeMain.do")
-	public String goMain() {
-		return "free/index";
-	}
-	
 	@RequestMapping(value = "createFreeArticle.do")
 	public String fwdInsertPage() {
 		return "free/write-article_final";
@@ -34,26 +29,14 @@ public class BoardFreeController {
 	public String insert(BoardFreeVO vo) {
 		System.out.println(vo);
 		BoardFreeService.insert(vo);
-		return "free/writeSuccess";
-	}
-	
-	@RequestMapping(value = "modifyFreeArticle.do")
-	public String fwdUpdatePage(BoardFreeVO vo, Model model) {
-		BoardFreeVO BoardFree = BoardFreeService.select(vo);
-		model.addAttribute("Article", BoardFree);
-		return "free/modifyArticle";
+		return "free/article-write-success";
 	}
 	
 	@RequestMapping(value = "modifyFreeArticleAction.do")
 	public String update(BoardFreeVO vo) {
 		System.out.println(vo);
 		BoardFreeService.update(vo);
-		return "free/writeSuccess";
-	}
-	
-	@RequestMapping(value = "deleteFreeArticle.do")
-	public String fwdDeletePage() {
-		return "free/deleteArticle";
+		return "free/article-update-success";
 	}
 	
 	@RequestMapping(value = "selectFreeArticle.do")
@@ -70,14 +53,7 @@ public class BoardFreeController {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		vo.setPostNo(postNo);
 		BoardFreeService.delete(vo);
-		return "free/writeSuccess";
-	}
-	
-	@RequestMapping(value = "selectFreeArticleList.do")
-	public String selectArticleList(Model model) {
-		List<BoardFreeVO> articleList = BoardFreeService.selectArticleList();
-		model.addAttribute("ArticleList", articleList);
-		return "free/selectArticleList";
+		return "free/article-delete-success";
 	}
 	
 	@RequestMapping(value = "pageNationFreeArticle.do")

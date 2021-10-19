@@ -5,7 +5,7 @@ AOS.init();
 
 // 주소 입력 pop-up //
 function fn_openAddressPopup() {
-    var url = "addressPopup.do";
+    var url = "adderss-popup.html";
     var name = "AddressPopup";
     var option = "width=650, height=500, top=100, left=200, location=no"
     window.open(url, name, option);
@@ -103,7 +103,7 @@ function fn_openLoginPopup() {
 
 /// 회원정보 팝업 ///
 function fn_openuserinfoPopup() {
-    var url = "updateUser.do";
+    var url = "user-info-popup.html";
     var name = "userinfoPopup";
     var option = "width=795, height=1000 top=100 left=200 location=no"
     window.open(url, name, option);
@@ -114,61 +114,14 @@ function fn_openuserinfoPopup() {
 /// 로그인 모달 /// 
 const openButton = document.getElementById("open");
 const modal = document.querySelector(".login-modal");
-const closeButton = modal.querySelector("button");
+const clsoeButton = modal.querySelector("#closeButton");
 const openModal = () => {
     modal.classList.remove("hidden");
 }
 const closeModal = () => {
     modal.classList.add("hidden");
 }
-closeButton.addEventListener("click", closeModal);
 openButton.addEventListener("click", openModal);
-
-//---------------------------------------
-function fn_closeLoginModal() {
-	$(".login-modal").hide();
-}
-
-$("#id").on("click", function(){
-	$(".login-modal").show();
-})
-
-$(".login").on("click", function(){
-	$(".login-modal").show();
-})
-//----------------------------------------
+clsoeButton.addEventListener("click", closeModal);
 /// 로그인 모달 ///
 
-//----------------------------------------
-///회원 탈퇴///
-function fn_userDelete() {
-    var url = "deleteUser.do";
-    /*var name = "userinfoPopup";
-    var option = "width=795, height=1000 top=100 left=200 location=no"*/
-    location.assign(url);
-}
-///회원 탈퇴///
-
-//로그 아웃//
-function fn_logout(){
-	var url = "logout.do";
-	location.assign(url);
-}
-//로그 아웃//
-
-//메인 복귀//
-function fn_goMain(){
-	var url = "goMain.do";
-	location.assign(url);
-}
-//메인 복귀//
-
-//로그인 페이지로 이동//
-function fn_signUp() {
-	var url = "writeUser.do";
-	location.assign(url);
-}
-
-//로그인 페이지로 이동//
-
-//----------------------------------------

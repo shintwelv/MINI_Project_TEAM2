@@ -15,7 +15,7 @@
                         <h3>로그인</h3>
                         <img src="./resources/img/logo-dk-2.png" alt="modal-img" class="img-fluid">
                     </div>
-                    <form action="loginCheck.do" class="login-modal-form">
+                    <form action="loginCheck.do" class="login-modal-form" method="post">
                         <div class="login-modal-input">
                             <label for="userId">아이디</label>
                             <br>
