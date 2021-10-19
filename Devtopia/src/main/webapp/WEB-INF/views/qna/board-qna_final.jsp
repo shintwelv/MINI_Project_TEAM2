@@ -25,7 +25,7 @@
 
 
 <!-- Devtopia css -->
-<link rel="stylesheet" href="./resources/css/board-job.css">
+<link rel="stylesheet" href="./resources/css/board-qna.css">
 
 <title>Devtopiaㅣ자유게시판</title>
 </head>
@@ -33,7 +33,7 @@
 <body>
 	<jsp:include page="../common/navBar.jsp"></jsp:include>
 
-	<!-- board-job start-->
+	<!-- board-QnA start-->
 	<div class="main-contents">
 		<div class="board-wrapper">
 			<div class="board-contents">
@@ -63,7 +63,7 @@
 				<br>
 				<c:if test="${sessionScope.userId != null }">
 					<div class="write-button">
-						<button onclick="location.href='createJobArticle.do'">글쓰기</button>
+						<button onclick="location.href='createQnAArticle.do'">글쓰기</button>
 					</div>
 				</c:if>
 
@@ -85,7 +85,7 @@
 										<td class="number"><span> ${Article.postNo} </span></td>
 										<td class="title">
 											<div class="text-wrap">
-												<a href="selectJobArticle.do?postNo=${Article.postNo }">
+												<a href="selectQnAArticle.do?postNo=${Article.postNo }">
 													${Article.title} </a>
 											</div>
 										</td>
@@ -98,36 +98,39 @@
 						</table>
 					</div>
 				</div>
-				<div class="paigination-wrapper">
-					<ul class="pagination">
-						<li id="Previous-page"><a
-							href="pageNationJobArticleAction.do?arrowDirection=left"
-							aria-label="Previous"> <span aria-hidden="true">&#60;</span>
-								<span class="sr-only">이전</span>
-						</a></li>
-						<c:forEach begin="${startPoint }" end="${endPoint }" var="pageNum">
-							<li><a href="pageNationJobArticleAction.do?pageNum=${pageNum }">${pageNum }</a></li>
-						</c:forEach>
-						<li id="next-page"><a
-							href="pageNationJobArticleAction.do?arrowDirection=right"
-							aria-label="Next"> <span class="sr-only">다음</span> <span
-								aria-hidden="true">&#62;</span>
-						</a></li>
-					</ul>
-				</div>
-				<!-- board-job end-->
+			</div>
+		</div>
+	</div>
+	<div class="paigination-wrapper">
+		<ul class="pagination">
+			<li id="Previous-page"><a
+				href="pageNationQnAArticleAction.do?arrowDirection=left"
+				aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span
+					class="sr-only">이전</span>
+			</a></li>
+			<c:forEach begin="${startPoint }" end="${endPoint }" var="pageNum">
+				<li><a href="pageNationQnAArticleAction.do?pageNum=${pageNum }">${pageNum }</a></li>
+			</c:forEach>
+			<li id="next-page"><a
+				href="pageNationQnAArticleAction.do?arrowDirection=right"
+				aria-label="Next"> <span class="sr-only">다음</span> <span
+					aria-hidden="true">&#62;</span>
+			</a></li>
+		</ul>
+	</div>
+	<!-- board-QnA end-->
 
 
-				<jsp:include page="../common/loginModal.jsp"></jsp:include>
+	<jsp:include page="../common/loginModal.jsp"></jsp:include>
 
-				<!-- vendoer css-->
-				<script src="./resources/vendor/aos/aos.js"></script>
-				<script
-					src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- vendoer css-->
+	<script src="./resources/vendor/aos/aos.js"></script>
+	<script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-				<!-- Devtopia Js-->
-				<script src="./resources/js/banner.js"></script>
+	<!-- Devtopia Js-->
+	<script src="./resources/js/banner.js"></script>
+
 </body>
 
 </html>

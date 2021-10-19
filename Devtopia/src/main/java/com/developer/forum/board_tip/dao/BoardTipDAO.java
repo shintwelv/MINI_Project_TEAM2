@@ -55,16 +55,10 @@ private static SqlSessionFactory sqlMapper;
 		session.commit();
 	}
 	
-//	public BoardTipVO select(BoardTipVO vo) {
-//		sqlMapper = getInstance();
-//		SqlSession session = sqlMapper.openSession();
-//		BoardTipVO BoardTip = session.selectOne("BoardTip.select", vo);
-//		return BoardTip;
-//	}
-	public BoardTipVO select() {
+	public BoardTipVO select(BoardTipVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardTipVO BoardTip = session.selectOne("BoardTip.select");
+		BoardTipVO BoardTip = session.selectOne("BoardTip.select", vo);
 		return BoardTip;
 	}
 	

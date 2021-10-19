@@ -31,8 +31,7 @@ public class BoardQnAServiceImpl implements BoardQnAService {
 	
 	@Override
 	public BoardQnAVO select(BoardQnAVO vo) {
-//		BoardQnAVO article = dao.select(vo);
-		BoardQnAVO article = dao.select();
+		BoardQnAVO article = dao.select(vo);
 		return article;
 	}
 	

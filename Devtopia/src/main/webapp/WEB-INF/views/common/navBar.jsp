@@ -73,11 +73,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="social-wrapper">
-                <div class="social-github">
-                    <h1><a href=""><i class="bi bi-github"></i></a></h1>
-                </div>
-            </div>
     </nav>
     <!-- nav end-->
     

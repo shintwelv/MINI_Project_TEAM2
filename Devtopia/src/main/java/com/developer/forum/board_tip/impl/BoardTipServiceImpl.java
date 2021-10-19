@@ -31,8 +31,7 @@ public class BoardTipServiceImpl implements BoardTipService {
 	
 	@Override
 	public BoardTipVO select(BoardTipVO vo) {
-//		BoardTipVO article = dao.select(vo);
-		BoardTipVO article = dao.select();
+		BoardTipVO article = dao.select(vo);
 		return article;
 	}
 	

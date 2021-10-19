@@ -129,6 +129,10 @@ public class BoardNewsController {
 	
 	@RequestMapping(value = "pageNationNewsArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		List<BoardNewsVO> topFiveList = null;
+		topFiveList = BoardNewsService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardNewsService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {

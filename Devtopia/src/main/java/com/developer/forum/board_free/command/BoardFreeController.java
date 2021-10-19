@@ -100,6 +100,10 @@ public class BoardFreeController {
 	
 	@RequestMapping(value = "pageNationFreeArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		List<BoardFreeVO> topFiveList = null;
+		topFiveList = BoardFreeService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardFreeService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {

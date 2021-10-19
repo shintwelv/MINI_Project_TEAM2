@@ -27,14 +27,14 @@ public class BoardQnAController {
 	
 	@RequestMapping(value = "createQnAArticle.do")
 	public String fwdInsertPage() {
-		return "qna/createArticle";
+		return "qna/write-article_final";
 	}
 	
 	@RequestMapping(value = "createQnAArticleAction.do")
 	public String insert(BoardQnAVO vo) {
 		System.out.println(vo);
 		BoardQnAService.insert(vo);
-		return "qna/createArticleSuccess";
+		return "qna/writeSuccess";
 	}
 	
 	@RequestMapping(value = "modifyQnAArticle.do")
@@ -47,7 +47,7 @@ public class BoardQnAController {
 	@RequestMapping(value = "modifyQnAArticleAction.do")
 	public String update(BoardQnAVO vo) {
 		BoardQnAService.update(vo);
-		return "qna/modifyArticleSuccess";
+		return "qna/writeSuccess";
 	}
 	
 	@RequestMapping(value = "deleteQnAArticle.do")
@@ -56,17 +56,20 @@ public class BoardQnAController {
 	}
 	
 	@RequestMapping(value = "selectQnAArticle.do")
-	public String select(BoardQnAVO vo, Model model) {
+	public String select(BoardQnAVO vo, Model model, HttpServletRequest request) {
+		vo.setPostNo(Integer.parseInt(request.getParameter("postNo")));
 		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
 		BoardQnAService.countUp(vo);
 		model.addAttribute("Article", BoardQnA);
-		return "qna/selectArticle";
+		return "qna/modify-article_final";
 	}
 	
 	@RequestMapping(value = "deleteQnAArticleAction.do")
-	public String delete(BoardQnAVO vo) {
+	public String delete(BoardQnAVO vo, HttpServletRequest request) {
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		vo.setPostNo(postNo);
 		BoardQnAService.delete(vo);
-		return "qna/deleteArticleSuccess";
+		return "qna/writeSuccess";
 	}
 	
 	@RequestMapping(value = "selectQnAArticleList.do")
@@ -90,12 +93,16 @@ public class BoardQnAController {
 		List<BoardQnAVO> articleList = null;
 		articleList = BoardQnAService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
-		return "qna/pageNationArticle";
+		return "qna/board-qna_final";
 		
 	}
 	
 	@RequestMapping(value = "pageNationQnAArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		List<BoardQnAVO> topFiveList = null;
+		topFiveList = BoardQnAService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardQnAService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {
@@ -117,7 +124,7 @@ public class BoardQnAController {
 		List<BoardQnAVO> articleList = null;
 		articleList = BoardQnAService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
-		return "qna/pageNationArticle";
+		return "qna/board-qna_final";
 	}
 	
 	private void calculateLeftArrow() {

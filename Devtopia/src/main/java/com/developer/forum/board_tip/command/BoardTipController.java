@@ -27,13 +27,13 @@ public class BoardTipController {
 	
 	@RequestMapping(value = "createTipArticle.do")
 	public String fwdInsertPage() {
-		return "tip/createArticle";
+		return "tip/write-article_final";
 	}
 	
 	@RequestMapping(value = "createTipArticleAction.do")
 	public String insert(BoardTipVO vo) {
 		BoardTipService.insert(vo);
-		return "tip/createArticleSuccess";
+		return "tip/writeSuccess";
 	}
 	
 	@RequestMapping(value = "modifyTipArticle.do")
@@ -46,7 +46,7 @@ public class BoardTipController {
 	@RequestMapping(value = "modifyTipArticleAction.do")
 	public String update(BoardTipVO vo) {
 		BoardTipService.update(vo);
-		return "tip/modifyArticleSuccess";
+		return "tip/writeSuccess";
 	}
 	
 	@RequestMapping(value = "deleteTipArticle.do")
@@ -55,17 +55,20 @@ public class BoardTipController {
 	}
 	
 	@RequestMapping(value = "selectTipArticle.do")
-	public String select(BoardTipVO vo, Model model) {
+	public String select(BoardTipVO vo, Model model, HttpServletRequest request) {
+		vo.setPostNo(Integer.parseInt(request.getParameter("postNo")));
 		BoardTipVO BoardTip = BoardTipService.select(vo);
 		BoardTipService.countUp(vo);
 		model.addAttribute("Article", BoardTip);
-		return "tip/selectArticle";
+		return "tip/modify-article_final";
 	}
 	
 	@RequestMapping(value = "deleteTipArticleAction.do")
-	public String delete(BoardTipVO vo) {
+	public String delete(BoardTipVO vo, HttpServletRequest request) {
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		vo.setPostNo(postNo);
 		BoardTipService.delete(vo);
-		return "tip/deleteArticleSuccess";
+		return "tip/writeSuccess";
 	}
 	
 	@RequestMapping(value = "selectTipArticleList.do")
@@ -89,12 +92,16 @@ public class BoardTipController {
 		List<BoardTipVO> articleList = null;
 		articleList = BoardTipService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
-		return "tip/pageNationArticle";
+		return "tip/board-tip_final";
 		
 	}
 	
 	@RequestMapping(value = "pageNationTipArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		List<BoardTipVO> topFiveList = null;
+		topFiveList = BoardTipService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardTipService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {
@@ -116,7 +123,7 @@ public class BoardTipController {
 		List<BoardTipVO> articleList = null;
 		articleList = BoardTipService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
-		return "tip/pageNationArticle";
+		return "tip/board-tip_final";
 	}
 	
 	private void calculateLeftArrow() {

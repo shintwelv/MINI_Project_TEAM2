@@ -31,8 +31,7 @@ public class BoardJobServiceImpl implements BoardJobService {
 	
 	@Override
 	public BoardJobVO select(BoardJobVO vo) {
-//		BoardJobVO article = dao.select(vo);
-		BoardJobVO article = dao.select();
+		BoardJobVO article = dao.select(vo);
 		return article;
 	}
 	

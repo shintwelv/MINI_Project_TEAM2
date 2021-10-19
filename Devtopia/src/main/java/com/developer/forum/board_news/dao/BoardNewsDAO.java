@@ -53,16 +53,10 @@ private static SqlSessionFactory sqlMapper;
 		session.commit();
 	}
 	
-//	public BoardNewsVO select(BoardNewsVO vo) {
-//		sqlMapper = getInstance();
-//		SqlSession session = sqlMapper.openSession();
-//		BoardNewsVO BoardNews = session.selectOne("BoardNews.select", vo);
-//		return BoardNews;
-//	}
-	public BoardNewsVO select() {
+	public BoardNewsVO select(BoardNewsVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardNewsVO BoardNews = session.selectOne("BoardNews.select");
+		BoardNewsVO BoardNews = session.selectOne("BoardNews.select", vo);
 		return BoardNews;
 	}
 	

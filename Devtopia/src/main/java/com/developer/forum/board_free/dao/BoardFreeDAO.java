@@ -54,12 +54,6 @@ public class BoardFreeDAO {
 		session.commit();
 	}
 	
-//	public BoardFreeVO select(BoardFreeVO vo) {
-//		sqlMapper = getInstance();
-//		SqlSession session = sqlMapper.openSession();
-//		BoardFreeVO BoardFree = session.selectOne("BoardFree.select", vo);
-//		return BoardFree;
-//	}
 	public BoardFreeVO select(BoardFreeVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();

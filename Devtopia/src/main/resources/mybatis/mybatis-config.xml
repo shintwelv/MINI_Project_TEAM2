@@ -4,8 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.developer.forum.article.model.ArticleVO"
-			alias="Article" />
 		<typeAlias type="com.developer.forum.board_free.model.BoardFreeVO"
 			alias="BoardFree" />
 		<typeAlias type="com.developer.forum.board_job.model.BoardJobVO"
@@ -35,7 +33,6 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="mybatis/mappings/sql-article.xml"/>
 		<mapper resource="mybatis/mappings/sql-free.xml"/>
 		<mapper resource="mybatis/mappings/sql-job.xml"/>
 		<mapper resource="mybatis/mappings/sql-news.xml"/>

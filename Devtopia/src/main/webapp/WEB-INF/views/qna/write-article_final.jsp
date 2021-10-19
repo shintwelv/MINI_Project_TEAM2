@@ -43,7 +43,7 @@
 
                 <br>
                 <br>
-               <form action="createJobArticleAction.do" class="write-article-head" method="post">
+               <form action="createQnAArticleAction.do" class="write-article-head" method="post">
                     <div class="write-title">
                         <div class="writer">
                             <label for="title">작성자</label>
@@ -66,7 +66,7 @@
                  	</div>
                 </form>
 
-               <button type="button" onclick="location.href='pageNationJobArticle.do'" id="board-list">목록</button>
+               <button type="button" onclick="location.href='pageNationQnAArticle.do'" id="board-list">목록</button>
             </div>
     </section>
     </div>

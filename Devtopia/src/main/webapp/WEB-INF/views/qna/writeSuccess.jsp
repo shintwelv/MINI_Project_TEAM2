@@ -9,6 +9,6 @@
 <body>
 	게시글이 성공적으로 삭제/수정/작성 되었습니다
 	<br>
-	<a href="pageNationJobArticle.do">[목록으로]</a>
+	<a href="pageNationQnAArticle.do">[목록으로]</a>
 </body>
 </html>

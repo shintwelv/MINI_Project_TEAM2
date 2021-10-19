@@ -13,13 +13,13 @@
 	<insert id="insert">
 		<!-- insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, 
 			sysdate, 0) -->
-		insert into board_qna values(idx_seq.nextval, 'myId', #{title},
+		insert into board_qna values(idx_seq.nextval, #{writer}, #{title},
 		#{content}, sysdate, 0)
 	</insert>
 
 	<select id="select" resultType="BoardQnA">
 		select * from board_qna where
-		postno = (select max(postno) from board_qna)
+		postno = #{postNo}
 	</select>
 
 	<delete id="delete">

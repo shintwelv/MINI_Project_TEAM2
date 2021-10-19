@@ -37,7 +37,7 @@
             </div>
             <br>
             <br>
-			<form action="modifyJobArticleAction.do" class="write-article-head" method="post">
+			<form action="modifyTipArticleAction.do" class="write-article-head" method="post">
             	<input type="hidden" name="postNo" value="${Article.postNo }">			
                 <div class="write-title">
                     <div class="writer">
@@ -62,13 +62,13 @@
 	                    <div class="write-article-button-wrapper">
 	                        <div class="article-cotroller">
 	                            <button type="submit">게시글 수정</button>
-	                            <button type="button" onclick="location.href='deleteJobArticleAction.do?postNo=${Article.postNo }'">게시글 삭제</button>
+	                            <button type="button" onclick="location.href='deleteTipArticleAction.do?postNo=${Article.postNo }'">게시글 삭제</button>
 	                            <!-- <button>수정</button>
 	                            <button>삭제</button> -->
 	                        </div>
 	                    </div>
                     </c:if>
-                    <button type="button" onclick="location.href='pageNationJobArticle.do'" id="board-list">목록</button>
+                    <button type="button" onclick="location.href='pageNationTipArticle.do'" id="board-list">목록</button>
             </form>
         </section>
     </div>

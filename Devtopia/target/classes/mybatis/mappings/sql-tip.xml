@@ -13,13 +13,13 @@
 	<insert id="insert">
 		<!-- insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, 
 			sysdate, 0) -->
-		insert into board_tip values(idx_seq.nextval, 'myId', #{title},
+		insert into board_tip values(idx_seq.nextval, #{writer}, #{title},
 		#{content}, sysdate, 0)
 	</insert>
 
 	<select id="select" resultType="BoardTip">
 		select * from board_tip where
-		postno = (select max(postno) from board_tip)
+		postno = #{postNo}
 	</select>
 
 	<delete id="delete">
@@ -30,7 +30,7 @@
 		<!-- update article set writer = #{}, title = #{}, content = #{}, writeDate 
 			= sysdate where postno = (select max(postno) from article) -->
 		update board_tip set title = #{title}, content = #{content}, writeDate =
-		sysdate where postno = #{postno}
+		sysdate where postno = #{postNo}
 	</update>
 
 	<update id="ArticleCountUp">

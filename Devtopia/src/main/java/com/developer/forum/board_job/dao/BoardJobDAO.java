@@ -53,16 +53,10 @@ public class BoardJobDAO {
 		session.commit();
 	}
 	
-//	public BoardJobVO select(BoardJobVO vo) {
-//		sqlMapper = getInstance();
-//		SqlSession session = sqlMapper.openSession();
-//		BoardJobVO BoardJob = session.selectOne("BoardJob.select", vo);
-//		return BoardJob;
-//	}
-	public BoardJobVO select() {
+	public BoardJobVO select(BoardJobVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
-		BoardJobVO BoardJob = session.selectOne("BoardJob.select");
+		BoardJobVO BoardJob = session.selectOne("BoardJob.select", vo);
 		return BoardJob;
 	}
 	

@@ -27,13 +27,13 @@ public class BoardJobController {
 	
 	@RequestMapping(value = "createJobArticle.do")
 	public String fwdInsertPage() {
-		return "job/createArticle";
+		return "job/write-article_final";
 	}
 	
 	@RequestMapping(value = "createJobArticleAction.do")
 	public String insert(BoardJobVO vo) {
 		BoardJobService.insert(vo);
-		return "job/createArticleSuccess";
+		return "job/writeSuccess";
 	}
 	
 	@RequestMapping(value = "modifyJobArticle.do")
@@ -46,7 +46,7 @@ public class BoardJobController {
 	@RequestMapping(value = "modifyJobArticleAction.do")
 	public String update(BoardJobVO vo) {
 		BoardJobService.update(vo);
-		return "job/modifyArticleSuccess";
+		return "job/writeSuccess";
 	}
 	
 	@RequestMapping(value = "deleteJobArticle.do")
@@ -55,17 +55,20 @@ public class BoardJobController {
 	}
 	
 	@RequestMapping(value = "selectJobArticle.do")
-	public String select(BoardJobVO vo, Model model) {
+	public String select(BoardJobVO vo, Model model, HttpServletRequest request) {
+		vo.setPostNo(Integer.parseInt(request.getParameter("postNo")));
 		BoardJobVO BoardJob = BoardJobService.select(vo);
 		BoardJobService.countUp(vo);
 		model.addAttribute("Article", BoardJob);
-		return "job/selectArticle";
+		return "job/modify-article_final";
 	}
 	
 	@RequestMapping(value = "deleteJobArticleAction.do")
-	public String delete(BoardJobVO vo) {
+	public String delete(BoardJobVO vo, HttpServletRequest request) {
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		vo.setPostNo(postNo);
 		BoardJobService.delete(vo);
-		return "job/deleteArticleSuccess";
+		return "job/writeSuccess";
 	}
 	
 	@RequestMapping(value = "selectJobArticleList.do")
@@ -89,12 +92,16 @@ public class BoardJobController {
 		List<BoardJobVO> articleList = null;
 		articleList = BoardJobService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
-		return "job/pageNationArticle";
+		return "job/board-job_final";
 		
 	}
 	
 	@RequestMapping(value = "pageNationJobArticleAction.do")
 	public String pageNationArticleList(Model model, HttpServletRequest request) {
+		List<BoardJobVO> topFiveList = null;
+		topFiveList = BoardJobService.selectTopFive();
+		model.addAttribute("TopFive", topFiveList);
+		
 		int totalPage = BoardJobService.totalPage();
 		String arrowDirection = request.getParameter("arrowDirection");
 		if (arrowDirection != null) {
@@ -116,7 +123,7 @@ public class BoardJobController {
 		List<BoardJobVO> articleList = null;
 		articleList = BoardJobService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
-		return "job/pageNationArticle";
+		return "job/board-job_final";
 	}
 	
 	private void calculateLeftArrow() {

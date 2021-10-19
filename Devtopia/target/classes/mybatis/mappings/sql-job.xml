@@ -13,13 +13,13 @@
 	<insert id="insert">
 		<!-- insert into article values(idx_seq.nextval, #{writer}, #{title}, #{content}, 
 			sysdate, 0) -->
-		insert into board_job values(idx_seq.nextval, 'myId', #{title},
+		insert into board_job values(idx_seq.nextval, #{writer}, #{title},
 		#{content}, sysdate, 0)
 	</insert>
 
 	<select id="select" resultType="BoardJob">
 		select * from board_job where
-		postno = (select max(postno) from board_job)
+		postno = #{postNo}
 	</select>
 
 	<delete id="delete">

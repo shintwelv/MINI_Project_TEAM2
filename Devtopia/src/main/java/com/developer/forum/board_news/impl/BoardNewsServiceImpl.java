@@ -31,8 +31,7 @@ public class BoardNewsServiceImpl implements BoardNewsService {
 	
 	@Override
 	public BoardNewsVO select(BoardNewsVO vo) {
-//		BoardNewsVO article = dao.select(vo);
-		BoardNewsVO article = dao.select();
+		BoardNewsVO article = dao.select(vo);
 		return article;
 	}
 	
