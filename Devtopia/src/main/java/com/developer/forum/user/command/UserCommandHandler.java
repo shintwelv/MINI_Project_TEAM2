@@ -25,14 +25,9 @@ public class UserCommandHandler {
 	@Autowired
 	private UserService userService; 
 
-	@RequestMapping(value = {"goUserMain.do"})
-	public String goMain() {
-		return "user/index";
-	}
-
 	@RequestMapping(value = "writeUser.do")
 	public String fwdUserIns() {
-		return "sign-up_final";
+		return "user/sign-up_final";
 	}
 	
 	@RequestMapping(value = "writeUserAction.do", method = RequestMethod.POST)
@@ -59,13 +54,13 @@ public class UserCommandHandler {
 			vo.setProfileImgLoc("./resources/userProfileIMG/"+fileName);
 
 			userService.insert(vo);
-			return "signupSuccess";
+			return "user/signupSuccess";
 		} catch (IOException e) {
-			return "signupFail";
+			return "user/signUpFail";
 		}
 	}
 
-	@RequestMapping(value = "/updateUser.do")
+	@RequestMapping(value = "updateUser.do")
 	public String fwdUserUpt(Model model, HttpSession session, HttpServletRequest request) {
 		boolean isLogin = false;
 		String userId = (String) session.getAttribute("userId");
@@ -77,9 +72,9 @@ public class UserCommandHandler {
 		if (isLogin) {
 			UserVO user = userService.select(vo);
 			request.setAttribute("User", user);
-			return "user-info-popup_final";
+			return "user/user-info-popup_final";
 		} else {
-			return "user/loginFail";
+			return "user/updateError";
 		}
 	}
 	
@@ -104,36 +99,36 @@ public class UserCommandHandler {
 			vo.setNickName(nickName);
 			vo.setPhoneNumber(phoneNumber);
 			vo.setAddress(address);
-			vo.setProfileImgLoc(PROFILEIMAGE+fileName);
+			vo.setProfileImgLoc("./resources/userProfileIMG/"+fileName);
 
 			System.out.println(vo);
 			userService.update(vo);
-			//수정 완료됐다는 페이지가 떠야함
-			return "updateSuccess";
+			return "user/updateSuccess";
 		} catch (IOException e) {
-			e.printStackTrace();
+			return "user/updateError";
 		}
-		return "signupFail";
 	}
+	
 	@RequestMapping(value = "deleteUserAction.do")
 	public String deleteUser(UserVO vo, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		vo.setUserId(userId);
+		System.out.println(vo);
 		userService.delete(vo);
+		session.invalidate();
 		
-		return "deleteSuccess";
+		return "fwd_index";
 	}
-
 
 	@RequestMapping(value = "deleteUser.do")
 	public String fwdArticleDel() {
-		return "deleteConfirm";
+		return "user/deleteConfirm";
 	}
 	
-	@RequestMapping(value = "/logout.do")
+	@RequestMapping(value = "logout.do")
 	public String logout(HttpSession session) {
         session.invalidate();
-        return "index_final";
+        return "fwd_index";
     }
 
 	@RequestMapping(value = "loginCheck.do")
@@ -142,9 +137,9 @@ public class UserCommandHandler {
 		boolean loginSuccess = userService.loginCheck(vo, session);
 		
 		if (loginSuccess) {
-			return "index_final";
+			return "fwd_index";
 		} else {
-			return "loginFail";
+			return "user/loginFail";
 		}
 	}
 	

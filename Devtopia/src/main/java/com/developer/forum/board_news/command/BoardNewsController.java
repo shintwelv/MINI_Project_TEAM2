@@ -24,11 +24,6 @@ public class BoardNewsController {
 	@Autowired
 	private BoardNewsService BoardNewsService;
 	
-	@RequestMapping(value = "goNewsMain.do")
-	public String goMain() {
-		return "news/index";
-	}
-	
 	@RequestMapping(value = "createNewsArticle.do")
 	public String fwdInsertPage() {
 		return "news/write-article_final";
@@ -44,31 +39,19 @@ public class BoardNewsController {
 			String fileName = multipartRequest.getOriginalFileName("imgLoc");
 			vo.setTitle(title);
 			vo.setContent(content);
-			vo.setImgLoc(CURR_IMAGE_REPO_PATH+fileName);
+			vo.setImgLoc("./resources/newsIMG/"+fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println(vo);
 		BoardNewsService.insert(vo);
-		return "news/writeSuccess";
-	}
-	
-	@RequestMapping(value = "modifyNewsArticle.do")
-	public String fwdUpdatePage(BoardNewsVO vo, Model model) {
-		BoardNewsVO BoardNews = BoardNewsService.select(vo);
-		model.addAttribute("Article", BoardNews);
-		return "news/modifyArticle";
+		return "news/article-write-success";
 	}
 	
 	@RequestMapping(value = "modifyNewsArticleAction.do")
 	public String update(BoardNewsVO vo) {
 		BoardNewsService.update(vo);
-		return "news/writeSuccess";
-	}
-	
-	@RequestMapping(value = "deleteNewsArticle.do")
-	public String fwdDeletePage() {
-		return "news/deleteArticle";
+		return "news/article-update-success";
 	}
 	
 	@RequestMapping(value = "selectNewsArticle.do")
@@ -85,14 +68,7 @@ public class BoardNewsController {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		vo.setPostNo(postNo);
 		BoardNewsService.delete(vo);
-		return "news/writeSuccess";
-	}
-	
-	@RequestMapping(value = "selectNewsArticleList.do")
-	public String selectArticleList(Model model) {
-		List<BoardNewsVO> articleList = BoardNewsService.selectArticleList();
-		model.addAttribute("ArticleList", articleList);
-		return "news/selectArticleList";
+		return "news/article-delete-success";
 	}
 	
 	@RequestMapping(value = "pageNationNewsArticle.do")

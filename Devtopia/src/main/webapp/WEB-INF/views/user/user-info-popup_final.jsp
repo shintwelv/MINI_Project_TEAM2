@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <span>*</span>
                             <label for="basic-address">주소</label>
-                            <input type="text" class="form-control" name="address" id="basic-address" required
+                            <input type="text" class="form-control" value="${User.address }" name="address" id="basic-address" required
                                 onclick="fn_openAddressPopup()">
                             <br>
                             <input type="text" class="form-control" id="detail-address" required>
@@ -112,7 +112,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- signup right Start -->

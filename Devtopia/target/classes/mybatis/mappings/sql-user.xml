@@ -25,6 +25,22 @@
 	
 	 <select id="loginCheck" resultType="User">
     	select * from users where userId = #{userId} and userPw = #{userPw}
-    	    </select>
+	 </select>
+	 
+	 <update id="removeUserFromFree">
+	 	update board_free set writer = '(알수없음)' where writer = #{userId} 
+	 </update>
+	 <update id="removeUserFromJob">
+	 	update board_job set writer = '(알수없음)' where writer = #{userId} 
+	 </update>
+	 <update id="removeUserFromNews">
+	 	update board_news set writer = '(알수없음)' where writer = #{userId} 
+	 </update>
+	 <update id="removeUserFromQnA">
+	 	update board_qna set writer = '(알수없음)' where writer = #{userId} 
+	 </update>
+	 <update id="removeUserFromTip">
+	 	update board_tip set writer = '(알수없음)' where writer = #{userId} 
+	 </update>
 
 </mapper>

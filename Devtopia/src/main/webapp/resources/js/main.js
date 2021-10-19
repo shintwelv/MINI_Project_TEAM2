@@ -103,7 +103,7 @@ function fn_openLoginPopup() {
 
 /// 회원정보 팝업 ///
 function fn_openuserinfoPopup() {
-    var url = "user-info-popup.html";
+    var url = "updateUser.do";
     var name = "userinfoPopup";
     var option = "width=795, height=1000 top=100 left=200 location=no"
     window.open(url, name, option);
@@ -123,5 +123,55 @@ const closeModal = () => {
 }
 openButton.addEventListener("click", openModal);
 clsoeButton.addEventListener("click", closeModal);
+//---------------------------------------
+function fn_closeLoginModal() {
+	$(".login-modal").hide();
+}
+
+$("#id").on("click", function(){
+	$(".login-modal").show();
+})
+
+$(".login").on("click", function(){
+	$(".login-modal").show();
+})
+//----------------------------------------
 /// 로그인 모달 ///
 
+//----------------------------------------
+///회원 탈퇴///
+function fn_userDelete() {
+	if (window.confirm("정말로 탈퇴하시겠습니까?")) {
+		var url = "deleteUserAction.do";
+		location.assign(url);
+		opener.location.reload();
+		window.close();
+	} else {
+		window.close();
+	}
+}
+///회원 탈퇴///
+
+//로그 아웃//
+function fn_logout(){
+	var url = "logout.do";
+	location.assign(url);
+}
+//로그 아웃//
+
+//메인 복귀//
+function fn_goMain(){
+	var url = "goMain.do";
+	location.assign(url);
+}
+//메인 복귀//
+
+//로그인 페이지로 이동//
+function fn_signUp() {
+	var url = "writeUser.do";
+	location.assign(url);
+}
+
+//로그인 페이지로 이동//
+
+//----------------------------------------

@@ -14,7 +14,7 @@
             <i class="bi bi-justify" id="btn" onclick="menuBtnChange()"></i>
         </div>
         <div class="logo">
-            <img src="./resources/img/logo2.png" alt="" class="img fluid" width="90%">
+            <img src="./resources/img/logo2.png" alt="" class="img fluid" width="90%" onclick="fn_goMain()">
         </div>
         <br>
 

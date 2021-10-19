@@ -20,11 +20,6 @@ public class BoardQnAController {
 	@Autowired
 	private BoardQnAService BoardQnAService;
 	
-	@RequestMapping(value = "goQnAMain.do")
-	public String goMain() {
-		return "qna/index";
-	}
-	
 	@RequestMapping(value = "createQnAArticle.do")
 	public String fwdInsertPage() {
 		return "qna/write-article_final";
@@ -34,25 +29,13 @@ public class BoardQnAController {
 	public String insert(BoardQnAVO vo) {
 		System.out.println(vo);
 		BoardQnAService.insert(vo);
-		return "qna/writeSuccess";
-	}
-	
-	@RequestMapping(value = "modifyQnAArticle.do")
-	public String fwdUpdatePage(BoardQnAVO vo, Model model) {
-		BoardQnAVO BoardQnA = BoardQnAService.select(vo);
-		model.addAttribute("Article", BoardQnA);
-		return "qna/modifyArticle";
+		return "qna/article-write-success";
 	}
 	
 	@RequestMapping(value = "modifyQnAArticleAction.do")
 	public String update(BoardQnAVO vo) {
 		BoardQnAService.update(vo);
-		return "qna/writeSuccess";
-	}
-	
-	@RequestMapping(value = "deleteQnAArticle.do")
-	public String fwdDeletePage() {
-		return "qna/deleteArticle";
+		return "qna/article-update-success";
 	}
 	
 	@RequestMapping(value = "selectQnAArticle.do")
@@ -69,14 +52,7 @@ public class BoardQnAController {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		vo.setPostNo(postNo);
 		BoardQnAService.delete(vo);
-		return "qna/writeSuccess";
-	}
-	
-	@RequestMapping(value = "selectQnAArticleList.do")
-	public String selectArticleList(Model model) {
-		List<BoardQnAVO> articleList = BoardQnAService.selectArticleList();
-		model.addAttribute("ArticleList", articleList);
-		return "qna/selectArticleList";
+		return "qna/article-delete-success";
 	}
 	
 	@RequestMapping(value = "pageNationQnAArticle.do")

@@ -20,11 +20,6 @@ public class BoardJobController {
 	@Autowired
 	private BoardJobService BoardJobService;
 	
-	@RequestMapping(value = "goJobMain.do")
-	public String goMain() {
-		return "job/index";
-	}
-	
 	@RequestMapping(value = "createJobArticle.do")
 	public String fwdInsertPage() {
 		return "job/write-article_final";
@@ -33,25 +28,13 @@ public class BoardJobController {
 	@RequestMapping(value = "createJobArticleAction.do")
 	public String insert(BoardJobVO vo) {
 		BoardJobService.insert(vo);
-		return "job/writeSuccess";
-	}
-	
-	@RequestMapping(value = "modifyJobArticle.do")
-	public String fwdUpdatePage(BoardJobVO vo, Model model) {
-		BoardJobVO BoardJob = BoardJobService.select(vo);
-		model.addAttribute("Article", BoardJob);
-		return "job/modifyArticle";
+		return "job/article-write-success";
 	}
 	
 	@RequestMapping(value = "modifyJobArticleAction.do")
 	public String update(BoardJobVO vo) {
 		BoardJobService.update(vo);
-		return "job/writeSuccess";
-	}
-	
-	@RequestMapping(value = "deleteJobArticle.do")
-	public String fwdDeletePage() {
-		return "job/deleteArticle";
+		return "job/article-update-success";
 	}
 	
 	@RequestMapping(value = "selectJobArticle.do")
@@ -68,14 +51,7 @@ public class BoardJobController {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		vo.setPostNo(postNo);
 		BoardJobService.delete(vo);
-		return "job/writeSuccess";
-	}
-	
-	@RequestMapping(value = "selectJobArticleList.do")
-	public String selectArticleList(Model model) {
-		List<BoardJobVO> articleList = BoardJobService.selectArticleList();
-		model.addAttribute("ArticleList", articleList);
-		return "job/selectArticleList";
+		return "job/article-delete-success";
 	}
 	
 	@RequestMapping(value = "pageNationJobArticle.do")

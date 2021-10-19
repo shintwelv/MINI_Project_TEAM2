@@ -19,12 +19,7 @@ public class BoardTipController {
 	
 	@Autowired
 	private BoardTipService BoardTipService;
-	
-	@RequestMapping(value = "goTipMain.do")
-	public String goMain() {
-		return "tip/index";
-	}
-	
+
 	@RequestMapping(value = "createTipArticle.do")
 	public String fwdInsertPage() {
 		return "tip/write-article_final";
@@ -33,25 +28,13 @@ public class BoardTipController {
 	@RequestMapping(value = "createTipArticleAction.do")
 	public String insert(BoardTipVO vo) {
 		BoardTipService.insert(vo);
-		return "tip/writeSuccess";
-	}
-	
-	@RequestMapping(value = "modifyTipArticle.do")
-	public String fwdUpdatePage(BoardTipVO vo, Model model) {
-		BoardTipVO BoardTip = BoardTipService.select(vo);
-		model.addAttribute("Article", BoardTip);
-		return "tip/modifyArticle";
+		return "tip/article-write-success";
 	}
 	
 	@RequestMapping(value = "modifyTipArticleAction.do")
 	public String update(BoardTipVO vo) {
 		BoardTipService.update(vo);
-		return "tip/writeSuccess";
-	}
-	
-	@RequestMapping(value = "deleteTipArticle.do")
-	public String fwdDeletePage() {
-		return "tip/deleteArticle";
+		return "tip/article-update-success";
 	}
 	
 	@RequestMapping(value = "selectTipArticle.do")
@@ -68,14 +51,7 @@ public class BoardTipController {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		vo.setPostNo(postNo);
 		BoardTipService.delete(vo);
-		return "tip/writeSuccess";
-	}
-	
-	@RequestMapping(value = "selectTipArticleList.do")
-	public String selectArticleList(Model model) {
-		List<BoardTipVO> articleList = BoardTipService.selectArticleList();
-		model.addAttribute("ArticleList", articleList);
-		return "tip/selectArticleList";
+		return "tip/article-delete-success";
 	}
 	
 	@RequestMapping(value = "pageNationTipArticle.do")

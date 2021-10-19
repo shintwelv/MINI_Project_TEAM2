@@ -19,12 +19,12 @@
                         <div class="login-modal-input">
                             <label for="userId">아이디</label>
                             <br>
-                            <input type="text" name="userId">
+                            <input type="text" name="userId" required>
                         </div>
                         <div class="login-modal-input">
                             <label for="userPw">비밀번호</label>
                             <br>
-                            <input type="password" name="userPw">
+                            <input type="password" name="userPw" required>
                         </div>
                         <div class="login-modal-button-wrapper">
                             <div class="login-signup">

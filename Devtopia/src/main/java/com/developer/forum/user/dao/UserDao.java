@@ -47,6 +47,11 @@ public class UserDao {
 	public void delete(UserVO vo) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
+		session.delete("User.removeUserFromFree", vo);
+		session.delete("User.removeUserFromJob", vo);
+		session.delete("User.removeUserFromNews", vo);
+		session.delete("User.removeUserFromQnA", vo);
+		session.delete("User.removeUserFromTip", vo);
 		session.delete("User.deleteUser", vo);
 		session.commit();
 	}
