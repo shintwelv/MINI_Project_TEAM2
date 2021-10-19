@@ -54,9 +54,9 @@
 			<div class="board-news">
 				<c:forEach items="${ArticleList }" var="Article">
 					<div class="row">
-						<%-- <div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 news-img">
+						<div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 news-img">
 							<img src="${Article.imgLoc }" alt="..." class="img-fluid">
-						</div> --%>
+						</div>
 						<div class="col-xs-10 col-sm-10 col-md-7 col-lg-8 caption">
 							<a
 								href="selectNewsArticle.do?postNo=${Article.postNo }">

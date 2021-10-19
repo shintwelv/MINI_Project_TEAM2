@@ -38,7 +38,6 @@
                             <img src="${User.profileImgLoc}" alt="Profile">
                         </class>
                     </div>
-
                     <br>
                     <form action="updateUserAction.do" method="post" enctype="multipart/form-data">
                         <div class="row">
