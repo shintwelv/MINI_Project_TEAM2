@@ -124,6 +124,7 @@ const closeModal = () => {
 closeButton.addEventListener("click", closeModal);
 openButton.addEventListener("click", openModal);
 
+//---------------------------------------
 function fn_closeLoginModal() {
 	$(".login-modal").hide();
 }
@@ -135,8 +136,10 @@ $("#id").on("click", function(){
 $(".login").on("click", function(){
 	$(".login-modal").show();
 })
+//----------------------------------------
 /// 로그인 모달 ///
 
+//----------------------------------------
 ///회원 탈퇴///
 function fn_userDelete() {
     var url = "deleteUser.do";
@@ -167,3 +170,5 @@ function fn_signUp() {
 }
 
 //로그인 페이지로 이동//
+
+//----------------------------------------

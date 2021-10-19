@@ -1,5 +1,3 @@
-/* nav */
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 *{
@@ -288,157 +286,74 @@ ul{
     left: 250px;
     width: calc(100% - 250px);
 }
-/*nav end*/
 
-
-/* board start */
-
-.board-wrapper{
-    display: block;
+.write-article-wrapper{
     width: 80%;
 }
 
-.board-title{
+.board-head{
     padding: 15px;
     background-color: #172b4d;
     border-radius: 15px;
-    
-}
-
-.board-title h3{
     color: #fff;
 }
 
-.board-best-wrap {
-    display: block;
+.board-head h3 {
+    margin: 0;
+}
+
+.input-title{
+    all: unset;
+    border-bottom: 3px solid #172b4d ;
+    width: 100%;
+    margin-bottom: 30px;
+}  
+
+.note-wrap{
+    display: flex;
+    justify-content: left;
+}
+
+.write-article-button-wrapper{
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
     margin-top: 30px;
 }
 
-.board-best{
-    border: 1px solid #172b4d;
-    padding: 20px;
-}
-
-.board-best ul li{
-    list-style: none;
-}
-
-.board-best a{
-    width: 100%;
-    overflow: hidden;
-    display: inline-flex;
-    color: #181918;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-table {
-    margin-top: 10px;
-    line-height: 2.5;
-    width: 100%;
-}
-
-thead{
-    border-top: 2px solid #172b4d;
-    border-bottom: 1px solid #172b4d;
-}
-
-.table-wrapper>table tr th{
-    padding: 8px 5px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 15px;
-}
-
-.table-wrapper>table tr td{
-    padding: 8px 5px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 15px;
-    border-bottom: 1px solid #e5e8ec;
-}
-
-.table-wrapper>table tr td.title>.text-wrap{
-    display: flex;
-    overflow: hidden;
-    width: 95%;
-    text-align: left;
-}
-
-.text-wrap a{
-    text-decoration: none;
-    color: #181918;;
-
-}
-
-tbody tr:hover{
-    background-color: #e5e8ec;
-}
-
-
-.write-button {
-    text-align: right;
-}
-
-.write-button button{
+.article-controller input{
     all: unset;
     background-color: #172b4d;
     border-radius: 5px;
     padding: 5px 12px;
     color: #fff;
-    cursor: pointer;;
+    cursor: pointer;
 }
 
-.paigination-wrapper{
-    margin-top: 30px;
-    align-items: center;
+.article-cotroller button{
+    all: unset;
+    background-color: #172b4d;
+    border-radius: 5px;
+    padding: 5px 12px;
+    color: #fff;
+    cursor: pointer;
 }
 
-.paigination-wrapper ul{
-    justify-content: center;
+#board-list{
+    all: unset;
+    background-color: #172b4d;
+    border-radius: 5px;
+    padding: 5px 12px;
+    color: #fff;
+    cursor: pointer;
 }
 
-.paigination-wrapper ul li{
-    text-align: center;
-    margin: 3px;
-    width: 30px;
-    height: 30px;
+#banner {
+    position: fixed;
+    right:50%;
+    margin-right:-800px; 
+    top: 168px;
 }
-
-.paigination-wrapper ul li:hover{
-    border: 1px solid #e5e8ec;
-}
-
-#Previous-page,
-#next-page{
-    width:80px;
-}
-#Previous-page:hover,
-#next-page:hover {
-    border: none;
-}
-
-.pagination a{
-    text-decoration: none;
-    border: none;
-    color: #181918;
-}
-
-.pagination a:hover{
-    color: #0060f0
-}
-
-.sideBanner {
-    position: absolute;
-    width: 179px;
-    height: 687px;
-    right: 50%;
-    margin-right: -820px;
-    margin-top:150px;
-}
-
-/** board End **/
-
 
 .hidden{
     display: none;
@@ -507,3 +422,4 @@ tbody tr:hover{
     border-radius: 5px;
     cursor: pointer;
 }
+
