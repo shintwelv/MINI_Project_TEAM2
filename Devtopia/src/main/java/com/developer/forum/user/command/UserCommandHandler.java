@@ -54,7 +54,7 @@ public class UserCommandHandler {
 			vo.setProfileImgLoc("./resources/userProfileIMG/"+fileName);
 
 			userService.insert(vo);
-			return "user/signupSuccess";
+			return "user/signUpSuccess";
 		} catch (IOException e) {
 			return "user/signUpFail";
 		}
@@ -137,7 +137,7 @@ public class UserCommandHandler {
 		boolean loginSuccess = userService.loginCheck(vo, session);
 		
 		if (loginSuccess) {
-			return "login-success";
+			return "user/login-success";
 		} else {
 			return "user/loginFail";
 		}
@@ -145,6 +145,6 @@ public class UserCommandHandler {
 	
 	@RequestMapping(value = "addressPopup.do")
 	public String fwdAddressPopup() {
-		return "address-popup_final";
+		return "user/address-popup_final";
 	}
 }

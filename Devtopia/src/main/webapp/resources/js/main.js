@@ -5,7 +5,7 @@ AOS.init();
 
 // 주소 입력 pop-up //
 function fn_openAddressPopup() {
-    var url = "adderss-popup.html";
+    var url = "addressPopup.do";
     var name = "AddressPopup";
     var option = "width=650, height=500, top=100, left=200, location=no"
     window.open(url, name, option);
@@ -93,12 +93,12 @@ function chooseAddress(roadAddr, jibunAddr, zipNo) {
 
 
 /// 로그인 팝업 ///
-function fn_openLoginPopup() {
-    var url = "login-popup.html";
+/*function fn_openLoginPopup() {
+    var url = "addressPopup.do";
     var name = "loginPopup";
     var option = "width=650, height=500, top=100, left=200, location=no"
     window.open(url, name, option);
-}
+}*/
 /// 로그인 팝업 ///
 
 /// 회원정보 팝업 ///
@@ -112,17 +112,17 @@ function fn_openuserinfoPopup() {
 
 
 /// 로그인 모달 /// 
-const openButton = document.getElementById("open");
+/*const openButton = document.getElementById("open");
 const modal = document.querySelector(".login-modal");
-const clsoeButton = modal.querySelector("#closeButton");
-const openModal = () => {
+const clsoeButton = modal.querySelector("#closeButton");*/
+/*const openModal = () => {
     modal.classList.remove("hidden");
 }
 const closeModal = () => {
     modal.classList.add("hidden");
 }
 openButton.addEventListener("click", openModal);
-clsoeButton.addEventListener("click", closeModal);
+clsoeButton.addEventListener("click", closeModal);*/
 //---------------------------------------
 function fn_closeLoginModal() {
 	$(".login-modal").hide();
