@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./resources/img/favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,9 +128,7 @@
         </div>
     </section>
 
-    <footer class="footer-contents">
-        <h1><img src="./resources/img/font-logo.png" alt="" class="img-fluid"><a href="goMain.do"></a></h1>
-    </footer>
+<jsp:include page="./common/footer.jsp"></jsp:include>
 
 <jsp:include page="./common/loginModal.jsp"></jsp:include>
 

@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./resources/img/favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +72,7 @@
     </section>
     </div>
     <!-- write section end-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 
         <!-- Vendor JS Files -->
         <script src="./resources/vendor/aos/aos.js"></script>

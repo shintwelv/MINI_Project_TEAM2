@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="./resources/img/favicon.ico" type="image/x-icon">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -238,10 +239,10 @@
 
 	<!-- banner section start-->
 	<div class="sideBanner">
-		<img src="./resources/img/banner.png" alt="배너이미지" srcset="">
+		<img src="./resources/img/banner.gif" alt="배너이미지" srcset="">
 	</div>
 	<!-- banner section end-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<jsp:include page="../common/loginModal.jsp"></jsp:include>
 
 	<!-- vendoer css-->

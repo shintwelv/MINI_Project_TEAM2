@@ -137,7 +137,7 @@ public class UserCommandHandler {
 		boolean loginSuccess = userService.loginCheck(vo, session);
 		
 		if (loginSuccess) {
-			return "fwd_index";
+			return "login-success";
 		} else {
 			return "user/loginFail";
 		}
