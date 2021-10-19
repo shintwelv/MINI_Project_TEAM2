@@ -86,3 +86,5 @@ viewCount int not null,
 constraint fk_writer_job foreign key(writer)
 references users(userId)
 );
+
+insert into users values ('(알수없음)', '(알수없음)', '(알수없음)', '(알수없음)', '(알수없음)', '(알수없음)', '(알수없음)', null, 'Y');
