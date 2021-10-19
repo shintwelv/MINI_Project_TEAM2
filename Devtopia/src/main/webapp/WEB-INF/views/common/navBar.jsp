@@ -49,7 +49,7 @@
                 		</c:when>
                 		<c:otherwise>
 		                    <div class="member-info">
-		                        <button class="member-info-button" onclick="fn_openuserinfoPopup()"><i id="memberinfo"
+		                        <button class="member-info-button" onclick="fn_openuserinfoPopup()"><i
 		                                class="bi bi-person-fill"></i>회원정보</button>
 		                    </div>
 		                    <div class="member-info">
