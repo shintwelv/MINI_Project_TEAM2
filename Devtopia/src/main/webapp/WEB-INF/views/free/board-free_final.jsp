@@ -32,7 +32,7 @@
 </head>
 
 <body>
-	<jsp:include page="../common/navBar.jsp"></jsp:include>
+<jsp:include page="../common/navBar.jsp"></jsp:include>
 
 	<!-- board-job start-->
 	<div class="main-contents">
@@ -131,6 +131,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- Devtopia Js-->
+    <script src="./resources/js/main.js"></script>
 	<script src="./resources/js/banner.js"></script>
 
 </body>

@@ -27,14 +27,12 @@ public class BoardFreeController {
 	
 	@RequestMapping(value = "createFreeArticleAction.do")
 	public String insert(BoardFreeVO vo) {
-		System.out.println(vo);
 		BoardFreeService.insert(vo);
 		return "free/article-write-success";
 	}
 	
 	@RequestMapping(value = "modifyFreeArticleAction.do")
 	public String update(BoardFreeVO vo) {
-		System.out.println(vo);
 		BoardFreeService.update(vo);
 		return "free/article-update-success";
 	}

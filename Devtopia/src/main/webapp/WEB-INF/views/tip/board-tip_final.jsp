@@ -28,7 +28,7 @@
 <!-- Devtopia css -->
 <link rel="stylesheet" href="./resources/css/board-tip.css">
 
-<title>Devtopiaㅣ자유게시판</title>
+<title>Devtopiaㅣ팁 게시판</title>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
 				<div class="board-title-wrapper">
 					<div class="board-title">
 						<h3>
-							<i class="bi bi-share"></i> 자유게시판
+							<i class="bi bi-share"></i> 팁 게시판
 						</h3>
 					</div>
 				</div>
@@ -130,6 +130,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- Devtopia Js-->
+    <script src="./resources/js/main.js"></script>
 	<script src="./resources/js/banner.js"></script>
 
 </body>
