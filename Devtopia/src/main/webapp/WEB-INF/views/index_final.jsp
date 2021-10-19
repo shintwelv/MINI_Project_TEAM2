@@ -54,27 +54,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>AI가 나 대신 코딩을 ? 깃헙 'Copilot'을 사용 해 봤다!</td>
-                        <td id="writer">운영자</td>
-
-                    </tr>
-                    <tr>
-                        <td>인터넷 익스프롤러! 처참한 몰락의 이유는</td>
-                        <td id="writer">운영자</td>
-                    </tr>
-                    <tr>
-                        <td>머신러닝 vs 딥러닝 vs 인공지능? </td>
-                        <td id="writer">운영자</td>
-                    </tr>
-                    <tr>
-                        <td>지금 당장 알아둬야 하는 JS 신박한 기능 10가지 !</td>
-                        <td id="writer">운영자</td>
-                    </tr>
-                    <tr>
-                        <td>SonarQube와 Github Action으로 수행하는 정적 분석</td>
-                        <td id="writer">운영자</td>
-                    </tr>
+                	<c:forEach items="${newsArticleList }" var="Article">
+                		<tr>
+	                		<td>
+								${Article.title }                		
+	                		</td>
+	                		<td id="writer">
+	                			${Article.writer }
+	                		</td>
+                		</tr>
+                	</c:forEach>
                 </tbody>
             </table>
             <br>
@@ -86,7 +75,7 @@
                             </H3>
                         </div>
                         <div class="board-list" data-aos="fade-right" data-aos-delay=400><a
-                                href="board-free.html"><span><i class="bi bi-plus-lg"></i></span></a></div>
+                                href="pageNationFreeArticle.do"><span><i class="bi bi-plus-lg"></i></span></a></div>
                     </div>
                     <tr>
                         <th scope="col"> </th>
@@ -94,28 +83,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <a href="./board-news.html">
-                            <td>AI가 나 대신 코딩을 ? 깃헙 'Copilot'을 사용 해 봤다!</td>
-                            <td id="writer">servelt1004</td>
-                        </a>
-                    </tr>
-                    <tr>
-                        <td>인터넷 익스프롤러! 처참한 몰락의 이유는</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>머신러닝 vs 딥러닝 vs 인공지능? </td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>지금 당장 알아둬야 하는 JS 신박한 기능 10가지 !</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>SonarQube와 Github Action으로 수행하는 정적 분석</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
+                    <c:forEach items="${freeArticleList }" var="Article">
+                		<tr>
+	                		<td>
+								${Article.title }                		
+	                		</td>
+	                		<td id="writer">
+	                			${Article.writer }
+	                		</td>
+                		</tr>
+                	</c:forEach>
                 </tbody>
             </table>
             <br>
@@ -135,33 +112,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>AI가 나 대신 코딩을 ? 깃헙 'Copilot'을 사용 해 봤다!</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>인터넷 익스프롤러! 처참한 몰락의 이유는</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>머신러닝 vs 딥러닝 vs 인공지능? </td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>지금 당장 알아둬야 하는 JS 신박한 기능 10가지 !</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
-                    <tr>
-                        <td>SonarQube와 Github Action으로 수행하는 정적 분석</td>
-                        <td id="writer">servelt1004</td>
-                    </tr>
+                    <c:forEach items="${tipArticleList }" var="Article">
+                		<tr>
+	                		<td>
+								${Article.title }                		
+	                		</td>
+	                		<td id="writer">
+	                			${Article.writer }
+	                		</td>
+                		</tr>
+                	</c:forEach>
                 </tbody>
             </table>
         </div>
     </section>
 
     <footer class="footer-contents">
-        <h1><img src="./resources/img/font-logo.png" alt="" class="img-fluid"><a href=""></a></h1>
+        <h1><img src="./resources/img/font-logo.png" alt="" class="img-fluid"><a href="goMain.do"></a></h1>
     </footer>
 
 <jsp:include page="./common/loginModal.jsp"></jsp:include>

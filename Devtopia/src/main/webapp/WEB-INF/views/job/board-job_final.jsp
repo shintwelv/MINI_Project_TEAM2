@@ -98,6 +98,9 @@
 						</table>
 					</div>
 				</div>
+				</div>
+				</div>
+				</div>
 				<div class="paigination-wrapper">
 					<ul class="pagination">
 						<li id="Previous-page"><a

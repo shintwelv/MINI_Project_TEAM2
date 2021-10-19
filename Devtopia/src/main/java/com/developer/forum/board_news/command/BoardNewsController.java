@@ -1,7 +1,6 @@
 package com.developer.forum.board_news.command;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 @Controller
 public class BoardNewsController {
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\Temp\\img\\";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\Devtopia\\Devtopia\\src\\main\\webapp\\resources\\newsIMG";
 	
 	private int startPoint = 1;
 	private int endPoint = 5;
@@ -32,7 +31,7 @@ public class BoardNewsController {
 	
 	@RequestMapping(value = "createNewsArticle.do")
 	public String fwdInsertPage() {
-		return "news/createArticle";
+		return "news/write-article_final";
 	}
 	
 	@RequestMapping(value = "createNewsArticleAction.do")
@@ -51,23 +50,7 @@ public class BoardNewsController {
 		}
 		System.out.println(vo);
 		BoardNewsService.insert(vo);
-		return "news/createArticleSuccess";
-	}
-	
-	private void saveImg(HttpServletRequest request) {
-		// input file로 받은 이미지가 지정된 경로에 저장됨(용량 100MB로 제한)
-		//C:\Temp\img로 가서 확인
-		MultipartRequest multipartRequest;
-		try {
-			multipartRequest = new MultipartRequest(request, CURR_IMAGE_REPO_PATH, 1024*1024*100, "utf-8");
-			Enumeration<String> fileNames = multipartRequest.getFileNames();
-			while (fileNames.hasMoreElements()) {
-				String fileName = (String) fileNames.nextElement();
-				System.out.println(fileName);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		return "news/writeSuccess";
 	}
 	
 	@RequestMapping(value = "modifyNewsArticle.do")
@@ -80,7 +63,7 @@ public class BoardNewsController {
 	@RequestMapping(value = "modifyNewsArticleAction.do")
 	public String update(BoardNewsVO vo) {
 		BoardNewsService.update(vo);
-		return "news/modifyArticleSuccess";
+		return "news/writeSuccess";
 	}
 	
 	@RequestMapping(value = "deleteNewsArticle.do")
@@ -89,17 +72,20 @@ public class BoardNewsController {
 	}
 	
 	@RequestMapping(value = "selectNewsArticle.do")
-	public String select(BoardNewsVO vo, Model model) {
+	public String select(BoardNewsVO vo, Model model, HttpServletRequest request) {
+		vo.setPostNo(Integer.parseInt(request.getParameter("postNo")));
 		BoardNewsVO BoardNews = BoardNewsService.select(vo);
 		BoardNewsService.countUp(vo);
 		model.addAttribute("Article", BoardNews);
-		return "news/selectArticle";
+		return "news/modify-article_final";
 	}
 	
 	@RequestMapping(value = "deleteNewsArticleAction.do")
-	public String delete(BoardNewsVO vo) {
+	public String delete(BoardNewsVO vo, HttpServletRequest request) {
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		vo.setPostNo(postNo);
 		BoardNewsService.delete(vo);
-		return "news/deleteArticleSuccess";
+		return "news/writeSuccess";
 	}
 	
 	@RequestMapping(value = "selectNewsArticleList.do")
@@ -123,7 +109,7 @@ public class BoardNewsController {
 		List<BoardNewsVO> articleList = null;
 		articleList = BoardNewsService.pageNationArticleList(startPoint);
 		model.addAttribute("ArticleList", articleList);
-		return "news/pageNationArticle";
+		return "news/board-news_final";
 		
 	}
 	
@@ -154,7 +140,7 @@ public class BoardNewsController {
 		List<BoardNewsVO> articleList = null;
 		articleList = BoardNewsService.pageNationArticleList(pageNumVal);
 		model.addAttribute("ArticleList", articleList);
-		return "news/pageNationArticle";
+		return "news/board-news_final";
 	}
 	
 	private void calculateLeftArrow() {

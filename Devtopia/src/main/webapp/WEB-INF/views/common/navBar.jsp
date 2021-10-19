@@ -68,7 +68,7 @@
                         <li><a href="pageNationFreeArticle.do"><i class="bi bi-share"></i><span class="links_name">자유게시판</span></a></li>
                         <li><a href="pageNationTipArticle.do"><i class="bi bi-info-circle"></i><span class="links_name">팁과 노하우</span></a></li>
                         <li><a href="pageNationJobArticle.do"><i class="bi bi-briefcase"></i><span class="links_name">구인 &amp; 구직</span></a></li>
-                        <li><a href="pageNationQnaArticle.do"><i class="bi bi-question-circle"></i><span class="links_name">Q &amp; A</span></a></li>
+                        <li><a href="pageNationQnAArticle.do"><i class="bi bi-question-circle"></i><span class="links_name">Q &amp; A</span></a></li>
                         <li><a href="https://github.com/shintwelv/MINI_Project_TEAM2" target="_blank"><i class="bi bi-github"></i><span class="links_name">Github</span></a></li>
                     </ul>
                 </div>

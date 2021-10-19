@@ -35,17 +35,31 @@
 
 	<!-- main-contents start -->
 	<div class="main-conents">
-		<di class="board-news-wrapper">
-		<div class="board-title-wrapper">
-			<div class="board-title">
-				<h3>
-					<i class="bi bi-globe2"></i> 개발자 뉴스
-				</h3>
+		<div class="board-news-wrapper">
+			<div class="board-title-wrapper">
+				<div class="board-title">
+					<h3>
+						<i class="bi bi-globe2"></i> 개발자 뉴스
+					</h3>
+				</div>
 			</div>
-		</div>
-		<div class="main-content">
-			<div class="container">
-				<div class="row">
+			<div class="main-content">
+				<div class="container">
+					<c:forEach items="${ArticleList }" var="Article">
+						<div class="row">
+							<div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 news-img">
+								<img src="${Article.imgLoc }" alt="..." class="img-fluid">
+							</div>
+							<div class="col-xs-10 col-sm-10 col-md-7 col-lg-8 caption">
+								<a
+									href="https://www.donga.com/news/It/article/all/20211008/109620166/2">
+									<span id="news-title">${Article.title } </span>
+								</a>
+								<p>${Article.content }</p>
+							</div>
+						</div>
+					</c:forEach>
+					<!-- 				<div class="row">
 					<div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 news-img">
 						<img src="img/news1.png" alt="..." class="img-fluid">
 					</div>
@@ -196,10 +210,10 @@
 							나 있다. 특히 코로나19 팬데믹 기간에 온라인 수업을 개설해 기존보다 10배 많은 수강생을 끌었다. 코더스쿨은
 							오프라인 5500만동(약 266만원), 온라인 3500만동(약 169만원)의 수강료를 받는다.</p>
 					</div>
+				</div> -->
 				</div>
 			</div>
 		</div>
-		</di>
 	</div>
 	<!-- main-contents end-->
 
@@ -211,7 +225,8 @@
 					class="sr-only">이전</span>
 			</a></li>
 			<c:forEach begin="${startPoint }" end="${endPoint }" var="pageNum">
-				<li><a href="pageNationNewsArticleAction.do?pageNum=${pageNum }">${pageNum }</a></li>
+				<li><a
+					href="pageNationNewsArticleAction.do?pageNum=${pageNum }">${pageNum }</a></li>
 			</c:forEach>
 			<li id="next-page"><a
 				href="pageNationNewsArticleAction.do?arrowDirection=right"

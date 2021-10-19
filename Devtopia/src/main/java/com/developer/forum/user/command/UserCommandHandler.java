@@ -113,7 +113,7 @@ public class UserCommandHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "user/signupFail";
+		return "signupFail";
 	}
 	@RequestMapping(value = "deleteUserAction.do")
 	public String deleteUser(UserVO vo, HttpSession session) {
@@ -129,12 +129,6 @@ public class UserCommandHandler {
 	public String fwdArticleDel() {
 		return "deleteConfirm";
 	}
-//	
-//	@RequestMapping(value = "login.do")
-//	public String fwdLoginPage(HttpSession session) {
-//		return "user/login";
-//	}
-//	
 	
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
@@ -146,9 +140,6 @@ public class UserCommandHandler {
 	public String loginCheck(UserVO vo, HttpSession session) {
 		
 		boolean loginSuccess = userService.loginCheck(vo, session);
-//		ModelAndView mav = new ModelAndView();
-//		
-//		mav.setViewName("user/login");
 		
 		if (loginSuccess) {
 			return "index_final";
