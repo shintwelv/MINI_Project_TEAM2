@@ -14,7 +14,7 @@
     <!-- vendor css -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/success.css">
+    <link rel="stylesheet" href="./resources/css/success.css">
 
     <title>로그인 성공</title>
 </head>
