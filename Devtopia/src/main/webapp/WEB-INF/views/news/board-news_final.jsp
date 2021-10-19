@@ -54,12 +54,12 @@
 			<div class="board-news">
 				<c:forEach items="${ArticleList }" var="Article">
 					<div class="row">
-						<div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 news-img">
+						<%-- <div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 news-img">
 							<img src="${Article.imgLoc }" alt="..." class="img-fluid">
-						</div>
+						</div> --%>
 						<div class="col-xs-10 col-sm-10 col-md-7 col-lg-8 caption">
 							<a
-								href="https://www.donga.com/news/It/article/all/20211008/109620166/2">
+								href="selectNewsArticle.do?postNo=${Article.postNo }">
 								<span id="news-title">${Article.title } </span>
 							</a>
 							<p>${Article.content }</p>
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		<div class="write-button">
-			<button onclick="loation.href='write-article.html'">게시글 작성</button>
+			<button onclick="location.href='createNewsArticle.do'">게시글 작성</button>
 		</div>
 		</div>
 	</div>

@@ -44,7 +44,7 @@
 
                 <br>
                 <br>
-               <form action="createNewsArticleAction.do" class="write-article-head" method="post">
+               <form action="createNewsArticleAction.do" class="write-article-head" method="post" enctype="multipart/form-data">
                     <div class="write-title">
                         <div class="writer">
                             <label for="title">작성자</label>
@@ -57,8 +57,11 @@
                         <input type="text" name="title" class="input-title" required></input>
                     </div>
                     <br>
-                        <div class="note-wrap">
+                    <div class="note-wrap">
                     	<textarea rows="10" cols="10" name="content" id="summernote"></textarea>
+                    </div>
+                    <div>
+                    	<input type="file" name="imgLoc">
                     </div>
                  	<div class="write-article-button-wrapper">
                      	<div class="article-cotroller">

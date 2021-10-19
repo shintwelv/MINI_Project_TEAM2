@@ -37,7 +37,9 @@ public class BoardNewsController {
 			String title = multipartRequest.getParameter("title");
 			String content = multipartRequest.getParameter("content");
 			String fileName = multipartRequest.getOriginalFileName("imgLoc");
+			String writer = multipartRequest.getParameter("writer");
 			vo.setTitle(title);
+			vo.setWriter(writer);
 			vo.setContent(content);
 			vo.setImgLoc("./resources/newsIMG/"+fileName);
 		} catch (IOException e) {
